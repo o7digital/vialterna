@@ -282,7 +282,7 @@ function App() {
           loading="eager"
         />
         <video
-          className="absolute inset-0 h-full w-full object-cover grayscale-[18%] saturate-[.72]"
+          className="absolute inset-0 h-full w-full object-contain object-center grayscale-[18%] saturate-[.72]"
           src={heroVideo}
           poster={heroImage}
           autoPlay
