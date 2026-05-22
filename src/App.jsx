@@ -829,20 +829,84 @@ function App() {
       </section>
 
       <section id="socios-ers" className="bg-white px-5 py-24 text-slate-950 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
-          <div>
-            <div className="mb-4 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-sm font-black text-cyan-900">
-              Socios ER's
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-10 lg:grid-cols-[.82fr_1.18fr] lg:items-center">
+            <div>
+              <div className="mb-4 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-sm font-black text-cyan-900">
+                Socios ER's
+              </div>
+              <h2 className="text-4xl font-black leading-tight md:text-6xl">
+                Elige emprender como aliado de Vialterna.
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-slate-600">
+                Coordinamos instalación, soporte y operación de campo con una red de
+                aliados especializados para acelerar despliegues empresariales y
+                mantener continuidad en cada sitio.
+              </p>
+              <p className="mt-5 text-lg leading-8 text-slate-600">
+                ER nace de unir emprendedor e ingeniero: Engineur. Es el profesional
+                que gestiona cuentas, acompaña a los clientes y construye relaciones de
+                largo plazo para entregar servicios de conectividad al mercado
+                empresarial.
+              </p>
             </div>
-            <h2 className="text-4xl font-black leading-tight md:text-6xl">
-              Aliados de ejecución regional.
-            </h2>
+
+            <div className="rounded-[2.5rem] bg-[#061521] p-7 text-white shadow-2xl shadow-slate-300/70">
+              <div className="text-sm font-black uppercase tracking-[0.18em] text-sky-100/60">
+                Comunidad de Socios de Negocio ERs
+              </div>
+              <h3 className="mt-4 text-3xl font-black leading-tight md:text-4xl">
+                Una fuerza comercial y técnica con alcance nacional.
+              </h3>
+              <p className="mt-5 leading-8 text-white/68">
+                Cada ER forma parte de una comunidad capacitada profesionalmente para
+                vender, implementar y entregar servicios Vialterna con alcance nacional
+                e internacional.
+              </p>
+              <blockquote className="mt-8 rounded-[1.8rem] border border-white/10 bg-white/8 p-6 text-xl font-black leading-snug backdrop-blur-xl">
+                “Inicié habilitando servicios y ahora yo mismo los comercializo
+                haciendo equipo con Vialterna. Los ingresos recurrentes crecen cada
+                mes.”
+                <div className="mt-4 text-sm font-bold text-white/50">
+                  Osvaldo Degollado · ER Monterrey
+                </div>
+              </blockquote>
+            </div>
           </div>
-          <p className="text-lg leading-8 text-slate-600">
-            Coordinamos instalación, soporte y operación de campo con una red de
-            aliados especializados para acelerar despliegues empresariales y mantener
-            continuidad en cada sitio.
-          </p>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              [
+                Mail,
+                "Comunicación efectiva",
+                "Capacidad de escuchar, adaptar tono y transmitir soluciones con claridad.",
+              ],
+              [
+                ShieldCheck,
+                "Relaciones de confianza",
+                "Gestión profesional orientada a satisfacción, fidelización y beneficio mutuo.",
+              ],
+              [
+                BadgeCheck,
+                "Argumentación comercial",
+                "Persuasión, compromiso y capacidad de presentar propuestas de mejora.",
+              ],
+              [
+                Clock3,
+                "Negocios de recurrencia",
+                "Relaciones mensuales predecibles con clientes que consumen servicios de forma continua.",
+              ],
+            ].map(([Icon, title, text]) => (
+              <div
+                key={title}
+                className="rounded-[2rem] border border-slate-200 bg-slate-50 p-7"
+              >
+                <Icon className="mb-6 h-8 w-8 text-cyan-700" />
+                <h3 className="text-xl font-black">{title}</h3>
+                <p className="mt-4 leading-7 text-slate-600">{text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
