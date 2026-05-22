@@ -36,6 +36,8 @@ const nav = [
 
 const heroImage =
   "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1800&q=82";
+const heroVideo =
+  "https://vialterna.com/wp-content/uploads/2026/04/Conectividad-Vialterna-original.mp4";
 
 const solutions = [
   {
@@ -279,7 +281,17 @@ function App() {
           className="absolute inset-0 h-full w-full object-cover grayscale-[18%] saturate-[.72]"
           loading="eager"
         />
-        {/* TODO: Replace with lightweight hero video from vialterna.com when direct source URL is available. */}
+        <video
+          className="absolute inset-0 h-full w-full object-cover grayscale-[18%] saturate-[.72]"
+          src={heroVideo}
+          poster={heroImage}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(6,21,33,.98)_0%,rgba(7,26,42,.91)_45%,rgba(6,21,33,.56)_100%)]" />
         <div
           className="absolute inset-0 opacity-[0.08]"
