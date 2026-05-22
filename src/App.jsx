@@ -177,15 +177,16 @@ function App() {
     <div className="min-h-screen bg-[#061521] text-white selection:bg-cyan-300/30">
       <section className="relative min-h-screen overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center transition-all duration-700"
+          className="absolute inset-0 bg-cover bg-center grayscale-[20%] saturate-[.72] transition-all duration-700"
           style={{ backgroundImage: `url('${slide.image}')` }}
         />
-        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(6,21,33,.96)_0%,rgba(6,21,33,.82)_43%,rgba(6,21,33,.38)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(6,21,33,.97)_0%,rgba(17,31,43,.86)_45%,rgba(45,55,64,.58)_100%)]" />
+        <div className="absolute inset-0 bg-slate-950/10 mix-blend-saturation" />
         <div
-          className="absolute inset-0 opacity-[0.12]"
+          className="absolute inset-0 opacity-[0.08]"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(255,255,255,.28) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.28) 1px, transparent 1px)",
+              "linear-gradient(rgba(255,255,255,.22) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.22) 1px, transparent 1px)",
             backgroundSize: "54px 54px",
           }}
         />
@@ -194,7 +195,7 @@ function App() {
           <a href="#" className="flex items-center gap-3">
             <div className="relative grid h-12 w-12 place-items-center rounded-2xl bg-white text-[#061521] shadow-2xl shadow-cyan-950/50">
               <Signal className="h-6 w-6" />
-              <span className="absolute -right-1 -top-1 h-4 w-4 rounded-full border-2 border-[#061521] bg-emerald-300" />
+              <span className="absolute -right-1 -top-1 h-4 w-4 rounded-full border-2 border-[#061521] bg-sky-200" />
             </div>
             <div>
               <div className="text-2xl font-black tracking-tight">Vialterna</div>
@@ -263,13 +264,13 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
-            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-200/20 bg-white/10 px-4 py-2 text-sm font-bold text-cyan-100 backdrop-blur-xl">
-              <Zap className="h-4 w-4 text-cyan-200" />
+            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-slate-200/20 bg-white/10 px-4 py-2 text-sm font-bold text-slate-100 backdrop-blur-xl">
+              <Zap className="h-4 w-4 text-sky-200" />
               {slide.kicker}
             </div>
             <h1 className="max-w-5xl text-5xl font-black leading-[0.92] md:text-7xl xl:text-8xl">
               {slide.title.split(",")[0]}
-              <span className="bg-gradient-to-r from-cyan-200 via-emerald-200 to-white bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-sky-100 via-slate-100 to-white bg-clip-text text-transparent">
                 {slide.title.includes(",")
                   ? `,${slide.title.split(",").slice(1).join(",")}`
                   : ""}
@@ -281,7 +282,7 @@ function App() {
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <a
                 href="#servicios"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 font-black text-[#061521] shadow-2xl shadow-cyan-950/40 transition hover:bg-cyan-200"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 font-black text-[#061521] shadow-2xl shadow-slate-950/40 transition hover:bg-sky-100"
               >
                 Conoce mas
                 <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
@@ -300,7 +301,7 @@ function App() {
                   key={index}
                   onClick={() => setActiveSlide(index)}
                   className={`h-2 rounded-full transition-all ${
-                    index === activeSlide ? "w-14 bg-cyan-300" : "w-8 bg-white/25"
+                    index === activeSlide ? "w-14 bg-sky-200" : "w-8 bg-white/25"
                   }`}
                   aria-label={`Slide ${index + 1}`}
                 />
@@ -314,12 +315,12 @@ function App() {
             transition={{ duration: 0.8, delay: 0.08 }}
             className="relative"
           >
-            <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-cyan-300/18 via-emerald-300/10 to-blue-500/14 blur-3xl" />
+            <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-slate-200/14 via-sky-300/8 to-blue-500/10 blur-3xl" />
             <div className="relative overflow-hidden rounded-[2.5rem] border border-white/15 bg-slate-950/45 p-4 shadow-2xl shadow-slate-950/50 backdrop-blur-2xl">
               <div className="overflow-hidden rounded-[2rem] bg-[#071A2A]">
                 <div className="flex flex-col gap-3 border-b border-white/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="grid h-10 w-10 place-items-center rounded-2xl bg-cyan-300/15 text-cyan-200">
+                    <div className="grid h-10 w-10 place-items-center rounded-2xl bg-sky-200/12 text-sky-100">
                       <Router className="h-5 w-5" />
                     </div>
                     <div>
@@ -329,7 +330,7 @@ function App() {
                       </div>
                     </div>
                   </div>
-                  <div className="w-fit rounded-full bg-emerald-300/15 px-3 py-1 text-xs font-black text-emerald-200">
+                  <div className="w-fit rounded-full bg-slate-200/12 px-3 py-1 text-xs font-black text-slate-100">
                     Operativo 24/7
                   </div>
                 </div>
@@ -338,7 +339,7 @@ function App() {
                   <div className="relative min-h-[430px] overflow-hidden rounded-[1.6rem] bg-[linear-gradient(135deg,rgba(8,27,44,.15),rgba(8,27,44,.8)),url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1300&q=80')] bg-cover bg-center">
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30" />
                     <div className="absolute left-5 top-5 rounded-2xl border border-white/10 bg-slate-950/70 p-4 backdrop-blur-xl">
-                      <div className="text-xs uppercase tracking-[0.22em] text-cyan-100/60">
+                      <div className="text-xs uppercase tracking-[0.22em] text-slate-100/60">
                         Cobertura nacional
                       </div>
                       <div className="mt-1 text-2xl font-black">
@@ -365,7 +366,7 @@ function App() {
                     <div className="rounded-[1.6rem] border border-white/10 bg-white/7 p-5">
                       <div className="mb-4 flex items-center justify-between">
                         <div className="text-sm font-black">Tecnologías de acceso</div>
-                        <Gauge className="h-5 w-5 text-cyan-200" />
+                        <Gauge className="h-5 w-5 text-sky-100" />
                       </div>
                       {[
                         ["Fibra / MPLS", "90%"],
@@ -379,7 +380,7 @@ function App() {
                           </div>
                           <div className="h-2 overflow-hidden rounded-full bg-white/10">
                             <div
-                              className="h-full rounded-full bg-gradient-to-r from-cyan-300 to-emerald-300"
+                              className="h-full rounded-full bg-gradient-to-r from-sky-200 to-slate-100"
                               style={{ width: val }}
                             />
                           </div>
@@ -387,21 +388,21 @@ function App() {
                       ))}
                     </div>
                     {[
-                      [ShieldCheck, "SLA garantizado", "Soporte centralizado", "emerald"],
-                      [Clock3, "12 horas", "Implementación inicial", "cyan"],
+                      [ShieldCheck, "SLA garantizado", "Soporte centralizado", "slate"],
+                      [Clock3, "12 horas", "Implementación inicial", "sky"],
                     ].map(([Icon, title, text, tone]) => (
                       <div
                         key={title}
                         className={`rounded-[1.6rem] border p-5 ${
-                          tone === "emerald"
-                            ? "border-emerald-200/15 bg-emerald-300/10"
-                            : "border-cyan-200/15 bg-cyan-300/10"
+                          tone === "slate"
+                            ? "border-slate-200/15 bg-slate-200/8"
+                            : "border-sky-200/15 bg-sky-200/8"
                         }`}
                       >
                         <div className="flex items-center gap-3">
                           <Icon
                             className={`h-6 w-6 ${
-                              tone === "emerald" ? "text-emerald-200" : "text-cyan-200"
+                              tone === "slate" ? "text-slate-100" : "text-sky-100"
                             }`}
                           />
                           <div>
@@ -415,7 +416,7 @@ function App() {
                       <div className="text-xs uppercase tracking-[0.22em] text-white/45">
                         Modelo
                       </div>
-                      <div className="mt-2 text-2xl font-black text-cyan-100">
+                      <div className="mt-2 text-2xl font-black text-slate-100">
                         Todo incluido
                       </div>
                     </div>
