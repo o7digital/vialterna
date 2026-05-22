@@ -763,6 +763,24 @@ function App() {
               tradicionales. Menor costo, más velocidad, más agilidad e instalaciones
               donde antes no se podía.
             </p>
+            <p className="mt-5 text-lg leading-8 text-slate-600">
+              Vialterna inició ofreciendo servicios M2M, hoy Internet de las Cosas, y
+              servicios de red para empresas con presencia nacional. Esa experiencia
+              sigue marcando la forma en que conectamos operaciones físicas con datos,
+              personas y sistemas en tiempo real.
+            </p>
+            <div className="mt-8 rounded-[2rem] bg-[#061521] p-7 text-white shadow-2xl shadow-slate-300/70">
+              <div className="text-sm font-black uppercase tracking-[0.18em] text-sky-100/60">
+                Hacemos la diferencia
+              </div>
+              <blockquote className="mt-5 text-2xl font-black leading-snug md:text-3xl">
+                “Tenemos ya 6 años de servicios sin interrupciones en una red que
+                crece a la velocidad que planeamos.”
+              </blockquote>
+              <div className="mt-5 text-sm font-bold text-white/55">
+                Cliente satisfecho · SD-WAN, Internet Móvil e IoT
+              </div>
+            </div>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
             {[
@@ -779,12 +797,22 @@ function App() {
               [
                 Smartphone,
                 "Internet móvil",
-                "Servicio en vehículos, cajeros automáticos, kioskos y unidades móviles.",
+                "Servicio en vehículos, cajeros automáticos, kioskos, unidades móviles y operaciones de campo.",
               ],
               [
                 Zap,
                 "Continuidad",
                 "Redes robustas hechas de la suma de múltiples servicios de red.",
+              ],
+              [
+                Factory,
+                "Operación física conectada",
+                "Variables relevantes de plantas, sitios remotos y activos críticos conectadas al mundo digital.",
+              ],
+              [
+                Network,
+                "Presencia nacional",
+                "Redes para empresas con sucursales, plantas, centros de datos y equipos distribuidos.",
               ],
             ].map(([Icon, title, text]) => (
               <div
