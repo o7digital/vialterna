@@ -26,7 +26,7 @@ import {
   Zap,
 } from "lucide-react";
 
-const nav = ["Solutions", "Industries", "NOC", "Company", "ViaNews", "Contact"];
+const nav = ["Servicios", "Tech Partners", "Empresa", "Socios ER's", "ViaNews", "Contacto"];
 
 const heroImage =
   "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1800&q=82";
@@ -35,21 +35,21 @@ const solutions = [
   {
     icon: Router,
     title: "Edge Solutions",
-    text: "Managed connectivity for branches, stores, ATMs, kiosks and remote locations.",
+    text: "Managed connectivity for branches, ATMs, retail locations, franchises and remote facilities.",
     image:
       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80",
   },
   {
     icon: Building2,
     title: "Core Site Solutions",
-    text: "High-availability connectivity for headquarters, data centers, plants and mission-critical sites.",
+    text: "High-bandwidth, low-latency connectivity for headquarters, data centers, distribution centers and mission-critical sites.",
     image:
       "https://images.unsplash.com/photo-1600267165477-6d4cc741b379?auto=format&fit=crop&w=900&q=80",
   },
   {
     icon: RadioTower,
     title: "IoT / SIM Solutions",
-    text: "SIM lifecycle, IoT connectivity, sensors and operational telemetry.",
+    text: "SIM lifecycle management, IoT sensors, telemetry, asset tracking and device connectivity.",
     image:
       "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80",
   },
@@ -81,12 +81,26 @@ const outcomeCards = [
 ];
 
 const industries = [
-  [Building2, "Financial Services"],
-  [Store, "Retail & Franchise Chains"],
-  [Factory, "Energy & Industrial"],
-  [Smartphone, "Payments Infrastructure"],
-  [Truck, "Logistics"],
-  [Satellite, "Remote Sites"],
+  [
+    Building2,
+    "Financial Services",
+    "ATM networks, branch banking and transaction infrastructure.",
+  ],
+  [
+    Store,
+    "Retail & Franchise Chains",
+    "POS systems, inventory, online ordering and real-time operations.",
+  ],
+  [
+    Factory,
+    "Energy & Industrial",
+    "Remote sites, SCADA, safety monitoring and industrial operations.",
+  ],
+  [
+    Smartphone,
+    "Payments Infrastructure",
+    "Terminal connectivity, merchant networks and transaction continuity.",
+  ],
 ];
 
 const metrics = [
@@ -162,6 +176,7 @@ function App() {
           className="absolute inset-0 h-full w-full object-cover grayscale-[18%] saturate-[.72]"
           loading="eager"
         />
+        {/* TODO: Replace with lightweight hero video from vialterna.com when direct source URL is available. */}
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(6,21,33,.98)_0%,rgba(7,26,42,.91)_45%,rgba(6,21,33,.56)_100%)]" />
         <div
           className="absolute inset-0 opacity-[0.08]"
@@ -195,6 +210,9 @@ function App() {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
+            <div className="rounded-full border border-white/15 bg-white/8 px-3 py-2 text-xs font-black tracking-[0.12em] text-white/85 backdrop-blur-xl">
+              ES / EN
+            </div>
             <a
               href="https://www.linkedin.com"
               aria-label="LinkedIn"
@@ -248,7 +266,7 @@ function App() {
               Carrier-agnostic managed connectivity for distributed operations in Mexico.
             </p>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200/78">
-              Vialterna designs, deploys and manages multi-network architectures for companies that cannot afford downtime.
+              Vialterna designs, deploys and operates multi-network architectures for companies where downtime has a measurable business cost.
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
               <a
@@ -283,11 +301,11 @@ function App() {
                     </div>
                     <div>
                       <div className="text-sm font-black">Network Operations Center</div>
-                      <div className="text-xs text-white/45">Multi-carrier architecture</div>
+                      <div className="text-xs text-white/45">24/7 monitoring · multi-carrier · SLA-backed</div>
                     </div>
                   </div>
                   <div className="w-fit rounded-full bg-emerald-300/14 px-3 py-1 text-xs font-black text-emerald-100">
-                    24/7 Monitoring
+                    Operational 24/7
                   </div>
                 </div>
 
@@ -296,14 +314,14 @@ function App() {
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30" />
                     <div className="absolute left-5 top-5 rounded-2xl border border-white/10 bg-slate-950/70 p-4 backdrop-blur-xl">
                       <div className="text-xs uppercase tracking-[0.22em] text-slate-100/60">
-                        Distributed operations
+                        Network visibility
                       </div>
-                      <div className="mt-1 text-2xl font-black">2,000+ sites</div>
+                      <div className="mt-1 text-2xl font-black">2,000+ monitored sites</div>
                     </div>
-                    <PulseNode label="Retail" className="left-[18%] top-[28%]" />
-                    <PulseNode label="ATMs" className="left-[55%] top-[24%]" />
-                    <PulseNode label="Plants" className="left-[38%] top-[53%]" />
-                    <PulseNode label="Remote sites" className="left-[62%] top-[60%]" />
+                    <PulseNode label="Branches" className="left-[18%] top-[28%]" />
+                    <PulseNode label="Retail" className="left-[55%] top-[24%]" />
+                    <PulseNode label="ATMs" className="left-[38%] top-[53%]" />
+                    <PulseNode label="Remote Sites" className="left-[62%] top-[60%]" />
                     <div className="absolute bottom-5 left-5 right-5 grid grid-cols-3 gap-3">
                       {["Fiber", "LTE / 5G", "Satellite"].map((item) => (
                         <div key={item} className="rounded-2xl border border-white/10 bg-white/10 p-3 text-center text-xs font-black backdrop-blur-xl">
@@ -320,9 +338,9 @@ function App() {
                         <Gauge className="h-5 w-5 text-cyan-100" />
                       </div>
                       {[
-                        ["Fiber / LTE / 5G / Satellite", "92%"],
-                        ["Failover ready", "88%"],
-                        ["Carrier diversity", "84%"],
+                        ["Multi-carrier", "99%"],
+                        ["LTE / 5G Backup", "87%"],
+                        ["Satellite Failover", "82%"],
                       ].map(([name, val]) => (
                         <div key={name} className="mb-4 last:mb-0">
                           <div className="mb-2 flex justify-between text-xs text-white/60">
@@ -336,8 +354,8 @@ function App() {
                       ))}
                     </div>
                     {[
-                      [ShieldCheck, "99.97% availability", "Designed uptime layer", "slate"],
-                      [Clock3, "500+ technician network", "Field operations in Mexico", "cyan"],
+                      [ShieldCheck, "SLA-backed", "99.97% availability", "slate"],
+                      [Clock3, "500+ technician network", "Managed service", "cyan"],
                     ].map(([Icon, title, text, tone]) => (
                       <div
                         key={title}
@@ -398,9 +416,9 @@ function App() {
       <section id="solutions" className="bg-white px-5 py-24 text-slate-950 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-            <div>
+            <div id="servicios">
               <div className="mb-4 inline-flex rounded-full bg-emerald-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-emerald-800">
-                Solutions
+                Servicios
               </div>
               <h2 className="max-w-3xl text-4xl font-black leading-tight md:text-6xl">
                 Managed connectivity for critical operations.
@@ -443,19 +461,20 @@ function App() {
         </div>
       </section>
 
-      <section id="industries" className="bg-[#061521] px-5 py-24 text-white lg:px-8">
+      <section id="tech-partners" className="bg-[#061521] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 max-w-3xl">
             <Pill>Industries</Pill>
             <h2 className="mt-5 text-4xl font-black leading-tight md:text-6xl">
-              Built for operations where downtime is expensive.
+              Built for operations where downtime has a price.
             </h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {industries.map(([Icon, title]) => (
+            {industries.map(([Icon, title, text]) => (
               <div key={title} className="rounded-[1.8rem] border border-white/10 bg-white/8 p-6 backdrop-blur-xl">
                 <Icon className="mb-6 h-8 w-8 text-cyan-200" />
                 <h3 className="text-2xl font-black">{title}</h3>
+                <p className="mt-3 leading-7 text-white/72">{text}</p>
               </div>
             ))}
           </div>
