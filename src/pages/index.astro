@@ -1,0 +1,9 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { HomePage } from "../components/Site.jsx";
+import { home } from "../data/siteContent.js";
+---
+
+<Layout title={home.title} description={home.description} canonical="/">
+  <HomePage page={home} client:load />
+</Layout>

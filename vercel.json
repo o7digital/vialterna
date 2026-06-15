@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    { "source": "/soluciones-edge/", "destination": "/soluciones/conectividad-sitios-distribuidos/", "permanent": true },
+    { "source": "/soluciones-para-sitios-centrales/", "destination": "/soluciones/sitios-centrales/", "permanent": true },
+    { "source": "/soluciones-iot-sim/", "destination": "/soluciones/iot-sim-administradas/", "permanent": true },
+    { "source": "/soluciones-de-respaldo/", "destination": "/soluciones/respaldo-satelital-celular/", "permanent": true },
+    { "source": "/servicios-financieros/", "destination": "/industrias/servicios-financieros/", "permanent": true },
+    { "source": "/retail-y-franquicias/", "destination": "/industrias/retail-franquicias/", "permanent": true },
+    { "source": "/energia-e-industria/", "destination": "/industrias/energia-industria/", "permanent": true },
+    { "source": "/infraestructura-de-pagos/", "destination": "/industrias/infraestructura-pagos/", "permanent": true },
+    { "source": "/empresa-2/", "destination": "/empresa/", "permanent": true },
+    { "source": "/insights-2/", "destination": "/insights/", "permanent": true },
+    { "source": "/contacto-2/", "destination": "/contacto/", "permanent": true }
+  ]
+}
