@@ -51,7 +51,7 @@ function Header({ dark = true }) {
   const [open, setOpen] = useState(false);
   return (
     <header className="relative z-30 border-b border-[#0B65C7]/35 bg-[#14161C]/96 shadow-[0_1px_0_rgba(18,179,207,0.12)] backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+      <div className="mx-auto flex max-w-[96rem] items-center justify-between px-5 py-4 lg:px-8 2xl:px-10">
       <a href="/" className="flex items-center gap-3" aria-label="Vialterna inicio">
         <div className="relative grid h-14 min-w-[176px] place-items-center rounded-md border border-[#0B65C7]/25 bg-[#14161C] px-4">
           <BrandLogo />
@@ -62,10 +62,10 @@ function Header({ dark = true }) {
           </div>
         </div>
       </a>
-      <nav className="font-technical hidden items-center gap-1 border-l border-[#0B65C7]/25 pl-5 text-[13px] font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/78 lg:flex">
+      <nav className="font-technical hidden items-center gap-1 border-l border-[#0B65C7]/25 pl-5 text-[13px] font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/78 lg:flex xl:gap-2">
         {navigation.map((item) => (
           <div key={item.label} className="group relative">
-            <a href={item.href} className="block rounded-sm px-3 py-3 transition hover:bg-[#0B65C7]/12 hover:text-[#12B3CF]">{item.label}</a>
+            <a href={item.href} className="block whitespace-nowrap rounded-sm px-3 py-3 transition hover:bg-[#0B65C7]/12 hover:text-[#12B3CF] 2xl:px-4">{item.label}</a>
             {item.children && (
               <div className="pointer-events-none absolute left-0 top-11 grid min-w-[320px] translate-y-2 gap-1 rounded-md border border-[#0B65C7]/40 bg-[#14161C]/98 p-2 opacity-0 shadow-2xl shadow-black/45 backdrop-blur-2xl transition group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
                 {item.children.map((child) => (
@@ -76,7 +76,7 @@ function Header({ dark = true }) {
           </div>
         ))}
       </nav>
-      <div className="hidden items-center gap-3 lg:flex">
+      <div className="hidden shrink-0 items-center gap-3 lg:flex">
         <a href="https://www.linkedin.com" aria-label="LinkedIn" className="font-technical grid h-11 w-11 place-items-center rounded-md border border-[#0B65C7]/35 bg-[#14161C] text-white/85 transition hover:border-[#12B3CF] hover:text-[#12B3CF]">
           <span className="text-sm font-black">in</span>
         </a>
@@ -135,7 +135,7 @@ function HeroVisual() {
             <div className="font-technical inline-flex rounded-md border border-[#12B3CF]/25 bg-[#0B65C7]/12 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#12B3CF]">
               Conectividad empresarial resiliente
             </div>
-            <h2 className="mt-4 text-3xl font-black leading-tight text-white md:text-5xl">
+            <h2 className="mt-4 text-3xl font-black leading-tight text-white md:text-4xl 2xl:text-5xl">
               Continuidad operativa con NOC, SLA y gestión multioperador.
             </h2>
             <p className="mt-4 max-w-xl leading-7 text-white/62">
@@ -143,7 +143,7 @@ function HeroVisual() {
             </p>
           </div>
 
-          <div className="relative mt-7 grid gap-4 sm:grid-cols-3">
+          <div className="relative mt-7 grid gap-4 md:grid-cols-3">
             {[
               [Clock3, "NOC 24/7", "Monitoreo continuo"],
               [Router, "Multioperador", "Arquitectura flexible"],
@@ -190,7 +190,7 @@ export function HomePage({ page }) {
         <video className="absolute inset-0 h-full w-full object-contain object-center grayscale-[18%] saturate-[.72]" src={heroVideo} poster={heroImage} autoPlay muted loop playsInline preload="metadata" aria-hidden="true" />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.92)_45%,rgba(20,22,28,.62)_100%)]" />
         <Header />
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-12 lg:grid-cols-[.96fr_1.04fr] lg:px-8 lg:pb-28 lg:pt-20">
+        <div className="relative z-10 mx-auto grid max-w-[96rem] items-center gap-12 px-5 pb-20 pt-12 lg:grid-cols-[.9fr_1.1fr] lg:px-8 lg:pb-28 lg:pt-20 2xl:px-10">
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
             <Pill icon={Zap}>{page.eyebrow}</Pill>
             <h1 className="mt-7 max-w-5xl text-5xl font-black leading-[0.92] md:text-7xl xl:text-8xl">{page.h1}</h1>
@@ -227,7 +227,7 @@ export function ContentPage({ page }) {
         <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover grayscale-[18%] saturate-[.72]" />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.94)_48%,rgba(20,22,28,.76)_100%)]" />
         <Header />
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-5 pb-24 pt-16 lg:grid-cols-[.9fr_.8fr] lg:px-8">
+        <div className="relative z-10 mx-auto grid max-w-[96rem] items-center gap-12 px-5 pb-24 pt-16 lg:grid-cols-[.9fr_1.1fr] lg:px-8 2xl:px-10">
           <div><Pill>{page.eyebrow}</Pill><h1 className="mt-7 max-w-5xl text-5xl font-black leading-[0.95] md:text-7xl">{page.h1}</h1><p className="mt-7 max-w-3xl text-xl font-bold leading-8 text-slate-100">{page.intro}</p><div className="mt-9"><a href="/contacto/" className="font-technical inline-flex items-center gap-2 rounded-md bg-[#0B65C7] px-8 py-4 text-sm font-black uppercase tracking-[0.04em] text-white shadow-xl shadow-cyan-950/30 transition hover:bg-[#12B3CF] hover:text-[#14161C]">Solicitar diagnóstico<ArrowRight className="h-5 w-5" /></a></div></div>
           <HeroVisual />
         </div>
