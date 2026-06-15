@@ -26,12 +26,12 @@ import {
 } from "lucide-react";
 
 const nav = [
-  { id: "servicios", es: "Servicios", en: "Solutions" },
-  { id: "tech-partners", es: "Tech Partners", en: "Industries" },
-  { id: "noc", es: "NOC", en: "NOC" },
-  { id: "company", es: "Empresa", en: "Company" },
-  { id: "vianews", es: "ViaNews", en: "ViaNews" },
-  { id: "contact", es: "Contacto", en: "Contact" },
+  { id: "servicios", label: "Soluciones" },
+  { id: "industrias", label: "Industrias" },
+  { id: "noc", label: "NOC 24/7 y SLA" },
+  { id: "empresa", label: "Empresa" },
+  { id: "insights", label: "Insights" },
+  { id: "contact", label: "Contacto" },
 ];
 
 const heroImage =
@@ -42,41 +42,29 @@ const heroVideo =
 const solutions = [
   {
     icon: Router,
-    title: { es: "Soluciones Edge", en: "Edge Solutions" },
-    text: {
-      es: "Conectividad administrada para sucursales, cajeros, retail, franquicias y sitios remotos.",
-      en: "Managed connectivity for branches, ATMs, retail locations, franchises and remote facilities.",
-    },
+    title: "Conectividad para sitios distribuidos",
+    text: "Arquitectura, hardware administrado, monitoreo NOC 24/7 y failover automático para sucursales, cajeros automáticos, tiendas, franquicias y sitios remotos.",
     image:
       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80",
   },
   {
     icon: Building2,
-    title: { es: "Soluciones Core Site", en: "Core Site Solutions" },
-    text: {
-      es: "Conectividad de alto ancho de banda y baja latencia para corporativos, data centers, CEDIS y sitios críticos.",
-      en: "High-bandwidth, low-latency connectivity for headquarters, data centers, distribution centers and mission-critical sites.",
-    },
+    title: "Sitios centrales",
+    text: "Conectividad resiliente y de alto rendimiento para corporativos, centros de datos, hubs regionales, centros de distribución y sitios transaccionales.",
     image:
       "https://images.unsplash.com/photo-1600267165477-6d4cc741b379?auto=format&fit=crop&w=900&q=80",
   },
   {
     icon: RadioTower,
-    title: { es: "Soluciones IoT / SIM", en: "IoT / SIM Solutions" },
-    text: {
-      es: "Gestión de SIMs, sensores IoT, telemetría, rastreo de activos y conectividad para dispositivos.",
-      en: "SIM lifecycle management, IoT sensors, telemetry, asset tracking and device connectivity.",
-    },
+    title: "IoT y SIM administradas",
+    text: "Gestión de SIMs, conectividad celular administrada, monitoreo de consumo, alertas, optimización de planes y ciclo de vida para dispositivos conectados.",
     image:
       "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80",
   },
   {
     icon: Satellite,
-    title: { es: "Soluciones Backup", en: "Backup Solutions" },
-    text: {
-      es: "Failover LTE, 5G y satelital para mantener la operación en línea cuando falla el enlace principal.",
-      en: "LTE, 5G and satellite failover to keep operations online when primary links fail.",
-    },
+    title: "Respaldo satelital y celular",
+    text: "Conectividad secundaria con failover satelital LEO, LTE o 5G para sitios remotos, retail, banca e infraestructura crítica.",
     image:
       "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=900&q=80",
   },
@@ -85,163 +73,113 @@ const solutions = [
 const outcomeCards = [
   [
     Wifi,
-    "Carrier-agnostic",
-    "We are not tied to one network. We design the best mix of fiber, LTE, 5G, satellite and fixed wireless.",
+    "Agnóstico de operador",
+    "La arquitectura se diseña alrededor del negocio del cliente, no alrededor de la red de un proveedor específico.",
   ],
   [
     ShieldCheck,
-    "Managed end-to-end",
-    "We handle design, deployment, monitoring, support and lifecycle management.",
+    "Servicio administrado",
+    "Vialterna diseña, despliega, monitorea, optimiza y da seguimiento continuo a la infraestructura.",
   ],
   [
     Network,
-    "Built for distributed operations",
-    "Designed for retail, financial services, energy, payments infrastructure and multi-site enterprises.",
+    "Operaciones distribuidas",
+    "Conectividad para bancos, retail, franquicias, infraestructura de pagos, sitios industriales y operaciones remotas.",
   ],
 ];
 
 const industries = [
   [
     Building2,
-    { es: "Servicios Financieros", en: "Financial Services" },
-    {
-      es: "Redes de cajeros, sucursales e infraestructura transaccional.",
-      en: "ATM networks, branch banking and transaction infrastructure.",
-    },
+    "Servicios financieros",
+    "Redes de cajeros automáticos, sucursales bancarias e infraestructura transaccional.",
   ],
   [
     Store,
-    { es: "Retail y Franquicias", en: "Retail & Franchise Chains" },
-    {
-      es: "POS, inventarios, pedidos en línea y operaciones en tiempo real.",
-      en: "POS systems, inventory, online ordering and real-time operations.",
-    },
+    "Retail y franquicias",
+    "Tiendas, POS, inventarios, pedidos en línea y operaciones en tiempo real.",
   ],
   [
     Factory,
-    { es: "Energía e Industria", en: "Energy & Industrial" },
-    {
-      es: "Sitios remotos, SCADA, monitoreo de seguridad y operación industrial.",
-      en: "Remote sites, SCADA, safety monitoring and industrial operations.",
-    },
+    "Energía e industria",
+    "Sitios remotos, SCADA, monitoreo de seguridad y operación industrial.",
   ],
   [
     Smartphone,
-    { es: "Infraestructura de Pagos", en: "Payments Infrastructure" },
-    {
-      es: "Conectividad de terminales, redes de comercios y continuidad transaccional.",
-      en: "Terminal connectivity, merchant networks and transaction continuity.",
-    },
+    "Infraestructura de pagos",
+    "Conectividad de terminales, redes de comercios y continuidad transaccional.",
   ],
 ];
 
 const copy = {
-  es: {
-    brandLine: "Uptime as a Service",
-    heroKicker: "Uptime as a Service",
-    heroTitleA: "No vendemos conectividad.",
-    heroTitleB: "Diseñamos uptime.",
-    heroSubtitle: "Conectividad administrada carrier-agnostic para operaciones distribuidas en México.",
-    heroText:
-      "Vialterna diseña, despliega y opera arquitecturas multi-red para empresas donde el downtime tiene un costo medible para el negocio.",
-    primaryCta: "Hablar con un experto",
-    secondaryCta: "Explorar soluciones",
-    dashboardSubtitle: "Monitoreo 24/7 · multi-carrier · respaldado por SLA",
-    dashboardBadge: "Operativo 24/7",
-    mapEyebrow: "Visibilidad de red",
-    mapTitle: "2,000+ sitios monitoreados",
-    nodes: ["Sucursales", "Retail", "ATMs", "Sitios Remotos"],
-    progressTitle: "Diseño de disponibilidad",
-    progress: ["Multi-carrier", "Backup LTE / 5G", "Failover satelital"],
-    smallCards: [
-      ["Respaldado por SLA", "99.97% disponibilidad"],
-      ["Red de 500+ técnicos", "Servicio administrado"],
-    ],
-    architecture: "Arquitectura",
-    servicesKicker: "Servicios",
-    servicesTitle: "Conectividad administrada para operaciones críticas.",
-    servicesText:
-      "Un socio operativo para tecnologías de acceso, carriers, despliegue en campo, soporte y ciclo de vida.",
-    solutionCta: "Explorar solución",
-    industriesKicker: "Industrias",
-    industriesTitle: "Construido para operaciones donde el downtime tiene precio.",
-    nocKicker: "Métricas NOC",
-    nocTitle: "Operaciones distribuidas monitoreadas todo el tiempo.",
-    contactTitle: "Diseñemos uptime para tu operación.",
-    contactText:
-      "Cuéntanos dónde tu operación está expuesta a riesgo de conectividad. Diseñaremos una arquitectura carrier-agnostic adaptada a tus sitios, aplicaciones y requisitos de negocio.",
-    contactCta: "Agendar una consulta",
-  },
-  en: {
-    brandLine: "Uptime as a Service",
-    heroKicker: "Uptime as a Service",
-    heroTitleA: "We do not sell connectivity.",
-    heroTitleB: "We engineer uptime.",
-    heroSubtitle: "Carrier-agnostic managed connectivity for distributed operations in Mexico.",
-    heroText:
-      "Vialterna designs, deploys and operates multi-network architectures for companies where downtime has a measurable business cost.",
-    primaryCta: "Talk to an expert",
-    secondaryCta: "Explore solutions",
-    dashboardSubtitle: "24/7 monitoring · multi-carrier · SLA-backed",
-    dashboardBadge: "Operational 24/7",
-    mapEyebrow: "Network visibility",
-    mapTitle: "2,000+ monitored sites",
-    nodes: ["Branches", "Retail", "ATMs", "Remote Sites"],
-    progressTitle: "Availability design",
-    progress: ["Multi-carrier", "LTE / 5G Backup", "Satellite Failover"],
-    smallCards: [
-      ["SLA-backed", "99.97% availability"],
-      ["500+ technician network", "Managed service"],
-    ],
-    architecture: "Architecture",
-    servicesKicker: "Services",
-    servicesTitle: "Managed connectivity for critical operations.",
-    servicesText:
-      "One operating partner for access technologies, carriers, field deployment, support and lifecycle management.",
-    solutionCta: "Explore solution",
-    industriesKicker: "Industries",
-    industriesTitle: "Built for operations where downtime has a price.",
-    nocKicker: "NOC metrics",
-    nocTitle: "Distributed operations monitored around the clock.",
-    contactTitle: "Let's engineer uptime for your operation.",
-    contactText:
-      "Tell us where your operation is exposed to connectivity risk. We will design a carrier-agnostic architecture adapted to your sites, applications and business requirements.",
-    contactCta: "Schedule a consultation",
-  },
+  brandLine: "Conectividad resiliente",
+  heroKicker: "Conectividad empresarial en México",
+  heroTitleA: "Diseñamos conectividad",
+  heroTitleB: "para operaciones críticas.",
+  heroSubtitle: "Conectividad administrada para empresas con operaciones distribuidas.",
+  heroText:
+    "Vialterna diseña, despliega y opera arquitecturas multioperador para bancos, redes de cajeros automáticos, retail, franquicias, infraestructura de pagos, sitios industriales y operaciones remotas.",
+  primaryCta: "Solicitar diagnóstico",
+  secondaryCta: "Explorar soluciones",
+  dashboardSubtitle: "Monitoreo 24/7 · multioperador · respaldado por SLA",
+  dashboardBadge: "Operación 24/7",
+  mapEyebrow: "Visibilidad de red",
+  mapTitle: "Sitios monitoreados",
+  nodes: ["Sucursales", "Retail", "Cajeros", "Sitios remotos"],
+  progressTitle: "Diseño de disponibilidad",
+  progress: ["Multioperador", "Respaldo LTE / 5G", "Failover satelital"],
+  smallCards: [
+    ["Respaldado por SLA", "Disponibilidad medible"],
+    ["Servicio administrado", "NOC 24/7"],
+  ],
+  architecture: "Arquitectura",
+  servicesKicker: "Soluciones",
+  servicesTitle: "Conectividad administrada para operaciones críticas.",
+  servicesText:
+    "Un socio operativo para tecnologías de acceso, operadores, despliegue en campo, soporte y ciclo de vida.",
+  solutionCta: "Conocer solución",
+  industriesKicker: "Industrias",
+  industriesTitle: "Construido para operaciones donde la conectividad impacta ingresos, servicio y continuidad.",
+  nocKicker: "Operación",
+  nocTitle: "NOC 24/7, SLA y gestión multioperador en un solo modelo de servicio.",
+  contactTitle: "Solicita un diagnóstico de conectividad.",
+  contactText:
+    "Cuéntanos dónde tu operación está expuesta a riesgo de conectividad. Evaluamos puntos únicos de falla, oportunidades de optimización y mejoras posibles para tu infraestructura.",
+  contactCta: "Solicitar diagnóstico",
 };
 
 const metrics = [
-  ["2,000+", "connected sites"],
-  ["99.97%", "designed availability"],
-  ["500+", "technician network"],
-  ["24/7", "NOC monitoring"],
+  ["24/7", "Monitoreo NOC"],
+  ["SLA", "Disponibilidad reportada"],
+  ["Multi", "Gestión de operadores"],
+  ["México", "Operaciones distribuidas"],
 ];
 
 const workSteps = [
-  ["Assess", "We evaluate locations, coverage, risk and business requirements."],
-  ["Design", "We build the best multi-network architecture."],
-  ["Deploy", "We coordinate carriers, equipment, installation and activation."],
-  ["Operate", "We monitor, support and optimize the network from the NOC."],
+  ["Diagnosticar", "Evaluamos ubicaciones, cobertura, riesgos y requerimientos del negocio."],
+  ["Diseñar", "Definimos la arquitectura multioperador más adecuada para cada sitio."],
+  ["Desplegar", "Coordinamos operadores, equipos, instalación y activación."],
+  ["Operar", "Monitoreamos, damos soporte y optimizamos la red desde el NOC."],
 ];
 
 const sdWanFeatures = [
-  "Multi-carrier",
-  "LTE / 5G ready",
-  "Satellite backup",
-  "Failover",
-  "Bonding",
-  "Centralized monitoring",
+  "Multioperador",
+  "LTE / 5G",
+  "Respaldo satelital",
+  "Failover automático",
+  "Agregación de enlaces",
+  "Monitoreo centralizado",
   "QoS",
-  "Secure tunnels",
+  "Túneles seguros",
 ];
 
 const iotFeatures = [
-  "SIM lifecycle",
-  "IoT connectivity",
-  "Sensors",
-  "Telemetry",
-  "Remote assets",
-  "Operational alerts",
+  "Ciclo de vida de SIMs",
+  "Conectividad IoT",
+  "Sensores",
+  "Telemetría",
+  "Activos remotos",
+  "Alertas operativas",
 ];
 
 function Pill({ children, icon: Icon }) {
@@ -269,8 +207,7 @@ function PulseNode({ className = "", label }) {
 
 function App() {
   const [open, setOpen] = useState(false);
-  const [lang, setLang] = useState("es");
-  const t = copy[lang];
+  const t = copy;
 
   return (
     <div className="min-h-screen bg-[#061521] text-white selection:bg-cyan-300/30">
@@ -319,26 +256,12 @@ function App() {
           <nav className="hidden items-center gap-7 rounded-full border border-white/10 bg-white/8 px-6 py-3 text-sm font-bold text-white/80 backdrop-blur-2xl lg:flex">
             {nav.map((item) => (
               <a key={item.id} href={`#${item.id}`} className="transition hover:text-cyan-200">
-                {item[lang]}
+                {item.label}
               </a>
             ))}
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <div className="flex rounded-full border border-white/15 bg-white/8 p-1 text-xs font-black tracking-[0.12em] text-white/85 backdrop-blur-xl">
-              {["es", "en"].map((item) => (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => setLang(item)}
-                  className={`rounded-full px-3 py-1.5 transition ${
-                    lang === item ? "bg-cyan-300 text-slate-950" : "text-white/70 hover:text-white"
-                  }`}
-                >
-                  {item.toUpperCase()}
-                </button>
-              ))}
-            </div>
             <a
               href="https://www.linkedin.com"
               aria-label="LinkedIn"
@@ -357,7 +280,7 @@ function App() {
           <button
             onClick={() => setOpen(!open)}
             className="rounded-2xl border border-white/15 bg-white/5 p-3 lg:hidden"
-            aria-label="Open menu"
+            aria-label="Abrir menú"
           >
             {open ? <X /> : <Menu />}
           </button>
@@ -372,23 +295,9 @@ function App() {
                 onClick={() => setOpen(false)}
                 className="block border-b border-white/10 py-3 text-white/85 last:border-b-0"
               >
-                {item[lang]}
+                {item.label}
               </a>
             ))}
-            <div className="mt-4 flex rounded-full border border-white/15 bg-white/8 p-1 text-xs font-black tracking-[0.12em] text-white/85">
-              {["es", "en"].map((item) => (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => setLang(item)}
-                  className={`flex-1 rounded-full px-3 py-2 transition ${
-                    lang === item ? "bg-cyan-300 text-slate-950" : "text-white/70"
-                  }`}
-                >
-                  {item.toUpperCase()}
-                </button>
-              ))}
-            </div>
           </div>
         )}
 
@@ -440,7 +349,7 @@ function App() {
                       <Router className="h-5 w-5" />
                     </div>
                     <div>
-                      <div className="text-sm font-black">Network Operations Center</div>
+                      <div className="text-sm font-black">Centro de Operaciones de Red</div>
                       <div className="text-xs text-white/45">{t.dashboardSubtitle}</div>
                     </div>
                   </div>
@@ -463,7 +372,7 @@ function App() {
                     <PulseNode label={t.nodes[2]} className="left-[38%] top-[53%]" />
                     <PulseNode label={t.nodes[3]} className="left-[62%] top-[60%]" />
                     <div className="absolute bottom-5 left-5 right-5 grid grid-cols-3 gap-3">
-                      {["Fiber", "LTE / 5G", "Satellite"].map((item) => (
+                      {["Fibra", "LTE / 5G", "Satelital"].map((item) => (
                         <div key={item} className="rounded-2xl border border-white/10 bg-white/10 p-3 text-center text-xs font-black backdrop-blur-xl">
                           {item}
                         </div>
@@ -514,7 +423,7 @@ function App() {
                     ))}
                     <div className="rounded-[1.6rem] border border-white/10 bg-white/7 p-5">
                       <div className="text-xs uppercase tracking-[0.22em] text-white/45">{t.architecture}</div>
-                      <div className="mt-2 text-2xl font-black text-slate-100">Multi-carrier</div>
+                      <div className="mt-2 text-2xl font-black text-slate-100">Multioperador</div>
                     </div>
                   </div>
                 </div>
@@ -529,13 +438,13 @@ function App() {
           <div className="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
             <div>
               <div className="mb-4 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">
-                Business outcome
+                Continuidad operativa
               </div>
               <h2 className="text-4xl font-black leading-tight md:text-6xl">
-                Uptime is not a feature. It is the business outcome.
+                Diseñamos disponibilidad, no solo conectividad.
               </h2>
               <p className="mt-6 text-lg leading-8 text-slate-600">
-                Connectivity failures affect sales, operations, payments and customer experience. Vialterna turns multiple networks, carriers and technologies into one managed uptime layer.
+                Cuando una sucursal, un cajero automático, una terminal de pago o un sitio remoto se desconecta, el impacto es inmediato. Vialterna convierte múltiples operadores y tecnologías en una capa administrada de continuidad.
               </p>
             </div>
             <div className="grid gap-5 md:grid-cols-3">
@@ -581,15 +490,15 @@ function App() {
                 className="group overflow-hidden rounded-[2.2rem] border border-slate-200 bg-white shadow-xl shadow-slate-200/70 transition hover:shadow-2xl"
               >
                 <div className="relative h-56 overflow-hidden">
-                  <img src={image} alt={title[lang]} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+                  <img src={image} alt={title} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
                   <div className="absolute bottom-5 left-5 grid h-14 w-14 place-items-center rounded-2xl bg-white text-[#061521]">
                     <Icon className="h-7 w-7" />
                   </div>
                 </div>
                 <div className="p-7">
-                  <h3 className="text-2xl font-black tracking-tight">{title[lang]}</h3>
-                  <p className="mt-4 leading-7 text-slate-600">{text[lang]}</p>
+                  <h3 className="text-2xl font-black tracking-tight">{title}</h3>
+                  <p className="mt-4 leading-7 text-slate-600">{text}</p>
                   <a href="#contact" className="mt-7 inline-flex items-center gap-2 text-sm font-black text-cyan-700">
                     {t.solutionCta}
                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
@@ -601,7 +510,7 @@ function App() {
         </div>
       </section>
 
-      <section id="tech-partners" className="bg-[#061521] px-5 py-24 text-white lg:px-8">
+      <section id="industrias" className="bg-[#061521] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 max-w-3xl">
             <Pill>{t.industriesKicker}</Pill>
@@ -611,10 +520,10 @@ function App() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {industries.map(([Icon, title, text]) => (
-              <div key={title.en} className="rounded-[1.8rem] border border-white/10 bg-white/8 p-6 backdrop-blur-xl">
+              <div key={title} className="rounded-[1.8rem] border border-white/10 bg-white/8 p-6 backdrop-blur-xl">
                 <Icon className="mb-6 h-8 w-8 text-cyan-200" />
-                <h3 className="text-2xl font-black">{title[lang]}</h3>
-                <p className="mt-3 leading-7 text-white/72">{text[lang]}</p>
+                <h3 className="text-2xl font-black">{title}</h3>
+                <p className="mt-3 leading-7 text-white/72">{text}</p>
               </div>
             ))}
           </div>
@@ -646,10 +555,10 @@ function App() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 max-w-3xl">
             <div className="mb-4 inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-slate-700">
-              How we work
+              Método de trabajo
             </div>
             <h2 className="text-4xl font-black leading-tight md:text-6xl">
-              From coverage risk to operated uptime.
+              Del riesgo de cobertura a una operación conectada y visible.
             </h2>
           </div>
           <div className="grid gap-5 md:grid-cols-4">
@@ -672,10 +581,10 @@ function App() {
               SD-WAN
             </div>
             <h2 className="text-4xl font-black leading-tight md:text-6xl">
-              Multi-network SD-WAN for business continuity.
+              Redes SD-WAN multioperador para continuidad del negocio.
             </h2>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              Combine fiber, LTE, 5G, satellite and fixed wireless into a resilient managed architecture with failover, bonding and centralized monitoring.
+              Combinamos fibra, LTE, 5G, satélite y enlaces inalámbricos en una arquitectura administrada con failover automático, agregación de enlaces y monitoreo centralizado.
             </p>
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {sdWanFeatures.map((item) => (
@@ -691,14 +600,14 @@ function App() {
             <div className="rounded-[2rem] border border-white/10 bg-white/7 p-6">
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                  <div className="text-sm uppercase tracking-[0.22em] text-cyan-100/50">Architecture</div>
-                  <div className="mt-1 text-2xl font-black">Failover + bonding</div>
+                  <div className="text-sm uppercase tracking-[0.22em] text-cyan-100/50">Arquitectura</div>
+                  <div className="mt-1 text-2xl font-black">Failover + agregación</div>
                 </div>
                 <Router className="h-8 w-8 text-cyan-200" />
               </div>
               <div className="relative h-[430px] overflow-hidden rounded-[1.6rem] bg-[linear-gradient(135deg,rgba(6,21,33,.25),rgba(6,21,33,.82)),url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1300&q=80')] bg-cover bg-center">
                 <div className="absolute bottom-5 left-5 right-5 grid gap-3">
-                  {["Fiber + LTE + 5G + satellite", "QoS and secure tunnels", "Centralized NOC monitoring"].map((item) => (
+                  {["Fibra + LTE + 5G + satélite", "QoS y túneles seguros", "Monitoreo NOC centralizado"].map((item) => (
                     <div key={item} className="rounded-2xl border border-white/10 bg-slate-950/65 p-4 font-bold backdrop-blur-xl">
                       {item}
                     </div>
@@ -728,10 +637,10 @@ function App() {
               IoT / SIM
             </div>
             <h2 className="text-4xl font-black leading-tight md:text-6xl">
-              IoT and SIM connectivity for distributed assets.
+              Conectividad IoT y SIM para activos distribuidos.
             </h2>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              Manage SIMs, sensors, telemetry and connectivity for assets, branches, equipment and remote operations.
+              Administramos SIMs, sensores, telemetría y conectividad para activos, sucursales, equipos y operaciones remotas.
             </p>
           </div>
         </div>
@@ -743,21 +652,21 @@ function App() {
             <div className="p-8 md:p-12">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-100">
                 <ShieldCheck className="h-4 w-4" />
-                Backup connectivity
+                Conectividad de respaldo
               </div>
               <h2 className="text-4xl font-black leading-tight md:text-6xl">
-                Backup connectivity before downtime becomes a business problem.
+                Respaldo satelital y celular antes de que una falla detenga la operación.
               </h2>
               <p className="mt-6 text-lg leading-8 text-white/68">
-                Vialterna provides redundant connectivity layers using LTE, 5G, satellite and multi-carrier access to keep operations running.
+                Vialterna diseña capas de redundancia con LTE, 5G, satélite y acceso multioperador para mantener activos sitios críticos.
               </p>
               <a href="#contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-cyan-300 px-7 py-4 font-black text-slate-950 transition hover:bg-white">
-                Schedule a consultation <ArrowRight className="h-5 w-5" />
+                Solicitar diagnóstico <ArrowRight className="h-5 w-5" />
               </a>
             </div>
             <div className="relative min-h-[430px] bg-[linear-gradient(135deg,rgba(6,21,33,.2),rgba(6,21,33,.8)),url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1500&q=85')] bg-cover bg-center">
               <div className="absolute bottom-8 left-8 right-8 grid gap-3 sm:grid-cols-2">
-                {["LTE", "5G", "Satellite", "Multi-carrier"].map((item) => (
+                {["LTE", "5G", "Satelital", "Multioperador"].map((item) => (
                   <div key={item} className="rounded-2xl border border-white/10 bg-slate-950/60 p-4 font-black backdrop-blur-xl">
                     {item}
                   </div>
@@ -768,32 +677,32 @@ function App() {
         </div>
       </section>
 
-      <section id="vianews" className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8">
+      <section id="insights" className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
               <div className="mb-4 inline-flex rounded-full bg-slate-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-slate-700">
-                ViaNews
+                Insights
               </div>
               <h2 className="text-4xl font-black leading-tight md:text-6xl">
-                Perspectives for resilient distributed networks.
+                Análisis de conectividad, redes empresariales y soluciones Edge.
               </h2>
             </div>
             <a href="#contact" className="inline-flex w-fit items-center gap-2 rounded-full bg-[#061521] px-6 py-4 font-black text-white">
-              Contact Vialterna <ArrowRight className="h-5 w-5" />
+              Contactar a Vialterna <ArrowRight className="h-5 w-5" />
             </a>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
             {[
-              "Multi-network architecture for business continuity",
-              "How NOC monitoring changes connectivity operations",
-              "IoT, SIMs and telemetry for remote assets",
+              "Arquitectura multioperador para continuidad del negocio",
+              "Cómo el monitoreo NOC fortalece la operación de conectividad",
+              "IoT, SIMs y telemetría para activos remotos",
             ].map((title) => (
               <article key={title} className="rounded-[2rem] bg-white p-7 shadow-xl shadow-slate-200/70">
                 <div className="mb-5 text-sm font-black uppercase tracking-[0.18em] text-cyan-700">Vialterna</div>
                 <h3 className="text-2xl font-black leading-tight">{title}</h3>
                 <p className="mt-4 leading-7 text-slate-600">
-                  Operational thinking for companies that need connectivity to behave like an uptime layer.
+                  Contenido para empresas que necesitan reducir riesgos de conectividad y mejorar disponibilidad operativa.
                 </p>
               </article>
             ))}
@@ -804,7 +713,7 @@ function App() {
       <section id="contact" className="bg-[#061521] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
           <div>
-            <Pill>{nav[5][lang]}</Pill>
+            <Pill>{nav[5].label}</Pill>
             <h2 className="mt-5 text-4xl font-black leading-tight md:text-7xl">
               {t.contactTitle}
             </h2>
@@ -844,28 +753,28 @@ function App() {
               </div>
               <div>
                 <div className="text-xl font-black">Vialterna</div>
-                <div className="text-xs text-white/45">Uptime as a Service</div>
+                <div className="text-xs text-white/45">Conectividad resiliente</div>
               </div>
             </div>
           </div>
           <div>
-            <h4 className="font-black">Solutions</h4>
+            <h4 className="font-black">Soluciones</h4>
             <div className="mt-4 grid gap-2 text-white/55">
-              <span>Edge Solutions</span>
-              <span>Core Site Solutions</span>
-              <span>Backup Solutions</span>
+              <span>Sitios distribuidos</span>
+              <span>Sitios centrales</span>
+              <span>Respaldo satelital y celular</span>
             </div>
           </div>
           <div>
-            <h4 className="font-black">Company</h4>
+            <h4 className="font-black">Empresa</h4>
             <div className="mt-4 grid gap-2 text-white/55">
-              <span>Industries</span>
+              <span>Industrias</span>
               <span>NOC</span>
-              <span>ViaNews</span>
+              <span>Insights</span>
             </div>
           </div>
           <div>
-            <h4 className="font-black">Contact</h4>
+            <h4 className="font-black">Contacto</h4>
             <div className="mt-4 grid gap-2 text-white/55">
               <span>atencionaclientes@vialterna.com</span>
               <span>55 8062 6884</span>
