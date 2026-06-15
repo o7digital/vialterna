@@ -15,7 +15,6 @@ import {
   RadioTower,
   Router,
   ShieldCheck,
-  Signal,
   X,
   Zap
 } from "lucide-react";
@@ -42,18 +41,29 @@ function Pill({ children, icon: Icon }) {
   );
 }
 
+function BrandLogo({ compact = false }) {
+  return (
+    <img
+      src="/logo-vialterna.svg"
+      alt="Vialterna"
+      className={compact ? "h-8 w-auto max-w-[170px]" : "h-10 w-auto max-w-[220px]"}
+      loading="eager"
+    />
+  );
+}
+
 function Header({ dark = true }) {
   const [open, setOpen] = useState(false);
   return (
     <header className="relative z-30 mx-auto flex max-w-7xl items-center justify-between px-5 py-6 lg:px-8">
-      <a href="/" className="flex items-center gap-3">
-        <div className="relative grid h-12 w-12 place-items-center rounded-2xl bg-white text-[#061521] shadow-2xl shadow-cyan-950/50">
-          <Signal className="h-6 w-6" />
-          <span className="absolute -right-1 -top-1 h-4 w-4 rounded-full border-2 border-[#061521] bg-cyan-300" />
+      <a href="/" className="flex items-center gap-3" aria-label="Vialterna inicio">
+        <div className="relative grid h-14 min-w-[172px] place-items-center rounded-2xl bg-white px-4 shadow-2xl shadow-cyan-950/50">
+          <BrandLogo />
         </div>
-        <div>
-          <div className="text-2xl font-black tracking-tight">Vialterna</div>
-          <div className="text-[10px] uppercase tracking-[0.34em] text-cyan-100/70">Conectividad resiliente</div>
+        <div className="hidden sm:block">
+          <div className="text-[10px] uppercase tracking-[0.34em] text-cyan-100/70">
+            Conectividad resiliente
+          </div>
         </div>
       </a>
       <nav className="hidden items-center gap-7 rounded-full border border-white/10 bg-white/8 px-6 py-3 text-sm font-bold text-white/80 backdrop-blur-2xl lg:flex">
@@ -93,8 +103,10 @@ function Footer() {
     <footer className="border-t border-white/10 bg-[#061521] px-5 py-12 text-white lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-4">
         <div className="flex items-center gap-3">
-          <div className="grid h-11 w-11 place-items-center rounded-2xl bg-white text-[#061521]"><Signal className="h-6 w-6" /></div>
-          <div><div className="text-xl font-black">Vialterna</div><div className="text-xs text-white/45">Conectividad resiliente</div></div>
+          <div className="grid h-14 min-w-[162px] place-items-center rounded-2xl bg-white px-4">
+            <BrandLogo compact />
+          </div>
+          <div className="text-xs text-white/45">Conectividad resiliente</div>
         </div>
         <div><h4 className="font-black">Soluciones</h4><div className="mt-4 grid gap-2 text-white/55">{solutions.slice(0, 3).map((s) => <a href={s.href} key={s.href}>{s.title}</a>)}</div></div>
         <div><h4 className="font-black">Empresa</h4><div className="mt-4 grid gap-2 text-white/55"><a href="/industrias/">Industrias</a><a href="/noc-24-7-sla/">NOC 24/7 y SLA</a><a href="/insights/">Insights</a></div></div>
@@ -109,20 +121,53 @@ function HeroVisual() {
     <motion.div initial={{ opacity: 0, scale: 0.94, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.08 }} className="relative">
       <div className="absolute -inset-6 rounded-[3rem] bg-gradient-to-br from-cyan-200/14 via-emerald-300/8 to-blue-500/10 blur-3xl" />
       <div className="relative overflow-hidden rounded-[2.5rem] border border-white/15 bg-slate-950/45 p-4 shadow-2xl shadow-slate-950/50 backdrop-blur-2xl">
-        <div className="overflow-hidden rounded-[2rem] bg-[#071A2A]">
-          <div className="flex flex-col gap-3 border-b border-white/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-3"><div className="grid h-10 w-10 place-items-center rounded-2xl bg-cyan-200/12 text-cyan-100"><Router className="h-5 w-5" /></div><div><div className="text-sm font-black">Centro de Operaciones de Red</div><div className="text-xs text-white/45">Monitoreo 24/7 · multioperador · respaldado por SLA</div></div></div>
-            <div className="w-fit rounded-full bg-emerald-300/14 px-3 py-1 text-xs font-black text-emerald-100">Operación 24/7</div>
+        <div className="overflow-hidden rounded-[2rem] bg-[#071A2A] p-5 md:p-7">
+          <div className="rounded-[1.7rem] border border-white/10 bg-white p-6 shadow-2xl shadow-slate-950/30">
+            <BrandLogo />
           </div>
-          <div className="grid gap-4 p-4 xl:grid-cols-[1fr_.78fr]">
-            <div className="relative min-h-[430px] overflow-hidden rounded-[1.6rem] bg-[linear-gradient(135deg,rgba(8,27,44,.15),rgba(8,27,44,.84)),url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1300&q=80')] bg-cover bg-center">
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/30" />
-              <div className="absolute left-5 top-5 rounded-2xl border border-white/10 bg-slate-950/70 p-4 backdrop-blur-xl"><div className="text-xs uppercase tracking-[0.22em] text-slate-100/60">Visibilidad de red</div><div className="mt-1 text-2xl font-black">Sitios monitoreados</div></div>
+
+          <div className="mt-7">
+            <div className="inline-flex rounded-full bg-cyan-200/12 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-cyan-100">
+              Conectividad empresarial resiliente
             </div>
-            <div className="grid gap-4">
-              <div className="rounded-[1.6rem] border border-white/10 bg-white/7 p-5"><div className="mb-4 flex items-center justify-between"><div className="text-sm font-black">Diseño de disponibilidad</div><Gauge className="h-5 w-5 text-cyan-100" /></div>{["Multioperador", "Respaldo LTE / 5G", "Failover satelital"].map((name, i) => <div key={name} className="mb-4 last:mb-0"><div className="mb-2 flex justify-between text-xs text-white/60"><span>{name}</span><span>{[99, 87, 82][i]}%</span></div><div className="h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-gradient-to-r from-cyan-200 to-emerald-200" style={{ width: `${[99, 87, 82][i]}%` }} /></div></div>)}</div>
-              {[[ShieldCheck, "Respaldado por SLA", "Disponibilidad medible"], [Clock3, "Servicio administrado", "NOC 24/7"]].map(([Icon, title, text]) => <div key={title} className="rounded-[1.6rem] border border-cyan-200/15 bg-cyan-200/8 p-5"><div className="flex items-center gap-3"><Icon className="h-6 w-6 text-cyan-100" /><div><div className="font-black">{title}</div><div className="text-sm text-white/55">{text}</div></div></div></div>)}
+            <h2 className="mt-4 text-3xl font-black leading-tight text-white md:text-5xl">
+              Continuidad operativa con NOC, SLA y gestión multioperador.
+            </h2>
+            <p className="mt-4 max-w-xl leading-7 text-white/62">
+              Una capa administrada para mantener visibles y conectadas operaciones distribuidas en México.
+            </p>
+          </div>
+
+          <div className="mt-7 grid gap-4 sm:grid-cols-3">
+            {[
+              [Clock3, "NOC 24/7", "Monitoreo continuo"],
+              [Router, "Multioperador", "Arquitectura flexible"],
+              [ShieldCheck, "SLA", "Disponibilidad respaldada"],
+            ].map(([Icon, title, text]) => (
+              <div key={title} className="rounded-[1.35rem] border border-cyan-200/15 bg-cyan-200/8 p-5">
+                <Icon className="mb-4 h-6 w-6 text-cyan-100" />
+                <div className="font-black">{title}</div>
+                <div className="mt-1 text-sm leading-5 text-white/55">{text}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-5 rounded-[1.4rem] border border-white/10 bg-white/7 p-5">
+            <div className="mb-4 flex items-center justify-between">
+              <div className="text-sm font-black">Arquitectura de disponibilidad</div>
+              <Gauge className="h-5 w-5 text-cyan-100" />
             </div>
+            {["Respaldo LTE / 5G", "Failover satelital", "Monitoreo centralizado"].map((name, i) => (
+              <div key={name} className="mb-4 last:mb-0">
+                <div className="mb-2 flex justify-between text-xs text-white/60">
+                  <span>{name}</span>
+                  <span>{[87, 82, 99][i]}%</span>
+                </div>
+                <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                  <div className="h-full rounded-full bg-gradient-to-r from-cyan-200 to-emerald-200" style={{ width: `${[87, 82, 99][i]}%` }} />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
