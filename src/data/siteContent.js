@@ -93,9 +93,9 @@ const cta = {
 export const home = {
   title: "Conectividad empresarial resiliente en México | Vialterna",
   description: "Vialterna diseña, despliega y opera conectividad administrada para empresas con operaciones distribuidas en México.",
-  eyebrow: "Conectividad empresarial en México",
-  h1: "Conectividad empresarial resiliente en México para operaciones distribuidas",
-  intro: "Vialterna diseña, despliega y opera conectividad administrada para empresas con operaciones distribuidas. Convertimos la conectividad empresarial en disponibilidad operativa medible.",
+  eyebrow: "Operaciones distribuidas en México",
+  h1: "Continuidad empresarial para operaciones distribuidas",
+  intro: "Vialterna diseña, despliega y opera redes administradas para mantener visibles y disponibles sitios críticos en todo México.",
   sections: [
     { h2: "Disponibilidad como servicio para sitios críticos", text: "Para empresas con sucursales, cajeros automáticos, terminales, centros de distribución o sitios remotos, la disponibilidad como servicio reduce el riesgo operativo y permite mantener cada punto conectado bajo monitoreo NOC 24/7." },
     { h2: "Por qué una red distribuida necesita gestión especializada", text: "Cuando una ubicación se desconecta, las ventas, transacciones, reportes y operaciones se detienen. Vialterna sustituye la gestión reactiva de operadores por una capa de conectividad administrada, multioperador y medible." },

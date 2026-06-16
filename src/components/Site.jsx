@@ -115,10 +115,10 @@ function Footer() {
 
 function HeroVisual() {
   return (
-    <motion.div initial={{ opacity: 0, scale: 0.94, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.08 }} className="relative">
-      <div className="absolute -inset-6 rounded-lg bg-[linear-gradient(135deg,rgba(11,101,199,0.24),rgba(18,179,207,0.10))] blur-3xl" />
-      <div className="relative overflow-hidden rounded-lg border border-[#0B65C7]/35 bg-[#14161C]/82 p-4 shadow-2xl shadow-black/45 backdrop-blur-2xl">
-        <div className="relative overflow-hidden rounded-md border border-[#0B65C7]/25 bg-[#14161C] p-5 md:p-7">
+    <motion.div initial={{ opacity: 0, scale: 0.94, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.08 }} className="relative mx-auto w-full max-w-[740px]">
+      <div className="absolute -inset-4 rounded-lg bg-[linear-gradient(135deg,rgba(11,101,199,0.18),rgba(18,179,207,0.06))] blur-2xl" />
+      <div className="relative overflow-hidden rounded-lg border border-[#0B65C7]/30 bg-[#14161C]/52 p-3 shadow-2xl shadow-black/35 backdrop-blur-md">
+        <div className="relative overflow-hidden rounded-md border border-[#0B65C7]/22 bg-[#14161C]/58 p-4 md:p-5">
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.18]"
             style={{
@@ -127,38 +127,38 @@ function HeroVisual() {
               backgroundSize: "42px 42px",
             }}
           />
-          <div className="relative rounded-md border border-[#0B65C7]/35 bg-[#14161C] p-6">
+          <div className="relative rounded-md border border-[#0B65C7]/30 bg-[#14161C]/80 p-4">
             <BrandLogo />
           </div>
 
-          <div className="relative mt-7">
-            <div className="font-technical inline-flex rounded-md border border-[#12B3CF]/25 bg-[#0B65C7]/12 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#12B3CF]">
-              Conectividad empresarial resiliente
+          <div className="relative mt-5">
+            <div className="font-technical inline-flex rounded-md border border-[#12B3CF]/25 bg-[#0B65C7]/10 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#12B3CF]">
+              Gestión administrada
             </div>
-            <h2 className="mt-4 text-3xl font-black leading-tight text-white md:text-4xl 2xl:text-5xl">
-              Continuidad operativa con NOC, SLA y gestión multioperador.
+            <h2 className="mt-4 text-3xl font-black leading-tight text-white md:text-4xl">
+              NOC, SLA y multioperador en una sola capa operativa.
             </h2>
-            <p className="mt-4 max-w-xl leading-7 text-white/62">
-              Una capa administrada para mantener visibles y conectadas operaciones distribuidas en México.
+            <p className="mt-3 max-w-xl leading-7 text-white/64">
+              Visibilidad continua para sitios, enlaces y eventos críticos.
             </p>
           </div>
 
-          <div className="relative mt-7 grid gap-4 md:grid-cols-3">
+          <div className="relative mt-5 grid gap-3 md:grid-cols-3">
             {[
               [Clock3, "NOC 24/7", "Monitoreo continuo"],
               [Router, "Multioperador", "Arquitectura flexible"],
               [ShieldCheck, "SLA", "Disponibilidad respaldada"],
             ].map(([Icon, title, text]) => (
-              <div key={title} className="rounded-md border border-[#0B65C7]/35 bg-[#0B65C7]/10 p-5">
-                <Icon className="mb-4 h-6 w-6 text-[#12B3CF]" />
+              <div key={title} className="rounded-md border border-[#0B65C7]/28 bg-[#0B65C7]/8 p-4">
+                <Icon className="mb-3 h-5 w-5 text-[#12B3CF]" />
                 <div className="font-black">{title}</div>
                 <div className="mt-1 text-sm leading-5 text-white/55">{text}</div>
               </div>
             ))}
           </div>
 
-          <div className="relative mt-5 rounded-md border border-[#0B65C7]/35 bg-white/[0.03] p-5">
-            <div className="mb-4 flex items-center justify-between">
+          <div className="relative mt-4 rounded-md border border-[#0B65C7]/28 bg-white/[0.025] p-4">
+            <div className="mb-3 flex items-center justify-between">
               <div className="font-technical text-sm font-black uppercase tracking-[0.08em] text-[#F5F5F5]/80">Arquitectura de disponibilidad</div>
               <Gauge className="h-5 w-5 text-[#12B3CF]" />
             </div>
@@ -188,12 +188,12 @@ export function HomePage({ page }) {
       <section className="relative min-h-screen overflow-hidden">
         <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover grayscale-[18%] saturate-[.72]" loading="eager" />
         <video className="absolute inset-0 h-full w-full object-contain object-center grayscale-[18%] saturate-[.72]" src={heroVideo} poster={heroImage} autoPlay muted loop playsInline preload="metadata" aria-hidden="true" />
-        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.92)_45%,rgba(20,22,28,.62)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.88)_0%,rgba(20,22,28,.72)_44%,rgba(20,22,28,.28)_100%)]" />
         <Header />
-        <div className="relative z-10 mx-auto grid max-w-[96rem] items-center gap-12 px-5 pb-20 pt-12 lg:grid-cols-[.9fr_1.1fr] lg:px-8 lg:pb-28 lg:pt-20 2xl:px-10">
+        <div className="relative z-10 mx-auto grid max-w-[96rem] items-center gap-10 px-5 pb-20 pt-12 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:pb-24 lg:pt-16 2xl:px-10">
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
             <Pill icon={Zap}>{page.eyebrow}</Pill>
-            <h1 className="mt-7 max-w-5xl text-5xl font-black leading-[0.92] md:text-7xl xl:text-8xl">{page.h1}</h1>
+            <h1 className="mt-7 max-w-5xl text-5xl font-black leading-[0.92] md:text-7xl xl:text-[5.75rem]">{page.h1}</h1>
             <p className="mt-7 max-w-2xl text-xl font-bold leading-8 text-slate-100 md:text-2xl md:leading-9">{page.intro}</p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row"><a href="/contacto/" className="font-technical group inline-flex items-center justify-center gap-2 rounded-md bg-[#0B65C7] px-8 py-4 text-sm font-black uppercase tracking-[0.04em] text-white shadow-2xl shadow-slate-950/40 transition hover:bg-[#12B3CF] hover:text-[#14161C]">Solicitar diagnóstico<ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" /></a><a href="/soluciones/" className="font-technical inline-flex items-center justify-center gap-2 rounded-md border border-[#0B65C7]/45 bg-[#14161C]/55 px-8 py-4 text-sm font-black uppercase tracking-[0.04em] text-white backdrop-blur transition hover:border-[#12B3CF] hover:bg-[#0B65C7]/18">Explorar soluciones <ChevronRight className="h-5 w-5" /></a></div>
           </motion.div>
