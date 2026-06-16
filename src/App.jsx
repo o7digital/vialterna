@@ -41,7 +41,7 @@ const heroVideo =
 const solutions = [
   {
     icon: Router,
-    title: "Conectividad para sitios distribuidos",
+    title: "Soluciones Edge (Última Milla)",
     text: "Arquitectura, hardware administrado y failover automático para sucursales, cajeros automáticos, tiendas, franquicias y sitios remotos.",
     image:
       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80",
@@ -55,14 +55,14 @@ const solutions = [
   },
   {
     icon: RadioTower,
-    title: "IoT y SIM administradas",
-    text: "Gestión de SIMs, conectividad celular administrada, monitoreo de consumo, alertas, optimización de planes y ciclo de vida para dispositivos conectados.",
+    title: "Soluciones IoT/SIM",
+    text: "Gestión de SIMs, conectividad celular administrada, control de consumo, alertas, optimización de planes y ciclo de vida para dispositivos conectados.",
     image:
       "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80",
   },
   {
     icon: Satellite,
-    title: "Respaldo satelital y celular",
+    title: "Soluciones de Respaldo",
     text: "Conectividad secundaria con failover satelital LEO, LTE o 5G para sitios remotos, retail, banca e infraestructura crítica.",
     image:
       "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=900&q=80",
@@ -101,7 +101,7 @@ const industries = [
   [
     Factory,
     "Energía e industria",
-    "Sitios remotos, SCADA, monitoreo de seguridad y operación industrial.",
+    "Sitios remotos, SCADA, seguridad operativa y telemetría industrial.",
   ],
   [
     Smartphone,
@@ -113,17 +113,17 @@ const industries = [
 const copy = {
   brandLine: "Conectividad resiliente",
   heroKicker: "Infraestructura crítica en México",
-  heroTitleA: "Operación sin pausas",
+  heroTitleA: "Disponibilidad como Servicio",
   heroTitleB: "para redes distribuidas.",
   heroSubtitle: "Conectividad administrada para empresas donde cada sitio, enlace y dispositivo debe permanecer visible, respaldado y disponible.",
   heroText:
     "Vialterna diseña, despliega y opera arquitecturas multioperador para bancos, redes de cajeros automáticos, retail, franquicias, infraestructura de pagos, sitios industriales y operaciones remotas.",
   primaryCta: "Solicitar diagnóstico",
   secondaryCta: "Explorar soluciones",
-  dashboardSubtitle: "Multioperador · respaldo · SLA",
-  dashboardBadge: "Operación visible",
+  architectureSubtitle: "Multioperador · respaldo · SLA",
+  architectureBadge: "Arquitectura visible",
   mapEyebrow: "Visibilidad de red",
-  mapTitle: "Sitios monitoreados",
+  mapTitle: "Sitios conectados",
   nodes: ["Sucursales", "Retail", "Cajeros", "Sitios remotos"],
   progressTitle: "Diseño de disponibilidad",
   progress: ["Multioperador", "Respaldo LTE / 5G", "Failover satelital"],
@@ -167,7 +167,7 @@ const sdWanFeatures = [
   "Respaldo satelital",
   "Failover automático",
   "Agregación de enlaces",
-  "Monitoreo centralizado",
+  "Supervisión centralizada",
   "QoS",
   "Túneles seguros",
 ];
@@ -349,11 +349,11 @@ function App() {
                     </div>
                     <div>
                       <div className="text-sm font-black">Gestión de conectividad</div>
-                      <div className="text-xs text-white/45">{t.dashboardSubtitle}</div>
+                      <div className="text-xs text-white/45">{t.architectureSubtitle}</div>
                     </div>
                   </div>
                   <div className="w-fit rounded-full bg-emerald-300/14 px-3 py-1 text-xs font-black text-emerald-100">
-                    {t.dashboardBadge}
+                    {t.architectureBadge}
                   </div>
                 </div>
 
@@ -586,7 +586,7 @@ function App() {
               Redes SD-WAN multioperador para continuidad del negocio.
             </h2>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              Combinamos fibra, LTE, 5G, satélite y enlaces inalámbricos en una arquitectura administrada con failover automático, agregación de enlaces y monitoreo centralizado.
+              Combinamos fibra, LTE, 5G, satélite y enlaces inalámbricos en una arquitectura administrada con failover automático, agregación de enlaces y supervisión centralizada.
             </p>
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               {sdWanFeatures.map((item) => (
@@ -609,7 +609,7 @@ function App() {
               </div>
               <div className="relative h-[430px] overflow-hidden rounded-[1.6rem] bg-[linear-gradient(135deg,rgba(6,21,33,.25),rgba(6,21,33,.82)),url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1300&q=80')] bg-cover bg-center">
                 <div className="absolute bottom-5 left-5 right-5 grid gap-3">
-                  {["Fibra + LTE + 5G + satélite", "QoS y túneles seguros", "Monitoreo centralizado"].map((item) => (
+                  {["Fibra + LTE + 5G + satélite", "QoS y túneles seguros", "Supervisión centralizada"].map((item) => (
                     <div key={item} className="rounded-2xl border border-white/10 bg-slate-950/65 p-4 font-bold backdrop-blur-xl">
                       {item}
                     </div>
@@ -657,7 +657,7 @@ function App() {
                 Conectividad de respaldo
               </div>
               <h2 className="text-4xl font-black leading-tight md:text-6xl">
-                Respaldo satelital y celular antes de que una falla detenga la operación.
+                Soluciones de respaldo antes de que una falla detenga la operación.
               </h2>
               <p className="mt-6 text-lg leading-8 text-white/68">
                 Vialterna diseña capas de redundancia con LTE, 5G, satélite y acceso multioperador para mantener activos sitios críticos.
@@ -764,7 +764,7 @@ function App() {
             <div className="mt-4 grid gap-2 text-white/55">
               <span>Sitios distribuidos</span>
               <span>Sitios centrales</span>
-              <span>Respaldo satelital y celular</span>
+              <span>Soluciones de Respaldo</span>
             </div>
           </div>
           <div>

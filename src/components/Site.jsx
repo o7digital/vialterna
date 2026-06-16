@@ -119,7 +119,7 @@ function Footer() {
           </div>
           <div className="text-xs text-white/45">Conectividad resiliente</div>
         </div>
-        <div><h4 className="font-black">Soluciones</h4><div className="mt-4 grid gap-2 text-white/55">{solutions.slice(0, 3).map((s) => <a href={s.href} key={s.href}>{s.title}</a>)}</div></div>
+        <div><h4 className="font-black">Soluciones</h4><div className="mt-4 grid gap-2 text-white/55">{solutions.map((s) => <a href={s.href} key={s.href}>{s.title}</a>)}</div></div>
         <div><h4 className="font-black">Empresa</h4><div className="mt-4 grid gap-2 text-white/55"><a href="/industrias/">Industrias</a><a href="/empresa/">Empresa</a><a href="/insights/">Insights</a></div></div>
         <div><h4 className="font-black">Contacto</h4><div className="mt-4 grid gap-2 text-white/55"><span>atencionaclientes@vialterna.com</span><span>55 8062 6884</span><span>2026 Vialterna</span></div></div>
       </div>
@@ -177,7 +177,7 @@ function HeroVisual() {
               <Gauge className="h-5 w-5 text-[#12B3CF]" />
             </div>
             <div className="grid gap-3">
-              {["Respaldo LTE / 5G", "Failover satelital", "Monitoreo centralizado"].map((name) => (
+              {["Respaldo LTE / 5G", "Failover satelital", "Supervisión centralizada"].map((name) => (
                 <div key={name} className="flex items-center gap-3">
                   <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#12B3CF] shadow-[0_0_18px_rgba(18,179,207,0.65)]" />
                   <div className="h-px flex-1 bg-gradient-to-r from-[#12B3CF]/80 via-[#0B65C7]/55 to-transparent" />
@@ -220,16 +220,93 @@ export function HomePage({ page }) {
 }
 
 function CardGrid({ cards }) {
-  return <div className="grid gap-6 lg:grid-cols-4">{cards.map(({ icon: Icon, title, text, image, href }, index) => <motion.article initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }} whileHover={{ y: -8 }} key={title} className="group overflow-hidden rounded-[2.2rem] border border-slate-200 bg-white shadow-xl shadow-slate-200/70 transition hover:shadow-2xl"><div className="relative h-56 overflow-hidden">{image && <img src={image} alt={title} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />}<div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" /><div className="absolute bottom-5 left-5 grid h-14 w-14 place-items-center rounded-2xl bg-white text-[#14161C]"><Icon className="h-7 w-7" /></div></div><div className="p-7"><h3 className="text-2xl font-black tracking-tight">{title}</h3><p className="mt-4 leading-7 text-slate-600">{text}</p>{href && <a href={href} className="mt-7 inline-flex items-center gap-2 text-sm font-black text-cyan-700">Ver más<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></a>}</div></motion.article>)}</div>;
+  return <div className="grid gap-6 lg:grid-cols-4">{cards.map(({ icon: Icon, title, text, image, href }, index) => <motion.article initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }} whileHover={{ y: -8 }} key={title} className="group overflow-hidden rounded-md border border-white/16 bg-black shadow-2xl shadow-black/25 transition hover:border-[#12B3CF]/70"><div className="relative h-48 overflow-hidden">{image && <img src={image} alt={title} className="h-full w-full object-cover opacity-80 transition duration-700 group-hover:scale-105" loading="lazy" />}<div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" /><div className="absolute bottom-5 left-5 grid h-12 w-12 place-items-center rounded-md bg-white text-[#14161C]"><Icon className="h-6 w-6" /></div></div><div className="p-7 text-white"><h3 className="text-2xl font-light tracking-tight">{title}</h3><p className="mt-4 leading-7 text-white/72">{text}</p>{href && <a href={href} className="mt-7 inline-flex items-center gap-2 rounded-md border-2 border-[#F26A2E] px-5 py-3 text-sm font-black text-white transition hover:bg-[#F26A2E]">Ver más<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></a>}</div></motion.article>)}</div>;
 }
 
 function DesignSections({ page }) {
+  const [riskSection, approachesSection, availabilitySection, processSection] = page.sections ?? [];
   return (
     <>
-      <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><div className="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><div className="mb-4 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">Continuidad operativa</div><h2 className="text-4xl font-black leading-tight md:text-6xl">Diseñamos disponibilidad, no solo conectividad.</h2><p className="mt-6 text-lg leading-8 text-slate-600">{page.sections?.[0]?.text ?? "Vialterna convierte múltiples operadores y tecnologías en una capa administrada de continuidad."}</p></div><div className="grid gap-5 md:grid-cols-3">{visualCards.map(([Icon, title, text]) => <motion.div whileHover={{ y: -8 }} key={title} className="rounded-[2rem] bg-white p-7 shadow-xl shadow-slate-200/70"><div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-[#14161C] text-cyan-200"><Icon className="h-7 w-7" /></div><h3 className="text-xl font-black">{title}</h3><p className="mt-4 leading-7 text-slate-600">{text}</p></motion.div>)}</div></div></div></section>
-      <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end"><div><div className="mb-4 inline-flex rounded-full bg-emerald-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-emerald-800">Soluciones</div><h2 className="max-w-3xl text-4xl font-black leading-tight md:text-6xl">Conectividad administrada para operaciones críticas.</h2></div><p className="max-w-xl text-lg leading-8 text-slate-600">Un socio operativo para tecnologías de acceso, operadores, despliegue en campo, soporte y ciclo de vida.</p></div><CardGrid cards={solutions} /></div></section>
-      <section className="bg-[#14161C] px-5 py-24 text-white lg:px-8"><div className="mx-auto max-w-7xl"><div className="mb-12 max-w-3xl"><Pill>Industrias</Pill><h2 className="mt-5 text-4xl font-black leading-tight md:text-6xl">Construido para operaciones donde la conectividad impacta ingresos, servicio y continuidad.</h2></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{industries.map(({ icon: Icon, title, text, href }) => <a href={href} key={title} className="rounded-[1.8rem] border border-white/10 bg-white/8 p-6 backdrop-blur-xl"><Icon className="mb-6 h-8 w-8 text-cyan-200" /><h3 className="text-2xl font-black">{title}</h3><p className="mt-3 leading-7 text-white/72">{text}</p></a>)}</div></div></section>
-      <section className="bg-[#14161C] px-5 pb-24 text-white lg:px-8"><div className="mx-auto max-w-7xl overflow-hidden rounded-[2.8rem] border border-white/10 bg-white/8 p-7 shadow-2xl shadow-slate-950/40 backdrop-blur-xl md:p-10"><div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-center"><div><Pill icon={Gauge}>Operación</Pill><h2 className="mt-5 text-4xl font-black leading-tight md:text-5xl">Gestión multioperador y disponibilidad respaldada por SLA</h2><p className="mt-5 text-lg leading-8 text-white/65">Vialterna coordina tecnologías, operadores, enlaces y respaldos para reducir puntos únicos de falla y mantener la operación visible y disponible.</p></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{metrics.map(([value, label]) => <div key={label} className="rounded-[1.6rem] border border-white/10 bg-slate-950/35 p-6"><div className="text-4xl font-black text-cyan-100">{value}</div><div className="mt-3 text-sm font-bold uppercase tracking-[0.12em] text-white/55">{label}</div></div>)}</div></div></div></section>
+      <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
+        <div className="mx-auto max-w-6xl text-center">
+          <h2 className="text-4xl font-black leading-tight md:text-6xl">{riskSection?.h2}</h2>
+          <p className="mx-auto mt-7 max-w-5xl text-xl leading-9 text-white/72">{riskSection?.text}</p>
+          <div className="mx-auto mt-14 max-w-5xl border-l-4 border-[#12B3CF] bg-[#14161C] p-8 text-left shadow-2xl shadow-black/25">
+            <p className="text-2xl font-bold leading-10 text-white/82">
+              El tiempo de inactividad impacta directamente tu P&amp;L. <span className="text-[#12B3CF]">La mayoría de las empresas nunca lo han cuantificado.</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
+        <div className="mx-auto max-w-[96rem]">
+          <h2 className="mx-auto max-w-6xl text-center text-4xl font-black leading-tight md:text-6xl">{approachesSection?.h2}</h2>
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+            {approachesSection?.approaches?.map(([title, text]) => (
+              <article key={title} className="min-h-[24rem] rounded-md border border-white/18 bg-white/[0.035] p-8 shadow-2xl shadow-black/20">
+                <h3 className="text-3xl font-bold leading-tight text-white">{title}</h3>
+                <p className="mt-6 text-lg leading-8 text-white/72">{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
+        <div className="mx-auto max-w-[96rem]">
+          <div className="mx-auto max-w-6xl text-center">
+            <h2 className="text-4xl font-black leading-tight md:text-6xl">{availabilitySection?.h2}</h2>
+            <p className="mx-auto mt-7 max-w-5xl text-xl leading-9 text-white/72">{availabilitySection?.text}</p>
+          </div>
+          <div className="mt-16 grid gap-8 lg:grid-cols-3">
+            {visualCards.map(([Icon, title, text], index) => (
+              <article key={title} className="grid gap-5 lg:grid-cols-[10rem_1fr]">
+                <div className="font-technical text-8xl font-light leading-none text-[#0B65C7]">0{index + 1}</div>
+                <div>
+                  <Icon className="mb-6 h-9 w-9 text-[#12B3CF]" />
+                  <h3 className="text-4xl font-light leading-tight text-white">{title}</h3>
+                  <p className="mt-5 text-lg leading-8 text-white/72">{text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <h2 className="mx-auto max-w-5xl text-center text-4xl font-black leading-tight md:text-6xl">{processSection?.h2}</h2>
+          <div className="mx-auto mt-14 grid max-w-5xl gap-10 border-l-2 border-[#12B3CF] pl-8">
+            {processSection?.steps?.map(([title, text]) => (
+              <article key={title} className="grid gap-3 md:grid-cols-[12rem_1fr]">
+                <h3 className="text-3xl font-light text-white">{title}</h3>
+                <p className="text-lg leading-8 text-white/72">{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 text-center">
+            <h2 className="text-4xl font-black leading-tight md:text-6xl">Cuatro soluciones. Una plataforma. Lo que necesites para mantener tus operaciones en línea.</h2>
+            <p className="mx-auto mt-6 max-w-4xl text-xl leading-8 text-white/70">Cada solución corresponde a un problema de conectividad concreto.</p>
+          </div>
+          <CardGrid cards={solutions} />
+        </div>
+      </section>
+
+      <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 max-w-4xl">
+            <Pill>Industrias</Pill>
+            <h2 className="mt-5 text-4xl font-black leading-tight md:text-6xl">Construido para operaciones distribuidas donde el tiempo de inactividad tiene precio.</h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{industries.map(({ icon: Icon, title, text, href }) => <a href={href} key={title} className="rounded-md border border-white/12 bg-white/[0.045] p-6 backdrop-blur-xl"><Icon className="mb-6 h-8 w-8 text-[#12B3CF]" /><h3 className="text-2xl font-black">{title}</h3><p className="mt-3 leading-7 text-white/72">{text}</p></a>)}</div>
+        </div>
+      </section>
     </>
   );
 }
@@ -316,9 +393,9 @@ function ContactPage({ page }) {
               />
               <div className="relative">
                 <div className="max-w-4xl">
-                  <h2 className="text-4xl font-black leading-tight text-white md:text-5xl">Start with a diagnostic</h2>
+                  <h2 className="text-4xl font-black leading-tight text-white md:text-5xl">Empieza con un diagnóstico</h2>
                   <p className="mt-5 text-lg leading-8 text-white/72">
-                    You're probably overpaying or underperforming because no one is proactively managing your telco stack. That's a solvable problem. Our connectivity diagnostic analyzes your infrastructure: carrier contracts, spend, redundancy gaps, and SLA performance. It's the first step toward understanding what resilient connectivity looks like for your operations.
+                    Analizamos tu infraestructura de conectividad, contratos con operadores, gasto, redundancias y desempeño para identificar riesgos de desconexión y oportunidades de optimización.
                   </p>
                 </div>
 
