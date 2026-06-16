@@ -28,7 +28,6 @@ import {
 const nav = [
   { id: "servicios", label: "Soluciones" },
   { id: "industrias", label: "Industrias" },
-  { id: "noc", label: "NOC 24/7 y SLA" },
   { id: "empresa", label: "Empresa" },
   { id: "insights", label: "Insights" },
   { id: "contact", label: "Contacto" },
@@ -43,7 +42,7 @@ const solutions = [
   {
     icon: Router,
     title: "Conectividad para sitios distribuidos",
-    text: "Arquitectura, hardware administrado, monitoreo NOC 24/7 y failover automático para sucursales, cajeros automáticos, tiendas, franquicias y sitios remotos.",
+    text: "Arquitectura, hardware administrado y failover automático para sucursales, cajeros automáticos, tiendas, franquicias y sitios remotos.",
     image:
       "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80",
   },
@@ -113,16 +112,16 @@ const industries = [
 
 const copy = {
   brandLine: "Conectividad resiliente",
-  heroKicker: "Conectividad empresarial en México",
-  heroTitleA: "Diseñamos conectividad",
-  heroTitleB: "para operaciones críticas.",
-  heroSubtitle: "Conectividad administrada para empresas con operaciones distribuidas.",
+  heroKicker: "Infraestructura crítica en México",
+  heroTitleA: "Operación sin pausas",
+  heroTitleB: "para redes distribuidas.",
+  heroSubtitle: "Conectividad administrada para empresas donde cada sitio, enlace y dispositivo debe permanecer visible, respaldado y disponible.",
   heroText:
     "Vialterna diseña, despliega y opera arquitecturas multioperador para bancos, redes de cajeros automáticos, retail, franquicias, infraestructura de pagos, sitios industriales y operaciones remotas.",
   primaryCta: "Solicitar diagnóstico",
   secondaryCta: "Explorar soluciones",
-  dashboardSubtitle: "Monitoreo 24/7 · multioperador · respaldado por SLA",
-  dashboardBadge: "Operación 24/7",
+  dashboardSubtitle: "Multioperador · respaldo · SLA",
+  dashboardBadge: "Operación visible",
   mapEyebrow: "Visibilidad de red",
   mapTitle: "Sitios monitoreados",
   nodes: ["Sucursales", "Retail", "Cajeros", "Sitios remotos"],
@@ -130,18 +129,18 @@ const copy = {
   progress: ["Multioperador", "Respaldo LTE / 5G", "Failover satelital"],
   smallCards: [
     ["Respaldado por SLA", "Disponibilidad medible"],
-    ["Servicio administrado", "NOC 24/7"],
+    ["Servicio administrado", "Conectividad visible"],
   ],
   architecture: "Arquitectura",
   servicesKicker: "Soluciones",
   servicesTitle: "Conectividad administrada para operaciones críticas.",
   servicesText:
     "Un socio operativo para tecnologías de acceso, operadores, despliegue en campo, soporte y ciclo de vida.",
-  solutionCta: "Conocer solución",
+  solutionCta: "Ver solución",
   industriesKicker: "Industrias",
   industriesTitle: "Construido para operaciones donde la conectividad impacta ingresos, servicio y continuidad.",
-  nocKicker: "Operación",
-  nocTitle: "NOC 24/7, SLA y gestión multioperador en un solo modelo de servicio.",
+  operationKicker: "Operación",
+  operationTitle: "Gestión multioperador y disponibilidad respaldada por SLA",
   contactTitle: "Solicita un diagnóstico de conectividad.",
   contactText:
     "Cuéntanos dónde tu operación está expuesta a riesgo de conectividad. Evaluamos puntos únicos de falla, oportunidades de optimización y mejoras posibles para tu infraestructura.",
@@ -149,9 +148,9 @@ const copy = {
 };
 
 const metrics = [
-  ["24/7", "Monitoreo NOC"],
   ["SLA", "Disponibilidad reportada"],
   ["Multi", "Gestión de operadores"],
+  ["Respaldo", "Continuidad operativa"],
   ["México", "Operaciones distribuidas"],
 ];
 
@@ -159,7 +158,7 @@ const workSteps = [
   ["Diagnosticar", "Evaluamos ubicaciones, cobertura, riesgos y requerimientos del negocio."],
   ["Diseñar", "Definimos la arquitectura multioperador más adecuada para cada sitio."],
   ["Desplegar", "Coordinamos operadores, equipos, instalación y activación."],
-  ["Operar", "Monitoreamos, damos soporte y optimizamos la red desde el NOC."],
+  ["Operar", "Monitoreamos, damos soporte y optimizamos la red."],
 ];
 
 const sdWanFeatures = [
@@ -349,7 +348,7 @@ function App() {
                       <Router className="h-5 w-5" />
                     </div>
                     <div>
-                      <div className="text-sm font-black">Centro de Operaciones de Red</div>
+                      <div className="text-sm font-black">Gestión de conectividad</div>
                       <div className="text-xs text-white/45">{t.dashboardSubtitle}</div>
                     </div>
                   </div>
@@ -530,14 +529,17 @@ function App() {
         </div>
       </section>
 
-      <section id="noc" className="bg-[#061521] px-5 pb-24 text-white lg:px-8">
+      <section id="operacion" className="bg-[#061521] px-5 pb-24 text-white lg:px-8">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.8rem] border border-white/10 bg-white/8 p-7 shadow-2xl shadow-slate-950/40 backdrop-blur-xl md:p-10">
           <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-center">
             <div>
-              <Pill icon={Gauge}>{t.nocKicker}</Pill>
+              <Pill icon={Gauge}>{t.operationKicker}</Pill>
               <h2 className="mt-5 text-4xl font-black leading-tight md:text-5xl">
-                {t.nocTitle}
+                {t.operationTitle}
               </h2>
+              <p className="mt-5 text-lg leading-8 text-white/65">
+                Vialterna coordina tecnologías, operadores, enlaces y respaldos para reducir puntos únicos de falla y mantener la operación visible y disponible.
+              </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {metrics.map(([value, label]) => (
@@ -607,7 +609,7 @@ function App() {
               </div>
               <div className="relative h-[430px] overflow-hidden rounded-[1.6rem] bg-[linear-gradient(135deg,rgba(6,21,33,.25),rgba(6,21,33,.82)),url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1300&q=80')] bg-cover bg-center">
                 <div className="absolute bottom-5 left-5 right-5 grid gap-3">
-                  {["Fibra + LTE + 5G + satélite", "QoS y túneles seguros", "Monitoreo NOC centralizado"].map((item) => (
+                  {["Fibra + LTE + 5G + satélite", "QoS y túneles seguros", "Monitoreo centralizado"].map((item) => (
                     <div key={item} className="rounded-2xl border border-white/10 bg-slate-950/65 p-4 font-bold backdrop-blur-xl">
                       {item}
                     </div>
@@ -695,7 +697,7 @@ function App() {
           <div className="grid gap-5 md:grid-cols-3">
             {[
               "Arquitectura multioperador para continuidad del negocio",
-              "Cómo el monitoreo NOC fortalece la operación de conectividad",
+              "Cómo la visibilidad fortalece la operación de conectividad",
               "IoT, SIMs y telemetría para activos remotos",
             ].map((title) => (
               <article key={title} className="rounded-[2rem] bg-white p-7 shadow-xl shadow-slate-200/70">
@@ -769,7 +771,7 @@ function App() {
             <h4 className="font-black">Empresa</h4>
             <div className="mt-4 grid gap-2 text-white/55">
               <span>Industrias</span>
-              <span>NOC</span>
+              <span>Empresa</span>
               <span>Insights</span>
             </div>
           </div>

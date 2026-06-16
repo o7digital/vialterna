@@ -4,7 +4,6 @@ import {
   ArrowRight,
   BadgeCheck,
   ChevronRight,
-  Clock3,
   Factory,
   Gauge,
   Mail,
@@ -106,7 +105,7 @@ function Footer() {
           <div className="text-xs text-white/45">Conectividad resiliente</div>
         </div>
         <div><h4 className="font-black">Soluciones</h4><div className="mt-4 grid gap-2 text-white/55">{solutions.slice(0, 3).map((s) => <a href={s.href} key={s.href}>{s.title}</a>)}</div></div>
-        <div><h4 className="font-black">Empresa</h4><div className="mt-4 grid gap-2 text-white/55"><a href="/industrias/">Industrias</a><a href="/noc-24-7-sla/">NOC 24/7 y SLA</a><a href="/insights/">Insights</a></div></div>
+        <div><h4 className="font-black">Empresa</h4><div className="mt-4 grid gap-2 text-white/55"><a href="/industrias/">Industrias</a><a href="/empresa/">Empresa</a><a href="/insights/">Insights</a></div></div>
         <div><h4 className="font-black">Contacto</h4><div className="mt-4 grid gap-2 text-white/55"><span>atencionaclientes@vialterna.com</span><span>55 8062 6884</span><span>2026 Vialterna</span></div></div>
       </div>
     </footer>
@@ -136,18 +135,18 @@ function HeroVisual() {
               Gestión administrada
             </div>
             <h2 className="mt-4 text-3xl font-black leading-tight text-white md:text-4xl">
-              NOC, SLA y multioperador en una sola capa operativa.
+              Continuidad operativa para sitios, enlaces y dispositivos críticos.
             </h2>
             <p className="mt-3 max-w-xl leading-7 text-white/64">
-              Visibilidad continua para sitios, enlaces y eventos críticos.
+              Una capa administrada para mantener visibles, respaldadas y conectadas las operaciones distribuidas en México.
             </p>
           </div>
 
           <div className="relative mt-5 grid gap-3 md:grid-cols-3">
             {[
-              [Clock3, "NOC 24/7", "Monitoreo continuo"],
               [Router, "Multioperador", "Arquitectura flexible"],
               [ShieldCheck, "SLA", "Disponibilidad respaldada"],
+              [Gauge, "Respaldo", "Continuidad operativa"],
             ].map(([Icon, title, text]) => (
               <div key={title} className="rounded-md border border-[#0B65C7]/28 bg-[#0B65C7]/8 p-4">
                 <Icon className="mb-3 h-5 w-5 text-[#12B3CF]" />
@@ -206,7 +205,7 @@ export function HomePage({ page }) {
 }
 
 function CardGrid({ cards }) {
-  return <div className="grid gap-6 lg:grid-cols-4">{cards.map(({ icon: Icon, title, text, image, href }, index) => <motion.article initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }} whileHover={{ y: -8 }} key={title} className="group overflow-hidden rounded-[2.2rem] border border-slate-200 bg-white shadow-xl shadow-slate-200/70 transition hover:shadow-2xl"><div className="relative h-56 overflow-hidden">{image && <img src={image} alt={title} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />}<div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" /><div className="absolute bottom-5 left-5 grid h-14 w-14 place-items-center rounded-2xl bg-white text-[#14161C]"><Icon className="h-7 w-7" /></div></div><div className="p-7"><h3 className="text-2xl font-black tracking-tight">{title}</h3><p className="mt-4 leading-7 text-slate-600">{text}</p>{href && <a href={href} className="mt-7 inline-flex items-center gap-2 text-sm font-black text-cyan-700">Conocer más<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></a>}</div></motion.article>)}</div>;
+  return <div className="grid gap-6 lg:grid-cols-4">{cards.map(({ icon: Icon, title, text, image, href }, index) => <motion.article initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.06 }} whileHover={{ y: -8 }} key={title} className="group overflow-hidden rounded-[2.2rem] border border-slate-200 bg-white shadow-xl shadow-slate-200/70 transition hover:shadow-2xl"><div className="relative h-56 overflow-hidden">{image && <img src={image} alt={title} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />}<div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" /><div className="absolute bottom-5 left-5 grid h-14 w-14 place-items-center rounded-2xl bg-white text-[#14161C]"><Icon className="h-7 w-7" /></div></div><div className="p-7"><h3 className="text-2xl font-black tracking-tight">{title}</h3><p className="mt-4 leading-7 text-slate-600">{text}</p>{href && <a href={href} className="mt-7 inline-flex items-center gap-2 text-sm font-black text-cyan-700">Ver más<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></a>}</div></motion.article>)}</div>;
 }
 
 function DesignSections({ page }) {
@@ -215,7 +214,7 @@ function DesignSections({ page }) {
       <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><div className="grid gap-12 lg:grid-cols-[.9fr_1.1fr] lg:items-center"><div><div className="mb-4 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">Continuidad operativa</div><h2 className="text-4xl font-black leading-tight md:text-6xl">Diseñamos disponibilidad, no solo conectividad.</h2><p className="mt-6 text-lg leading-8 text-slate-600">{page.sections?.[0]?.text ?? "Vialterna convierte múltiples operadores y tecnologías en una capa administrada de continuidad."}</p></div><div className="grid gap-5 md:grid-cols-3">{visualCards.map(([Icon, title, text]) => <motion.div whileHover={{ y: -8 }} key={title} className="rounded-[2rem] bg-white p-7 shadow-xl shadow-slate-200/70"><div className="mb-6 grid h-14 w-14 place-items-center rounded-2xl bg-[#14161C] text-cyan-200"><Icon className="h-7 w-7" /></div><h3 className="text-xl font-black">{title}</h3><p className="mt-4 leading-7 text-slate-600">{text}</p></motion.div>)}</div></div></div></section>
       <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><div className="mb-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end"><div><div className="mb-4 inline-flex rounded-full bg-emerald-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-emerald-800">Soluciones</div><h2 className="max-w-3xl text-4xl font-black leading-tight md:text-6xl">Conectividad administrada para operaciones críticas.</h2></div><p className="max-w-xl text-lg leading-8 text-slate-600">Un socio operativo para tecnologías de acceso, operadores, despliegue en campo, soporte y ciclo de vida.</p></div><CardGrid cards={solutions} /></div></section>
       <section className="bg-[#14161C] px-5 py-24 text-white lg:px-8"><div className="mx-auto max-w-7xl"><div className="mb-12 max-w-3xl"><Pill>Industrias</Pill><h2 className="mt-5 text-4xl font-black leading-tight md:text-6xl">Construido para operaciones donde la conectividad impacta ingresos, servicio y continuidad.</h2></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{industries.map(({ icon: Icon, title, text, href }) => <a href={href} key={title} className="rounded-[1.8rem] border border-white/10 bg-white/8 p-6 backdrop-blur-xl"><Icon className="mb-6 h-8 w-8 text-cyan-200" /><h3 className="text-2xl font-black">{title}</h3><p className="mt-3 leading-7 text-white/72">{text}</p></a>)}</div></div></section>
-      <section className="bg-[#14161C] px-5 pb-24 text-white lg:px-8"><div className="mx-auto max-w-7xl overflow-hidden rounded-[2.8rem] border border-white/10 bg-white/8 p-7 shadow-2xl shadow-slate-950/40 backdrop-blur-xl md:p-10"><div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-center"><div><Pill icon={Gauge}>Operación</Pill><h2 className="mt-5 text-4xl font-black leading-tight md:text-5xl">NOC 24/7, SLA y gestión multioperador en un solo modelo de servicio.</h2></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{metrics.map(([value, label]) => <div key={label} className="rounded-[1.6rem] border border-white/10 bg-slate-950/35 p-6"><div className="text-4xl font-black text-cyan-100">{value}</div><div className="mt-3 text-sm font-bold uppercase tracking-[0.12em] text-white/55">{label}</div></div>)}</div></div></div></section>
+      <section className="bg-[#14161C] px-5 pb-24 text-white lg:px-8"><div className="mx-auto max-w-7xl overflow-hidden rounded-[2.8rem] border border-white/10 bg-white/8 p-7 shadow-2xl shadow-slate-950/40 backdrop-blur-xl md:p-10"><div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:items-center"><div><Pill icon={Gauge}>Operación</Pill><h2 className="mt-5 text-4xl font-black leading-tight md:text-5xl">Gestión multioperador y disponibilidad respaldada por SLA</h2><p className="mt-5 text-lg leading-8 text-white/65">Vialterna coordina tecnologías, operadores, enlaces y respaldos para reducir puntos únicos de falla y mantener la operación visible y disponible.</p></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{metrics.map(([value, label]) => <div key={label} className="rounded-[1.6rem] border border-white/10 bg-slate-950/35 p-6"><div className="text-4xl font-black text-cyan-100">{value}</div><div className="mt-3 text-sm font-bold uppercase tracking-[0.12em] text-white/55">{label}</div></div>)}</div></div></div></section>
     </>
   );
 }

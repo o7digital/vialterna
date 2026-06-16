@@ -40,7 +40,6 @@ export const navigation = [
       { label: "Infraestructura de pagos", href: "/industrias/infraestructura-pagos/" }
     ]
   },
-  { label: "NOC 24/7 y SLA", href: "/noc-24-7-sla/" },
   { label: "Empresa", href: "/empresa/" },
   { label: "Insights", href: "/insights/" },
   { label: "Contacto", href: "/contacto/" }
@@ -51,7 +50,7 @@ export const solutions = [
     icon: Router,
     title: "Conectividad para sitios distribuidos",
     href: "/soluciones/conectividad-sitios-distribuidos/",
-    text: "Arquitectura por sitio, hardware administrado, monitoreo NOC 24/7, failover automático y SLA para sucursales, cajeros, tiendas, franquicias y sitios remotos.",
+    text: "Arquitectura por sitio, hardware administrado, failover automático y SLA para sucursales, cajeros, tiendas, franquicias y sitios remotos.",
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80"
   },
   {
@@ -93,13 +92,13 @@ const cta = {
 export const home = {
   title: "Conectividad empresarial resiliente en México | Vialterna",
   description: "Vialterna diseña, despliega y opera conectividad administrada para empresas con operaciones distribuidas en México.",
-  eyebrow: "Operaciones distribuidas en México",
-  h1: "Continuidad empresarial para operaciones distribuidas",
-  intro: "Vialterna diseña, despliega y opera redes administradas para mantener visibles y disponibles sitios críticos en todo México.",
+  eyebrow: "Infraestructura crítica en México",
+  h1: "Operación sin pausas para redes distribuidas",
+  intro: "Vialterna diseña, despliega y opera conectividad administrada para empresas donde cada sitio, enlace y dispositivo debe permanecer visible, respaldado y disponible.",
   sections: [
-    { h2: "Disponibilidad como servicio para sitios críticos", text: "Para empresas con sucursales, cajeros automáticos, terminales, centros de distribución o sitios remotos, la disponibilidad como servicio reduce el riesgo operativo y permite mantener cada punto conectado bajo monitoreo NOC 24/7." },
+    { h2: "Disponibilidad como servicio para sitios críticos", text: "Para empresas con sucursales, cajeros automáticos, terminales, centros de distribución o sitios remotos, la disponibilidad como servicio reduce el riesgo operativo y permite mantener cada punto visible y conectado." },
     { h2: "Por qué una red distribuida necesita gestión especializada", text: "Cuando una ubicación se desconecta, las ventas, transacciones, reportes y operaciones se detienen. Vialterna sustituye la gestión reactiva de operadores por una capa de conectividad administrada, multioperador y medible." },
-    { h2: "Operación, monitoreo y SLA en un solo modelo de servicio", text: "A través del NOC 24/7, Vialterna supervisa sitios, enlaces, dispositivos y eventos de conectividad en tiempo real para reducir carga administrativa y centralizar la responsabilidad operativa." }
+    { h2: "Gestión multioperador y disponibilidad respaldada por SLA", text: "Vialterna coordina tecnologías, operadores, enlaces y respaldos para reducir puntos únicos de falla y mantener la operación visible y disponible." }
   ],
   cta
 };
@@ -122,11 +121,11 @@ export const pages = {
     intro: "Conectividad resiliente para cada sitio de tu red distribuida: cajeros automáticos, sucursales, tiendas, franquicias e instalaciones remotas.",
     sections: [
       { h2: "Cuando los sitios distribuidos se desconectan, tu negocio se detiene", text: "Cada sitio necesita mantenerse conectado para que la operación continúe. Un modelo vulnerable con un operador por sitio, failover manual o inexistente expone transacciones, procesos críticos y atención al cliente." },
-      { h2: "Qué incluye una solución Edge de Vialterna", features: [["Diseño de arquitectura por sitio", "Evaluamos fibra, celular, satélite LEO o MPLS según cobertura, criticidad y disponibilidad requerida."], ["Hardware administrado", "Vialterna aprovisiona, configura, envía y gestiona routers, switches, antenas y gateways celulares."], ["Monitoreo NOC 24/7", "Cada sitio es monitoreado en tiempo real para detectar problemas de conectividad o degradaciones."], ["Failover automático", "Cuando una conexión falla, el tráfico cambia automáticamente hacia un enlace de respaldo."], ["Disponibilidad respaldada por SLA", "La disponibilidad se mide, monitorea y reporta con acuerdos de nivel de servicio claros."]] },
+      { h2: "Qué incluye una solución Edge de Vialterna", features: [["Diseño de arquitectura por sitio", "Evaluamos fibra, celular, satélite LEO o MPLS según cobertura, criticidad y disponibilidad requerida."], ["Hardware administrado", "Vialterna aprovisiona, configura, envía y gestiona routers, switches, antenas y gateways celulares."], ["Monitoreo de conectividad", "Cada sitio se supervisa para detectar problemas de conectividad o degradaciones."], ["Failover automático", "Cuando una conexión falla, el tráfico cambia automáticamente hacia un enlace de respaldo."], ["Disponibilidad respaldada por SLA", "La disponibilidad se mide, monitorea y reporta con acuerdos de nivel de servicio claros."]] },
       { h2: "De un piloto a un despliegue nacional", steps: [["Despliegue piloto", "El proceso puede iniciar con 1 a 5 sitios."], ["Validación de rendimiento", "Se mide actividad, rendimiento del failover y comportamiento de la solución."], ["Despliegue nacional", "El despliegue escala por fases hacia cobertura nacional."], ["Gestión continua", "Vialterna mantiene monitoreo, respuesta a incidentes y optimización."]] }
     ],
     caseStudy: "Una institución financiera mexicana necesitaba conectividad para múltiples cajeros automáticos. Vialterna diseñó una solución en una semana y comenzó el despliegue en menos de un mes, combinando CPE, SIMs celulares y enlaces satelitales de respaldo.",
-    benefits: ["Conectividad resiliente para sitios distribuidos.", "Arquitectura diseñada por ubicación.", "Reducción de puntos únicos de falla.", "Failover automático entre enlaces.", "Hardware administrado por Vialterna.", "Monitoreo NOC 24/7.", "Disponibilidad respaldada por SLA."],
+    benefits: ["Conectividad resiliente para sitios distribuidos.", "Arquitectura diseñada por ubicación.", "Reducción de puntos únicos de falla.", "Failover automático entre enlaces.", "Hardware administrado por Vialterna.", "Monitoreo de conectividad.", "Disponibilidad respaldada por SLA."],
     cta
   },
   "/soluciones/sitios-centrales/": {
@@ -137,9 +136,9 @@ export const pages = {
     intro: "Conectividad resiliente y de alto rendimiento para instalaciones críticas: corporativos, hubs regionales, centros de datos, centros de distribución y sitios transaccionales de alto volumen.",
     sections: [
       { h2: "El problema de los sitios centrales", text: "Un sitio central concentra aplicaciones, datos, transacciones y operación. Si depende de una sola ruta, un solo operador o una arquitectura sin redundancia suficiente, cualquier falla puede escalar a impacto regional o nacional." },
-      { h2: "Qué incluye la solución", features: [["Rutas WAN diversas", "Diseño con diversidad de operadores, tecnologías y rutas."], ["Gestión avanzada de tráfico", "Priorización y control del tráfico crítico."], ["Mayor ancho de banda y SLAs", "Arquitecturas preparadas para capacidad, desempeño y acuerdos de nivel de servicio."], ["Monitoreo NOC 24/7", "Supervisión continua de enlaces, eventos y disponibilidad."]] }
+      { h2: "Qué incluye la solución", features: [["Rutas WAN diversas", "Diseño con diversidad de operadores, tecnologías y rutas."], ["Gestión avanzada de tráfico", "Priorización y control del tráfico crítico."], ["Mayor ancho de banda y SLAs", "Arquitecturas preparadas para capacidad, desempeño y acuerdos de nivel de servicio."], ["Monitoreo de conectividad", "Supervisión de enlaces, eventos y disponibilidad."]] }
     ],
-    benefits: ["Mayor resiliencia en instalaciones críticas.", "Reducción de puntos únicos de falla.", "Gestión avanzada de tráfico.", "Monitoreo NOC 24/7.", "Arquitectura alineada con SLA."],
+    benefits: ["Mayor resiliencia en instalaciones críticas.", "Reducción de puntos únicos de falla.", "Gestión avanzada de tráfico.", "Monitoreo de conectividad.", "Arquitectura alineada con SLA."],
     cta
   },
   "/soluciones/iot-sim-administradas/": {
@@ -183,8 +182,8 @@ export const pages = {
     eyebrow: "Servicios financieros",
     h1: "Servicios financieros: conectividad resiliente para cajeros, sucursales e infraestructura transaccional",
     intro: "En servicios financieros, una interrupción de conectividad puede traducirse en transacciones perdidas, afectación al usuario y presión operativa.",
-    sections: [{ h2: "Qué hace Vialterna", features: [["Soluciones Edge para cajeros automáticos", "Arquitectura por sitio, CPE, SIMs celulares y respaldo."], ["Respaldo para sucursales bancarias", "Failover celular o satelital para mantener operación básica ante fallas."], ["NOC 24/7 y reportes", "Monitoreo, gestión de incidentes y visibilidad de desempeño."]] }],
-    benefits: ["Mayor disponibilidad para cajeros y sucursales.", "Menor exposición a un solo operador.", "Failover automático.", "Monitoreo NOC 24/7.", "Reportes de desempeño."],
+    sections: [{ h2: "Qué hace Vialterna", features: [["Soluciones Edge para cajeros automáticos", "Arquitectura por sitio, CPE, SIMs celulares y respaldo."], ["Respaldo para sucursales bancarias", "Failover celular o satelital para mantener operación básica ante fallas."], ["Visibilidad y reportes", "Monitoreo, gestión de incidentes y visibilidad de desempeño."]] }],
+    benefits: ["Mayor disponibilidad para cajeros y sucursales.", "Menor exposición a un solo operador.", "Failover automático.", "Monitoreo de conectividad.", "Reportes de desempeño."],
     cta
   },
   "/industrias/retail-franquicias/": {
@@ -194,7 +193,7 @@ export const pages = {
     h1: "Retail y franquicias: conectividad resiliente para redes de tiendas",
     intro: "Cada tienda desconectada puede significar ventas perdidas, procesos manuales, quejas de clientes y presión sobre el corporativo.",
     sections: [{ h2: "Qué hace Vialterna", features: [["Gestión WAN", "Centralización de conectividad, desempeño y soporte."], ["Soluciones Edge para tiendas y POS", "Arquitectura de sitio con enlaces principales y respaldo."], ["Centros de distribución y hubs", "Conectividad para logística, inventario y coordinación operativa."]] }],
-    benefits: ["Menos ventas perdidas.", "Mayor continuidad para POS.", "Visibilidad centralizada.", "Respaldo para tiendas críticas.", "Monitoreo NOC 24/7."],
+    benefits: ["Menos ventas perdidas.", "Mayor continuidad para POS.", "Visibilidad centralizada.", "Respaldo para tiendas críticas.", "Monitoreo de conectividad."],
     cta
   },
   "/industrias/energia-industria/": {
@@ -204,7 +203,7 @@ export const pages = {
     h1: "Energía e industria: conectividad resiliente para sitios remotos y operación crítica",
     intro: "Los sitios operativos remotos dependen de conectividad para monitoreo, seguridad, sistemas industriales y control operativo.",
     sections: [{ h2: "Qué hace Vialterna", features: [["Conectividad para sitios remotos", "Diseño de rutas y tecnologías disponibles por ubicación."], ["Arquitectura híbrida y satelital", "Combinación de enlaces terrestres, celulares y satelitales."], ["IoT / SIM para sensores", "Conectividad para telemetría, sensores y activos industriales."]] }],
-    benefits: ["Conectividad para sitios remotos.", "Mayor visibilidad operativa.", "Respaldo satelital o celular.", "Conectividad IoT industrial.", "Monitoreo NOC 24/7."],
+    benefits: ["Conectividad para sitios remotos.", "Mayor visibilidad operativa.", "Respaldo satelital o celular.", "Conectividad IoT industrial.", "Monitoreo de conectividad."],
     cta
   },
   "/industrias/infraestructura-pagos/": {
@@ -213,18 +212,8 @@ export const pages = {
     eyebrow: "Infraestructura de pagos",
     h1: "Infraestructura de pagos: conectividad administrada para terminales y procesamiento transaccional",
     intro: "Las empresas de pagos necesitan administrar miles de SIMs, detectar terminales desconectadas, optimizar planes y proteger sitios de procesamiento.",
-    sections: [{ h2: "Qué hace Vialterna", features: [["Gestión de SIMs", "Aprovisionamiento, activación, monitoreo de consumo y optimización de planes."], ["Redundancia para procesamiento", "Arquitectura multioperador, diversidad de ruta y failover automático."], ["NOC 24/7", "Monitoreo proactivo, reportes de desempeño y atención a incidentes."]] }],
+    sections: [{ h2: "Qué hace Vialterna", features: [["Gestión de SIMs", "Aprovisionamiento, activación, monitoreo de consumo y optimización de planes."], ["Redundancia para procesamiento", "Arquitectura multioperador, diversidad de ruta y failover automático."], ["Reportes de desempeño", "Monitoreo proactivo, reportes de desempeño y atención a incidentes."]] }],
     benefits: ["Gestión centralizada de SIMs.", "Aprovisionamiento masivo.", "Monitoreo de consumo.", "Optimización de planes.", "Redundancia para procesamiento.", "Failover automático."],
-    cta
-  },
-  "/noc-24-7-sla/": {
-    title: "NOC 24/7 y SLA de conectividad | Vialterna",
-    description: "Monitoreo proactivo, gestión multioperador, reportes de disponibilidad y respuesta a incidentes.",
-    eyebrow: "Operación",
-    h1: "NOC 24/7 y SLA para conectividad empresarial administrada",
-    intro: "Vialterna opera la conectividad como un servicio administrado: diseña, despliega, monitorea, optimiza y da seguimiento continuo.",
-    sections: [{ h2: "Monitoreo proactivo y gestión multioperador", text: "El NOC 24/7 supervisa sitios, enlaces, dispositivos y eventos en tiempo real para detectar incidentes antes de que escalen, coordinar acciones correctivas y entregar reportes de disponibilidad." }],
-    benefits: ["Monitoreo de red 24/7.", "SLA de conectividad.", "Gestión proactiva.", "Coordinación multioperador.", "Reportes de disponibilidad."],
     cta
   },
   "/empresa/": {
@@ -271,9 +260,9 @@ export const visualCards = [
 ];
 
 export const metrics = [
-  ["24/7", "Monitoreo NOC"],
   ["SLA", "Disponibilidad reportada"],
   ["Multi", "Gestión de operadores"],
+  ["Respaldo", "Continuidad operativa"],
   ["México", "Operaciones distribuidas"]
 ];
 
@@ -281,7 +270,7 @@ export const workSteps = [
   ["Diagnosticar", "Evaluamos ubicaciones, cobertura, riesgos y requerimientos del negocio."],
   ["Diseñar", "Definimos la arquitectura multioperador más adecuada para cada sitio."],
   ["Desplegar", "Coordinamos operadores, equipos, instalación y activación."],
-  ["Operar", "Monitoreamos, damos soporte y optimizamos la red desde el NOC."]
+  ["Operar", "Monitoreamos, damos soporte y optimizamos la red."]
 ];
 
 export const sdWanFeatures = ["Multioperador", "LTE / 5G", "Respaldo satelital", "Failover automático", "Agregación de enlaces", "Monitoreo centralizado", "QoS", "Túneles seguros"];
