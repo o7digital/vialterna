@@ -14,5 +14,5 @@ const { path, page } = Astro.props;
 ---
 
 <Layout title={page.title} description={page.description} canonical={path}>
-  <ContentPage page={page} client:load />
+  <ContentPage page={page} path={path} client:load />
 </Layout>

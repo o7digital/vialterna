@@ -9,8 +9,8 @@ import {
   Mail,
   MapPin,
   Menu,
+  MessageCircle,
   Network,
-  Phone,
   RadioTower,
   Router,
   ShieldCheck,
@@ -38,6 +38,10 @@ function Pill({ children, icon: Icon }) {
       {children}
     </div>
   );
+}
+
+function LinkedInMark({ className = "" }) {
+  return <span className={`font-black ${className}`}>in</span>;
 }
 
 function BrandLogo({ compact = false }) {
@@ -76,7 +80,7 @@ function Header({ dark = true }) {
         ))}
       </nav>
       <div className="hidden shrink-0 items-center gap-3 lg:flex">
-        <a href="https://www.linkedin.com" aria-label="LinkedIn" className="font-technical grid h-11 w-11 place-items-center rounded-md border border-[#0B65C7]/35 bg-[#14161C] text-white/85 transition hover:border-[#12B3CF] hover:text-[#12B3CF]">
+        <a href="https://www.linkedin.com/company/vialterna/" aria-label="LinkedIn" className="font-technical grid h-11 w-11 place-items-center rounded-md border border-[#0B65C7]/35 bg-[#14161C] text-white/85 transition hover:border-[#12B3CF] hover:text-[#12B3CF]">
           <span className="text-sm font-black">in</span>
         </a>
         <a href="/contacto/" className="font-technical rounded-md bg-[#0B65C7] px-5 py-3 text-sm font-black uppercase tracking-[0.04em] text-white shadow-[0_0_0_1px_rgba(18,179,207,0.28)] transition hover:bg-[#12B3CF] hover:text-[#14161C]">Solicitar diagnóstico</a>
@@ -86,7 +90,18 @@ function Header({ dark = true }) {
       </button>
       {open && (
         <div className="font-technical absolute left-5 right-5 top-[76px] z-40 rounded-md border border-[#0B65C7]/40 bg-[#14161C]/98 p-3 backdrop-blur-xl lg:hidden">
-          {navigation.map((item) => <a key={item.href} href={item.href} className="block border-b border-[#0B65C7]/20 px-2 py-3 text-sm font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/85 last:border-b-0">{item.label}</a>)}
+          {navigation.map((item) => (
+            <div key={item.href} className="border-b border-[#0B65C7]/20 last:border-b-0">
+              <a href={item.href} className="block px-2 py-3 text-sm font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/85">{item.label}</a>
+              {item.children && (
+                <div className="grid gap-1 pb-3 pl-4">
+                  {item.children.map((child) => (
+                    <a href={child.href} key={child.href} className="block rounded-sm px-2 py-2 text-xs font-bold uppercase tracking-[0.04em] text-[#F5F5F5]/55 hover:bg-[#0B65C7]/12 hover:text-[#12B3CF]">{child.label}</a>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       )}
       </div>
@@ -219,7 +234,123 @@ function DesignSections({ page }) {
   );
 }
 
-export function ContentPage({ page }) {
+const contactCards = [
+  {
+    icon: MessageCircle,
+    title: "Diseño de Soluciones",
+    text: "Inicia una conversación directa con nuestro equipo de desarrollo de negocios.",
+    detail: "55 8062 6884",
+    href: "https://wa.me/525580626884",
+    action: "Abrir WhatsApp"
+  },
+  {
+    icon: Mail,
+    title: "Especificaciones de Proyecto",
+    text: "Envíanos tus requerimientos de infraestructura para recibir una propuesta técnica detallada.",
+    detail: "atencionaclientes@vialterna.com",
+    href: "mailto:atencionaclientes@vialterna.com",
+    action: "Enviar correo"
+  },
+  {
+    icon: MapPin,
+    title: "Conectemos en Persona",
+    text: "Montes Urales 720, Lomas de Chapultepec, Delegación Miguel Hidalgo, C.P. 11000 PB.",
+    detail: "Lun-Vie | 09:00 - 18:00 CST",
+    href: "https://www.google.com/maps/search/?api=1&query=Montes%20Urales%20720%20Lomas%20de%20Chapultepec%20Miguel%20Hidalgo%2011000",
+    action: "Ver mapa"
+  },
+  {
+    icon: LinkedInMark,
+    title: "Sigue el Edge",
+    text: "Casos de estudio, tendencias de la industria y actualizaciones de conectividad administrada.",
+    detail: "Visita nuestro LinkedIn",
+    href: "https://www.linkedin.com/company/vialterna/",
+    action: "Abrir LinkedIn"
+  }
+];
+
+function Field({ label, name, type = "text", required = false, className = "" }) {
+  return (
+    <label className={`grid gap-2 ${className}`}>
+      <span className="text-sm font-bold text-white/70">{label}{required && <span className="text-[#12B3CF]">*</span>}</span>
+      <input name={name} type={type} required={required} className="min-h-12 rounded-md border border-[#0B65C7]/25 bg-white px-4 text-[#14161C] outline-none transition focus:border-[#12B3CF] focus:ring-2 focus:ring-[#12B3CF]/25" />
+    </label>
+  );
+}
+
+function ContactPage({ page }) {
+  return (
+    <PageShell>
+      <section className="relative overflow-hidden bg-[#14161C]">
+        <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale-[18%] saturate-[.72]" />
+        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.92)_48%,rgba(20,22,28,.84)_100%)]" />
+        <Header />
+        <div className="relative z-10 mx-auto max-w-[96rem] px-5 py-20 lg:px-8 2xl:px-10">
+          <div className="mx-auto max-w-5xl text-center">
+            <Pill>{page.eyebrow}</Pill>
+            <h1 className="mt-7 text-5xl font-black leading-[0.95] text-white md:text-7xl">{page.h1}</h1>
+            <p className="mx-auto mt-6 max-w-4xl text-2xl font-bold leading-9 text-white/78">{page.intro}</p>
+          </div>
+
+          <div className="mt-14 grid gap-5 lg:grid-cols-4">
+            {contactCards.map(({ icon: Icon, title, text, detail, href, action }) => (
+              <a key={title} href={href} className="group rounded-md border border-[#0B65C7]/35 bg-white/[0.055] p-6 text-center shadow-xl shadow-black/25 backdrop-blur-xl transition hover:border-[#12B3CF] hover:bg-[#0B65C7]/12">
+                <Icon className="mx-auto h-9 w-9 text-[#12B3CF]" />
+                <h2 className="mt-5 text-xl font-black text-white">{title}</h2>
+                <p className="mt-4 leading-7 text-white/62">{text}</p>
+                <div className="mt-5 font-bold text-white">{detail}</div>
+                <div className="font-technical mt-4 text-xs font-black uppercase tracking-[0.12em] text-[#12B3CF]">{action}</div>
+              </a>
+            ))}
+          </div>
+
+          <div className="mt-14 overflow-hidden rounded-md border border-[#0B65C7]/40 bg-[#14161C]/74 shadow-2xl shadow-black/35 backdrop-blur-xl">
+            <div className="relative p-6 md:p-10">
+              <div
+                className="pointer-events-none absolute inset-0 opacity-[0.13]"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(rgba(18,179,207,.22) 1px, transparent 1px), linear-gradient(90deg, rgba(18,179,207,.22) 1px, transparent 1px)",
+                  backgroundSize: "46px 46px",
+                }}
+              />
+              <div className="relative">
+                <div className="max-w-4xl">
+                  <h2 className="text-4xl font-black leading-tight text-white md:text-5xl">Start with a diagnostic</h2>
+                  <p className="mt-5 text-lg leading-8 text-white/72">
+                    You're probably overpaying or underperforming because no one is proactively managing your telco stack. That's a solvable problem. Our connectivity diagnostic analyzes your infrastructure: carrier contracts, spend, redundancy gaps, and SLA performance. It's the first step toward understanding what resilient connectivity looks like for your operations.
+                  </p>
+                </div>
+
+                <form action="mailto:atencionaclientes@vialterna.com" method="post" encType="text/plain" className="mt-9 grid gap-5">
+                  <div className="grid gap-5 md:grid-cols-2">
+                    <Field label="Nombre" name="nombre" required />
+                    <Field label="Empresa" name="empresa" required />
+                    <Field label="Correo" name="correo" type="email" required />
+                    <Field label="Teléfono" name="telefono" type="tel" required />
+                  </div>
+                  <label className="grid gap-2">
+                    <span className="text-sm font-bold text-white/70">Cómo podemos ayudarte</span>
+                    <textarea name="mensaje" rows={4} className="rounded-md border border-[#0B65C7]/25 bg-white px-4 py-3 text-[#14161C] outline-none transition focus:border-[#12B3CF] focus:ring-2 focus:ring-[#12B3CF]/25" />
+                  </label>
+                  <button type="submit" className="font-technical mt-4 inline-flex w-fit items-center justify-center gap-2 rounded-md bg-[#0B65C7] px-8 py-4 text-sm font-black uppercase tracking-[0.04em] text-white shadow-xl shadow-black/30 transition hover:bg-[#12B3CF] hover:text-[#14161C]">
+                    Enviar <ArrowRight className="h-5 w-5" />
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </PageShell>
+  );
+}
+
+export function ContentPage({ page, path }) {
+  if (page.kind === "contact" || path === "/contacto/") {
+    return <ContactPage page={page} />;
+  }
+
   return (
     <PageShell>
       <section className="relative overflow-hidden">
@@ -235,7 +366,6 @@ export function ContentPage({ page }) {
       <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto grid max-w-7xl gap-8">{page.sections?.map((section) => <article key={section.h2} className="rounded-[2rem] bg-white p-8 shadow-xl shadow-slate-200/70"><h2 className="text-4xl font-black leading-tight">{section.h2}</h2>{section.text && <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-600">{section.text}</p>}{section.features && <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{section.features.map(([title, text]) => <div key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><BadgeCheck className="mb-4 h-6 w-6 text-cyan-700" /><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}{section.steps && <div className="mt-8 grid gap-5 md:grid-cols-4">{section.steps.map(([title, text], index) => <div key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><div className="mb-5 text-4xl font-black text-cyan-700">0{index + 1}</div><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}</article>)}</div></section>
       {page.caseStudy && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl rounded-[2.8rem] bg-[#14161C] p-8 text-white shadow-2xl shadow-slate-300/70 md:p-12"><Pill>Caso de referencia</Pill><h2 className="mt-6 text-4xl font-black leading-tight">Caso de referencia</h2><p className="mt-5 max-w-4xl text-lg leading-8 text-white/68">{page.caseStudy}</p></div></section>}
       {page.benefits && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><div className="mb-10 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">Beneficios</div><div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{page.benefits.map((benefit) => <div key={benefit} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 font-bold text-slate-700"><BadgeCheck className="h-5 w-5 shrink-0 text-cyan-700" />{benefit}</div>)}</div></div></section>}
-      <section className="bg-[#14161C] px-5 py-24 text-white lg:px-8"><div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.05fr_.95fr] lg:items-center"><div><Pill>Diagnóstico</Pill><h2 className="mt-5 text-4xl font-black leading-tight md:text-7xl">{page.cta?.title ?? "Solicita un diagnóstico de conectividad"}</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-white/65">{page.cta?.text}</p></div><div className="rounded-md border border-[#0B65C7]/35 bg-white/8 p-8 backdrop-blur-2xl md:p-10"><div className="grid gap-4"><div className="flex items-start gap-3 rounded-md bg-white/8 p-4 text-white/82"><MapPin className="mt-1 h-5 w-5 shrink-0 text-[#12B3CF]" />Montes Urales 720, Lomas de Chapultepec, Delegación Miguel Hidalgo, C.P. 11000</div><div className="flex items-center gap-3 rounded-md bg-white/8 p-4 text-white/82"><Mail className="h-5 w-5 shrink-0 text-[#12B3CF]" />atencionaclientes@vialterna.com</div><div className="flex items-center gap-3 rounded-md bg-white/8 p-4 text-white/82"><Phone className="h-5 w-5 shrink-0 text-[#12B3CF]" />55 8062 6884</div></div><a href="mailto:atencionaclientes@vialterna.com" className="font-technical mt-8 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#0B65C7] px-6 py-4 text-sm font-black uppercase tracking-[0.04em] text-white transition hover:bg-[#12B3CF] hover:text-[#14161C]">Solicitar diagnóstico <ArrowRight className="h-5 w-5" /></a></div></div></section>
     </PageShell>
   );
 }

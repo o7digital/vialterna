@@ -241,9 +241,10 @@ export const pages = {
   "/contacto/": {
     title: "Contacto Vialterna | Diagnóstico de conectividad",
     description: "Contacta a Vialterna para diagnóstico de conectividad, infraestructura, redes distribuidas, Soluciones Edge, respaldo e IoT.",
+    kind: "contact",
     eyebrow: "Contacto",
-    h1: "Contacto Vialterna: diagnóstico de conectividad para operaciones distribuidas",
-    intro: "Habla con Vialterna para evaluar infraestructura, conectividad administrada, Soluciones Edge, respaldo, IoT / SIMs o redes empresariales críticas.",
+    h1: "¿Listo para cerrar la brecha?",
+    intro: "Deja de gestionar operadores. Empieza a gestionar tu negocio.",
     sections: [
       { h2: "Diseño de soluciones de conectividad", text: "Teléfono / WhatsApp: 55 8062 6884" },
       { h2: "Envíanos tus requerimientos de infraestructura", text: "Correo de atención a clientes: atencionaclientes@vialterna.com" },
