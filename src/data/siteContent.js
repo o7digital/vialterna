@@ -255,15 +255,15 @@ export const pages = {
 };
 
 export const visualCards = [
-  [Wifi, "Agnóstico de operador", "La arquitectura se diseña alrededor del negocio del cliente."],
-  [ShieldCheck, "Servicio administrado", "Diseño, despliegue, optimización y seguimiento continuo."],
-  [Network, "Operaciones distribuidas", "Bancos, retail, infraestructura de pagos, industria y sitios remotos."]
+  [Wifi, "Siempre activos por diseño", "La resiliencia multirred elimina puntos únicos de falla. Nuestra arquitectura combina fibra, celular, satélite y otras fuentes en una conectividad de alta disponibilidad."],
+  [ShieldCheck, "Gestión proactiva 24/7 con visibilidad total", "Nuestro NOC monitorea cada sitio en tiempo real en todo el país. Detectamos y resolvemos problemas antes de que los notes."],
+  [Network, "Telco como Servicio Administrado", "Auditamos el gasto en telecomunicaciones, sacamos a la luz operadores redundantes, enlaces de bajo rendimiento y fugas silenciosas de SLA."]
 ];
 
 export const metrics = [
+  ["24/7", "Monitoreo NOC"],
   ["SLA", "Disponibilidad reportada"],
   ["Multi", "Gestión de operadores"],
-  ["Respaldo", "Continuidad operativa"],
   ["México", "Operaciones distribuidas"]
 ];
 
@@ -271,8 +271,8 @@ export const workSteps = [
   ["Diagnosticar", "Evaluamos ubicaciones, cobertura, riesgos y requerimientos del negocio."],
   ["Diseñar", "Definimos la arquitectura multioperador más adecuada para cada sitio."],
   ["Desplegar", "Coordinamos operadores, equipos, instalación y activación."],
-  ["Operar", "Damos soporte y optimizamos la red."]
+  ["Operar", "Monitoreamos, damos soporte y optimizamos la red."]
 ];
 
-export const sdWanFeatures = ["Multioperador", "LTE / 5G", "Respaldo satelital", "Failover automático", "Agregación de enlaces", "Supervisión centralizada", "QoS", "Túneles seguros"];
+export const sdWanFeatures = ["Multioperador", "LTE / 5G", "Respaldo satelital", "Failover automático", "Agregación de enlaces", "Monitoreo centralizado", "QoS", "Túneles seguros"];
 export const iotFeatures = ["Ciclo de vida de SIMs", "Conectividad IoT", "Sensores", "Telemetría", "Activos remotos", "Alertas operativas"];

@@ -258,6 +258,7 @@ function DesignSections({ page }) {
           <div className="mx-auto max-w-6xl text-center">
             <h2 className="text-4xl font-black leading-tight md:text-6xl">{availabilitySection?.h2}</h2>
             <p className="mx-auto mt-7 max-w-5xl text-xl leading-9 text-white/72">{availabilitySection?.text}</p>
+            <p className="mx-auto mt-9 max-w-4xl text-xl leading-8 text-white/78">Tres pilares sustentan el servicio. Juntos, son la forma en que diseñamos disponibilidad en lugar de vender enlaces.</p>
           </div>
           <div className="mt-16 grid gap-8 lg:grid-cols-3">
             {visualCards.map(([Icon, title, text], index) => (
@@ -270,6 +271,27 @@ function DesignSections({ page }) {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#071622] px-5 py-24 text-white lg:px-8">
+        <div className="mx-auto max-w-[86rem] overflow-hidden rounded-md border border-white/12 bg-white/[0.075] p-8 shadow-2xl shadow-black/35 md:p-12">
+          <div className="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:items-center">
+            <div>
+              <Pill icon={Gauge}>Operación</Pill>
+              <h2 className="mt-7 text-4xl font-black leading-tight md:text-6xl">
+                NOC 24/7, SLA y gestión multioperador en un solo modelo de servicio.
+              </h2>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {metrics.map(([value, label]) => (
+                <div key={label} className="rounded-md border border-white/10 bg-[#111827]/80 p-6">
+                  <div className="text-4xl font-black text-cyan-100">{value}</div>
+                  <div className="mt-4 text-sm font-black uppercase tracking-[0.14em] text-white/55">{label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -305,6 +327,83 @@ function DesignSections({ page }) {
             <h2 className="mt-5 text-4xl font-black leading-tight md:text-6xl">Construido para operaciones distribuidas donde el tiempo de inactividad tiene precio.</h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{industries.map(({ icon: Icon, title, text, href }) => <a href={href} key={title} className="rounded-md border border-white/12 bg-white/[0.045] p-6 backdrop-blur-xl"><Icon className="mb-6 h-8 w-8 text-[#12B3CF]" /><h3 className="text-2xl font-black">{title}</h3><p className="mt-3 leading-7 text-white/72">{text}</p></a>)}</div>
+        </div>
+      </section>
+
+      <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.95fr_1.05fr] lg:items-center">
+          <div>
+            <div className="mb-4 inline-flex items-center gap-2 rounded-md bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">
+              <Network className="h-4 w-4" />
+              SD-WAN
+            </div>
+            <h2 className="text-4xl font-black leading-tight md:text-6xl">
+              Redes SD-WAN multioperador para continuidad del negocio.
+            </h2>
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Combinamos fibra, LTE, 5G, satélite y enlaces inalámbricos en una arquitectura administrada con failover automático, agregación de enlaces y monitoreo centralizado.
+            </p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {sdWanFeatures.map((item) => (
+                <div key={item} className="flex items-center gap-3 rounded-md border border-slate-200 bg-white p-4 font-bold text-slate-700">
+                  <BadgeCheck className="h-5 w-5 shrink-0 text-cyan-700" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-md bg-[#061521] p-5 text-white shadow-2xl shadow-slate-300/70">
+            <div className="rounded-md border border-white/10 bg-white/7 p-6">
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <div>
+                  <div className="text-sm uppercase tracking-[0.22em] text-cyan-100/50">Arquitectura</div>
+                  <div className="mt-1 text-2xl font-black">Failover + agregación</div>
+                </div>
+                <Router className="h-8 w-8 text-cyan-200" />
+              </div>
+              <div className="relative h-[430px] overflow-hidden rounded-md bg-[linear-gradient(135deg,rgba(6,21,33,.25),rgba(6,21,33,.82)),url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1300&q=80')] bg-cover bg-center">
+                <div className="absolute bottom-5 left-5 right-5 grid gap-3">
+                  {["Fibra + LTE + 5G + satélite", "QoS y túneles seguros", "Monitoreo NOC centralizado"].map((item) => (
+                    <div key={item} className="rounded-md border border-white/10 bg-slate-950/65 p-4 font-bold backdrop-blur-xl">
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white px-5 py-24 text-slate-950 lg:px-8">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-md bg-[#061521] text-white shadow-2xl shadow-slate-300/70">
+          <div className="grid lg:grid-cols-[.95fr_1.05fr]">
+            <div className="p-8 md:p-12">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-md bg-white/10 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-100">
+                <ShieldCheck className="h-4 w-4" />
+                Conectividad de respaldo
+              </div>
+              <h2 className="text-4xl font-black leading-tight md:text-6xl">
+                Respaldo satelital y celular antes de que una falla detenga la operación.
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-white/68">
+                Vialterna diseña capas de redundancia con LTE, 5G, satélite y acceso multioperador para mantener activos sitios críticos.
+              </p>
+              <a href="/contacto/" className="mt-8 inline-flex items-center gap-2 rounded-md bg-cyan-300 px-7 py-4 font-black text-slate-950 transition hover:bg-white">
+                Solicitar diagnóstico <ArrowRight className="h-5 w-5" />
+              </a>
+            </div>
+            <div className="relative min-h-[430px] bg-[linear-gradient(135deg,rgba(6,21,33,.2),rgba(6,21,33,.8)),url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1500&q=85')] bg-cover bg-center">
+              <div className="absolute bottom-8 left-8 right-8 grid gap-3 sm:grid-cols-2">
+                {["LTE", "5G", "Satelital", "Multioperador"].map((item) => (
+                  <div key={item} className="rounded-md border border-white/10 bg-slate-950/60 p-4 font-black backdrop-blur-xl">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>
