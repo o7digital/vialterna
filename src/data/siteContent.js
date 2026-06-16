@@ -88,6 +88,162 @@ const cta = {
   label: "Solicitar diagnóstico"
 };
 
+const privacySections = [
+  {
+    h2: "1. Identidad y domicilio del responsable",
+    paragraphs: [
+      "VIALTERNA COMUNICACIONES, con RFC VCO1012206A8, con domicilio en Montes Urales 720 PB, Lomas de Chapultepec II Sección, Miguel Hidalgo, Ciudad de México, México, C.P. 11000, es responsable del tratamiento de los datos personales que recabe a través de su sitio web, formularios de contacto, comunicaciones comerciales, correos electrónicos, llamadas, mensajes, solicitudes de información, propuestas de servicios y cualquier otro canal habilitado para la atención de clientes, prospectos, proveedores o usuarios.",
+      "Para cualquier asunto relacionado con privacidad, protección de datos personales o ejercicio de derechos, puede contactarnos en contacto@vialterna.com."
+    ]
+  },
+  {
+    h2: "2. Marco legal aplicable",
+    paragraphs: [
+      "El presente Aviso de Privacidad se emite en cumplimiento de la legislación mexicana aplicable en materia de protección de datos personales en posesión de particulares, incluyendo la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y demás disposiciones aplicables.",
+      "Asimismo, cuando resulte aplicable por la ubicación del usuario o por la naturaleza del tratamiento, VIALTERNA COMUNICACIONES podrá considerar principios y derechos reconocidos por normativas internacionales."
+    ],
+    bullets: [
+      "Reglamento General de Protección de Datos de la Unión Europea — RGPD / GDPR.",
+      "Legislación aplicable en Estados Unidos, incluyendo, cuando corresponda, principios de privacidad reconocidos por leyes estatales como CCPA/CPRA para residentes de California.",
+      "Normas aplicables al uso de cookies, tecnologías de rastreo, analítica web y preferencias de privacidad digital."
+    ]
+  },
+  {
+    h2: "3. Datos personales que podemos recabar",
+    paragraphs: ["VIALTERNA COMUNICACIONES podrá recabar los siguientes datos personales, según la relación que mantenga con usted:"],
+    bullets: [
+      "Datos de identificación: nombre completo, empresa u organización, cargo o área de responsabilidad, RFC o datos fiscales cuando sean necesarios.",
+      "Datos de contacto: correo electrónico, número telefónico, dirección laboral o comercial, datos proporcionados mediante formularios de contacto o solicitudes de diagnóstico.",
+      "Datos relacionados con proyectos o servicios: necesidades de conectividad, infraestructura, telecomunicaciones o servicios tecnológicos, ubicación general de sitios, requerimientos técnicos y datos necesarios para propuestas, diagnósticos o seguimiento comercial.",
+      "Datos técnicos y de navegación: dirección IP, tipo de navegador, sistema operativo, páginas visitadas, fecha y hora de acceso, fuente de tráfico, interacciones e identificadores de cookies o tecnologías similares."
+    ]
+  },
+  {
+    h2: "4. Datos personales sensibles",
+    paragraphs: [
+      "VIALTERNA COMUNICACIONES no solicita ni recaba intencionalmente datos personales sensibles a través de su sitio web.",
+      "Si por error usted proporciona datos sensibles en un formulario, correo electrónico o mensaje, VIALTERNA COMUNICACIONES podrá eliminarlos cuando no sean necesarios para la finalidad de contacto o atención solicitada."
+    ]
+  },
+  {
+    h2: "5. Finalidades del tratamiento de datos personales",
+    paragraphs: ["Los datos personales recabados podrán ser utilizados para finalidades primarias y secundarias relacionadas con atención, seguimiento, prestación de servicios, cumplimiento legal, comunicación comercial y mejora del sitio."],
+    bullets: [
+      "Atender solicitudes de información, contactar prospectos, clientes, proveedores o usuarios y dar seguimiento a formularios enviados a través del sitio web.",
+      "Elaborar diagnósticos, propuestas técnicas, cotizaciones o presentaciones comerciales.",
+      "Evaluar necesidades relacionadas con conectividad, infraestructura, telecomunicaciones, soluciones administradas o servicios tecnológicos.",
+      "Prestar servicios contratados, administrar la relación comercial, contractual o técnica con clientes y coordinar reuniones, llamadas, visitas técnicas o comunicaciones comerciales.",
+      "Cumplir obligaciones legales, fiscales, administrativas o contractuales y mantener registros internos.",
+      "Enviar información comercial, newsletters, actualizaciones, contenidos técnicos o comunicaciones informativas, siempre que usted no se oponga.",
+      "Realizar análisis estadístico, mejorar la experiencia de navegación, medir campañas digitales y desarrollar actividades de marketing cuando exista consentimiento o base legal aplicable."
+    ]
+  },
+  {
+    h2: "6. Base legal del tratamiento",
+    paragraphs: ["El tratamiento de sus datos personales se realiza con base en una o varias bases legales, según corresponda."],
+    bullets: [
+      "Su consentimiento.",
+      "La relación jurídica, comercial, precontractual o contractual con usted o con la empresa que representa.",
+      "El cumplimiento de obligaciones legales.",
+      "El interés legítimo de VIALTERNA COMUNICACIONES para atender solicitudes, gestionar relaciones comerciales, mejorar sus servicios y proteger la seguridad de sus sistemas.",
+      "La necesidad de ejecutar medidas precontractuales solicitadas por el titular, como diagnósticos, cotizaciones o propuestas."
+    ]
+  },
+  {
+    h2: "7. Transferencias de datos personales",
+    paragraphs: [
+      "VIALTERNA COMUNICACIONES podrá compartir sus datos personales con terceros únicamente cuando sea necesario para cumplir las finalidades descritas en este Aviso de Privacidad.",
+      "Dichos terceros pueden incluir proveedores de hosting, infraestructura tecnológica, correo electrónico, CRM, analítica web, servicios administrativos, contables, legales, fiscales o tecnológicos, socios técnicos, autoridades competentes, empresas relacionadas, afiliadas o aliadas comerciales.",
+      "VIALTERNA COMUNICACIONES no vende sus datos personales."
+    ]
+  },
+  {
+    h2: "8. Conservación de datos personales",
+    paragraphs: [
+      "VIALTERNA COMUNICACIONES conservará sus datos personales únicamente durante el tiempo necesario para cumplir las finalidades descritas en este Aviso de Privacidad, atender obligaciones legales, fiscales, administrativas o contractuales, resolver posibles controversias y mantener registros internos de operación.",
+      "Cuando los datos personales dejen de ser necesarios, serán eliminados, bloqueados, anonimizados o conservados únicamente durante los plazos legalmente aplicables."
+    ]
+  },
+  {
+    h2: "9. Medidas de seguridad",
+    paragraphs: [
+      "VIALTERNA COMUNICACIONES implementa medidas razonables de seguridad administrativas, técnicas y físicas para proteger los datos personales contra daño, pérdida, alteración, destrucción, uso, acceso o tratamiento no autorizado.",
+      "Ningún sistema digital es absolutamente invulnerable; sin embargo, VIALTERNA COMUNICACIONES procura aplicar buenas prácticas para proteger la información bajo su responsabilidad."
+    ]
+  },
+  {
+    h2: "10. Derechos ARCO en México",
+    paragraphs: ["Usted tiene derecho a acceder, rectificar, cancelar u oponerse al tratamiento de sus datos personales. Para ejercer estos derechos deberá enviar una solicitud al correo contacto@vialterna.com."],
+    bullets: [
+      "Nombre completo del titular.",
+      "Medio de contacto para recibir respuesta.",
+      "Descripción clara del derecho que desea ejercer.",
+      "Datos personales sobre los que desea ejercer el derecho.",
+      "Documento que acredite su identidad o representación legal, cuando corresponda.",
+      "Cualquier información adicional que facilite la localización de sus datos."
+    ]
+  },
+  {
+    h2: "11. Derechos aplicables a usuarios de la Unión Europea",
+    paragraphs: ["Cuando el RGPD/GDPR resulte aplicable, los usuarios ubicados en la Unión Europea o el Espacio Económico Europeo podrán tener derechos de acceso, rectificación, supresión, limitación, oposición, portabilidad, retiro del consentimiento y reclamación ante una autoridad de control competente."]
+  },
+  {
+    h2: "12. Derechos aplicables a residentes de Estados Unidos",
+    paragraphs: [
+      "Cuando resulte aplicable la legislación de privacidad de Estados Unidos, incluyendo leyes estatales como la California Consumer Privacy Act y sus modificaciones, los residentes de ciertos estados podrán tener derechos específicos sobre su información personal.",
+      "VIALTERNA COMUNICACIONES no vende datos personales."
+    ]
+  },
+  {
+    h2: "13. Uso de cookies y tecnologías similares",
+    paragraphs: ["El sitio web de VIALTERNA COMUNICACIONES puede utilizar cookies, píxeles, etiquetas, almacenamiento local u otras tecnologías similares para permitir el funcionamiento del sitio, mejorar la experiencia del usuario, analizar tráfico, recordar preferencias y medir el desempeño de contenidos o campañas digitales."],
+    bullets: [
+      "Cookies estrictamente necesarias.",
+      "Cookies de analítica.",
+      "Cookies de funcionalidad.",
+      "Cookies de marketing o publicidad, cuando exista consentimiento o base legal aplicable."
+    ]
+  },
+  {
+    h2: "14. Gestión de cookies",
+    paragraphs: [
+      "Al ingresar al sitio web, el usuario podrá recibir información sobre el uso de cookies y, cuando corresponda, podrá aceptar, rechazar o configurar sus preferencias.",
+      "El usuario también puede bloquear, eliminar o deshabilitar cookies desde la configuración de su navegador. Algunas funciones del sitio podrían no operar correctamente si se deshabilitan determinadas cookies técnicas."
+    ]
+  },
+  {
+    h2: "15. Herramientas de terceros",
+    paragraphs: ["El sitio web puede utilizar herramientas de terceros para analítica, hosting, seguridad, formularios, CRM, correo electrónico, mapas, reproducción de contenido, medición de campañas o servicios similares. Estas herramientas pueden tratar datos técnicos o de navegación conforme a sus propias políticas de privacidad."]
+  },
+  {
+    h2: "16. Enlaces a sitios de terceros",
+    paragraphs: ["El sitio web de VIALTERNA COMUNICACIONES puede contener enlaces a sitios web de terceros, redes sociales, plataformas externas o servicios no controlados por VIALTERNA COMUNICACIONES. Este Aviso de Privacidad no aplica a dichos sitios externos."]
+  },
+  {
+    h2: "17. Menores de edad",
+    paragraphs: ["Los servicios y el sitio web de VIALTERNA COMUNICACIONES están dirigidos principalmente a empresas, organizaciones, profesionales y usuarios mayores de edad. VIALTERNA COMUNICACIONES no busca recabar intencionalmente datos personales de menores de edad."]
+  },
+  {
+    h2: "18. Revocación del consentimiento",
+    paragraphs: ["Usted puede revocar el consentimiento otorgado para el tratamiento de sus datos personales, siempre que dicha revocación sea legalmente procedente y no impida el cumplimiento de obligaciones pendientes. Para solicitar la revocación del consentimiento, deberá escribir a contacto@vialterna.com."]
+  },
+  {
+    h2: "19. Limitación del uso o divulgación de datos",
+    paragraphs: ["Usted puede solicitar la limitación del uso o divulgación de sus datos personales para finalidades secundarias, comerciales o de marketing, escribiendo a contacto@vialterna.com."]
+  },
+  {
+    h2: "20. Cambios al Aviso de Privacidad",
+    paragraphs: ["VIALTERNA COMUNICACIONES podrá modificar, actualizar o complementar el presente Aviso de Privacidad en cualquier momento. Las modificaciones estarán disponibles en el sitio web oficial o podrán comunicarse por los medios que se consideren adecuados."]
+  },
+  {
+    h2: "21. Contacto",
+    paragraphs: [
+      "Para cualquier duda, solicitud o comentario relacionado con este Aviso de Privacidad, el tratamiento de sus datos personales, el ejercicio de derechos ARCO, derechos bajo RGPD/GDPR, derechos aplicables en Estados Unidos o gestión de cookies, puede contactarnos en contacto@vialterna.com.",
+      "VIALTERNA COMUNICACIONES. RFC: VCO1012206A8. Domicilio: Montes Urales 720 PB, Lomas de Chapultepec II Sección, Miguel Hidalgo, Ciudad de México, México, C.P. 11000."
+    ]
+  }
+];
+
 export const home = {
   title: "Conectividad empresarial resiliente en México | Vialterna",
   description: "Vialterna diseña, despliega y opera conectividad administrada para empresas con operaciones distribuidas en México.",
@@ -251,6 +407,15 @@ export const pages = {
       { h2: "Soporte y atención a clientes", text: "Atención a clientes: atencionaclientes@vialterna.com. Soporte: soporte@vialterna.com" }
     ],
     cta
+  },
+  "/aviso-de-privacidad/": {
+    kind: "privacy",
+    title: "Aviso de Privacidad Integral | Vialterna",
+    description: "Aviso de Privacidad Integral de Vialterna Comunicaciones.",
+    eyebrow: "Legal",
+    h1: "Aviso de Privacidad Integral",
+    intro: "VIALTERNA COMUNICACIONES. RFC: VCO1012206A8. Última actualización: 16 de junio de 2026.",
+    sections: privacySections
   }
 };
 

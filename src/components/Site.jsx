@@ -65,7 +65,7 @@ function Header({ dark = true }) {
           </div>
         </div>
       </a>
-      <nav className="font-technical hidden items-center gap-1 border-l border-[#0B65C7]/25 pl-5 text-[13px] font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/78 lg:flex xl:gap-2">
+      <nav className="font-technical hidden items-center gap-1 border-l border-[#0B65C7]/25 pl-5 text-[13px] font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/78 xl:flex">
         {navigation.map((item) => (
           <div key={item.label} className="group relative">
             <a href={item.href} className="block whitespace-nowrap rounded-sm px-3 py-3 transition hover:bg-[#0B65C7]/12 hover:text-[#12B3CF] 2xl:px-4">{item.label}</a>
@@ -79,17 +79,17 @@ function Header({ dark = true }) {
           </div>
         ))}
       </nav>
-      <div className="hidden shrink-0 items-center gap-3 lg:flex">
+      <div className="hidden shrink-0 items-center gap-3 xl:flex">
         <a href="https://www.linkedin.com/company/vialterna/" aria-label="LinkedIn" className="font-technical grid h-11 w-11 place-items-center rounded-md border border-[#0B65C7]/35 bg-[#14161C] text-white/85 transition hover:border-[#12B3CF] hover:text-[#12B3CF]">
           <span className="text-sm font-black">in</span>
         </a>
         <a href="/contacto/" className="font-technical rounded-md bg-[#0B65C7] px-5 py-3 text-sm font-black uppercase tracking-[0.04em] text-white shadow-[0_0_0_1px_rgba(18,179,207,0.28)] transition hover:bg-[#12B3CF] hover:text-[#14161C]">Solicitar diagnóstico</a>
       </div>
-      <button onClick={() => setOpen(!open)} className="rounded-md border border-[#0B65C7]/35 bg-[#14161C] p-3 text-white lg:hidden" aria-label="Abrir menú">
+      <button onClick={() => setOpen(!open)} className="rounded-md border border-[#0B65C7]/35 bg-[#14161C] p-3 text-white xl:hidden" aria-label="Abrir menú">
         {open ? <X /> : <Menu />}
       </button>
       {open && (
-        <div className="font-technical absolute left-5 right-5 top-[76px] z-40 rounded-md border border-[#0B65C7]/40 bg-[#14161C]/98 p-3 backdrop-blur-xl lg:hidden">
+        <div className="font-technical absolute left-5 right-5 top-[76px] z-40 rounded-md border border-[#0B65C7]/40 bg-[#14161C]/98 p-3 backdrop-blur-xl xl:hidden">
           {navigation.map((item) => (
             <div key={item.href} className="border-b border-[#0B65C7]/20 last:border-b-0">
               <a href={item.href} className="block px-2 py-3 text-sm font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/85">{item.label}</a>
@@ -102,6 +102,10 @@ function Header({ dark = true }) {
               )}
             </div>
           ))}
+          <div className="grid gap-2 pt-3">
+            <a href="https://www.linkedin.com/company/vialterna/" className="block rounded-sm px-2 py-3 text-sm font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/85">LinkedIn</a>
+            <a href="/contacto/" className="block rounded-sm bg-[#0B65C7] px-3 py-3 text-center text-sm font-black uppercase tracking-[0.04em] text-white">Solicitar diagnóstico</a>
+          </div>
         </div>
       )}
       </div>
@@ -120,7 +124,7 @@ function Footer() {
           <div className="text-xs text-white/45">Conectividad resiliente</div>
         </div>
         <div><h4 className="font-black">Soluciones</h4><div className="mt-4 grid gap-2 text-white/55">{solutions.map((s) => <a href={s.href} key={s.href}>{s.title}</a>)}</div></div>
-        <div><h4 className="font-black">Empresa</h4><div className="mt-4 grid gap-2 text-white/55"><a href="/industrias/">Industrias</a><a href="/empresa/">Empresa</a><a href="/insights/">Insights</a></div></div>
+        <div><h4 className="font-black">Empresa</h4><div className="mt-4 grid gap-2 text-white/55"><a href="/industrias/">Industrias</a><a href="/empresa/">Empresa</a><a href="/insights/">Insights</a><a href="/aviso-de-privacidad/">Aviso de privacidad</a></div></div>
         <div><h4 className="font-black">Contacto</h4><div className="mt-4 grid gap-2 text-white/55"><span>atencionaclientes@vialterna.com</span><span>55 8062 6884</span><span>2026 Vialterna</span></div></div>
       </div>
     </footer>
@@ -209,7 +213,7 @@ export function HomePage({ page }) {
             <Pill icon={Zap}>{page.eyebrow}</Pill>
             <h1 className="mt-7 max-w-5xl text-5xl font-black leading-[0.96] md:text-6xl xl:text-[4.75rem]">{page.h1}</h1>
             <p className="mt-7 max-w-2xl text-xl font-bold leading-8 text-slate-100 md:text-2xl md:leading-9">{page.intro}</p>
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row"><a href="/contacto/" className="font-technical group inline-flex items-center justify-center gap-2 rounded-md bg-[#0B65C7] px-8 py-4 text-sm font-black uppercase tracking-[0.04em] text-white shadow-2xl shadow-slate-950/40 transition hover:bg-[#12B3CF] hover:text-[#14161C]">Solicitar diagnóstico<ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" /></a><a href="/soluciones/" className="font-technical inline-flex items-center justify-center gap-2 rounded-md border border-[#0B65C7]/45 bg-[#14161C]/55 px-8 py-4 text-sm font-black uppercase tracking-[0.04em] text-white backdrop-blur transition hover:border-[#12B3CF] hover:bg-[#0B65C7]/18">Explorar soluciones <ChevronRight className="h-5 w-5" /></a></div>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row"><a href="/soluciones/" className="font-technical inline-flex items-center justify-center gap-2 rounded-md bg-[#0B65C7] px-8 py-4 text-sm font-black uppercase tracking-[0.04em] text-white shadow-2xl shadow-slate-950/40 transition hover:bg-[#12B3CF] hover:text-[#14161C]">Explorar soluciones <ChevronRight className="h-5 w-5" /></a></div>
           </motion.div>
           <HeroVisual />
         </div>
@@ -557,9 +561,48 @@ function ContactPage({ page }) {
   );
 }
 
+function PrivacyPage({ page }) {
+  return (
+    <PageShell>
+      <section className="bg-[#111217]">
+        <Header />
+        <div className="mx-auto max-w-5xl px-5 py-20 lg:px-8">
+          <Pill>{page.eyebrow}</Pill>
+          <h1 className="mt-7 text-5xl font-black leading-tight text-white md:text-7xl">{page.h1}</h1>
+          <p className="mt-6 max-w-3xl text-xl leading-8 text-white/68">{page.intro}</p>
+          <div className="mt-12 rounded-md border border-white/10 bg-white/[0.045] p-6 text-white/72 md:p-10">
+            <div className="space-y-10">
+              {page.sections?.map((section) => (
+                <section key={section.h2} className="border-b border-white/10 pb-10 last:border-b-0 last:pb-0">
+                  <h2 className="text-2xl font-black leading-tight text-white md:text-3xl">{section.h2}</h2>
+                  <div className="mt-5 space-y-4 text-base leading-8">
+                    {section.paragraphs?.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                    {section.bullets && (
+                      <ul className="ml-5 list-disc space-y-2">
+                        {section.bullets.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </section>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </PageShell>
+  );
+}
+
 export function ContentPage({ page, path }) {
   if (page.kind === "contact" || path === "/contacto/") {
     return <ContactPage page={page} />;
+  }
+  if (page.kind === "privacy" || path === "/aviso-de-privacidad/") {
+    return <PrivacyPage page={page} />;
   }
 
   return (
