@@ -406,6 +406,41 @@ function DesignSections({ page }) {
           </div>
         </div>
       </section>
+
+      <section className="bg-[#071622] px-5 py-24 text-white lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+          <div>
+            <Pill>Contacto</Pill>
+            <h2 className="mt-7 text-5xl font-black leading-[0.98] md:text-7xl">
+              Solicita un diagnóstico de conectividad.
+            </h2>
+            <p className="mt-8 max-w-2xl text-xl leading-9 text-white/64">
+              Cuéntanos dónde tu operación está expuesta a riesgo de conectividad. Evaluamos puntos únicos de falla, oportunidades de optimización y mejoras posibles para tu infraestructura.
+            </p>
+          </div>
+
+          <div className="rounded-md border border-white/12 bg-white/[0.075] p-8 shadow-2xl shadow-black/30 backdrop-blur-2xl md:p-10">
+            <div className="font-technical text-sm font-black uppercase tracking-[0.24em] text-[#9AEAF4]">Vialterna</div>
+            <div className="mt-8 grid gap-4">
+              <div className="flex items-start gap-4 rounded-md bg-white/8 p-5 text-white/82">
+                <MapPin className="mt-1 h-6 w-6 shrink-0 text-[#9AEAF4]" />
+                <span>Montes Urales 720, Lomas de Chapultepec, Delegación Miguel Hidalgo, C.P. 11000</span>
+              </div>
+              <a href="mailto:atencionaclientes@vialterna.com" className="flex items-center gap-4 rounded-md bg-white/8 p-5 text-white/82 transition hover:bg-white/12">
+                <Mail className="h-6 w-6 shrink-0 text-[#9AEAF4]" />
+                <span>atencionaclientes@vialterna.com</span>
+              </a>
+              <a href="https://wa.me/525580626884" className="flex items-center gap-4 rounded-md bg-white/8 p-5 text-white/82 transition hover:bg-white/12">
+                <MessageCircle className="h-6 w-6 shrink-0 text-[#9AEAF4]" />
+                <span>55 8062 6884</span>
+              </a>
+            </div>
+            <a href="/contacto/" className="mt-8 inline-flex w-full items-center justify-center gap-3 rounded-md bg-cyan-300 px-7 py-4 font-black text-slate-950 transition hover:bg-white">
+              Solicitar diagnóstico <ArrowRight className="h-5 w-5" />
+            </a>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
