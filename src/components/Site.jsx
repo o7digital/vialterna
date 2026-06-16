@@ -207,7 +207,7 @@ export function HomePage({ page }) {
         <div className="relative z-10 mx-auto grid max-w-[96rem] items-center gap-10 px-5 pb-20 pt-12 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:pb-24 lg:pt-16 2xl:px-10">
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
             <Pill icon={Zap}>{page.eyebrow}</Pill>
-            <h1 className="mt-7 max-w-5xl text-5xl font-black leading-[0.92] md:text-7xl xl:text-[5.75rem]">{page.h1}</h1>
+            <h1 className="mt-7 max-w-5xl text-5xl font-black leading-[0.96] md:text-6xl xl:text-[4.75rem]">{page.h1}</h1>
             <p className="mt-7 max-w-2xl text-xl font-bold leading-8 text-slate-100 md:text-2xl md:leading-9">{page.intro}</p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row"><a href="/contacto/" className="font-technical group inline-flex items-center justify-center gap-2 rounded-md bg-[#0B65C7] px-8 py-4 text-sm font-black uppercase tracking-[0.04em] text-white shadow-2xl shadow-slate-950/40 transition hover:bg-[#12B3CF] hover:text-[#14161C]">Solicitar diagnóstico<ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" /></a><a href="/soluciones/" className="font-technical inline-flex items-center justify-center gap-2 rounded-md border border-[#0B65C7]/45 bg-[#14161C]/55 px-8 py-4 text-sm font-black uppercase tracking-[0.04em] text-white backdrop-blur transition hover:border-[#12B3CF] hover:bg-[#0B65C7]/18">Explorar soluciones <ChevronRight className="h-5 w-5" /></a></div>
           </motion.div>
