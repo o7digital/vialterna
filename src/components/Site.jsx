@@ -10,10 +10,12 @@ import {
   MapPin,
   Menu,
   MessageCircle,
+  Moon,
   Network,
   RadioTower,
   Router,
   ShieldCheck,
+  Sun,
   X,
   Zap
 } from "lucide-react";
@@ -50,7 +52,24 @@ function BrandLogo({ compact = false }) {
   );
 }
 
-function Header({ dark = true }) {
+function ThemeToggle({ theme, onToggle }) {
+  const isLight = theme === "light";
+  const Icon = isLight ? Moon : Sun;
+
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      className="theme-toggle grid h-11 w-11 place-items-center rounded-md border border-[#0B65C7]/35 bg-[#14161C] text-white/85 transition hover:border-[#12B3CF] hover:text-[#12B3CF]"
+      aria-label={isLight ? "Activar modo oscuro" : "Activar modo claro"}
+      title={isLight ? "Modo oscuro" : "Modo claro"}
+    >
+      <Icon className="h-5 w-5" />
+    </button>
+  );
+}
+
+function Header({ theme, onThemeToggle }) {
   const [open, setOpen] = useState(false);
   return (
     <header className="relative z-30 border-b border-[#0B65C7]/35 bg-[#14161C]/96 shadow-[0_1px_0_rgba(18,179,207,0.12)] backdrop-blur-xl">
@@ -80,6 +99,7 @@ function Header({ dark = true }) {
         ))}
       </nav>
       <div className="hidden shrink-0 items-center gap-3 xl:flex">
+        <ThemeToggle theme={theme} onToggle={onThemeToggle} />
         <a href="https://www.linkedin.com/company/vialterna/" aria-label="LinkedIn" className="font-technical grid h-11 w-11 place-items-center rounded-md border border-[#0B65C7]/35 bg-[#14161C] text-white/85 transition hover:border-[#12B3CF] hover:text-[#12B3CF]">
           <span className="text-sm font-black">in</span>
         </a>
@@ -103,6 +123,10 @@ function Header({ dark = true }) {
             </div>
           ))}
           <div className="grid gap-2 pt-3">
+            <button type="button" onClick={onThemeToggle} className="theme-toggle-mobile flex items-center justify-between rounded-sm border border-[#0B65C7]/25 px-3 py-3 text-sm font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/85">
+              <span>{theme === "light" ? "Modo oscuro" : "Modo claro"}</span>
+              {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+            </button>
             <a href="https://www.linkedin.com/company/vialterna/" className="block rounded-sm px-2 py-3 text-sm font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/85">LinkedIn</a>
             <a href="/contacto/" className="block rounded-sm bg-[#0B65C7] px-3 py-3 text-center text-sm font-black uppercase tracking-[0.04em] text-white">Solicitar diagnóstico</a>
           </div>
@@ -197,17 +221,39 @@ function HeroVisual() {
 }
 
 function PageShell({ children }) {
-  return <div className="min-h-screen bg-[#14161C] text-white selection:bg-[#12B3CF]/30">{children}<Footer /></div>;
+  const [theme, setTheme] = useState(() => {
+    if (typeof window === "undefined") return "dark";
+    return window.localStorage.getItem("vialterna-theme") || "dark";
+  });
+
+  const toggleTheme = () => {
+    setTheme((current) => {
+      const next = current === "dark" ? "light" : "dark";
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem("vialterna-theme", next);
+      }
+      return next;
+    });
+  };
+
+  return (
+    <div className={`theme-${theme} min-h-screen bg-[#14161C] text-white selection:bg-[#12B3CF]/30`}>
+      {children({ theme, toggleTheme })}
+      <Footer />
+    </div>
+  );
 }
 
 export function HomePage({ page }) {
   return (
     <PageShell>
+      {({ theme, toggleTheme }) => (
+      <>
       <section className="relative min-h-screen overflow-hidden">
         <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover grayscale-[18%] saturate-[.72]" loading="eager" />
         <video className="absolute inset-0 h-full w-full object-contain object-center grayscale-[18%] saturate-[.72]" src={heroVideo} poster={heroImage} autoPlay muted loop playsInline preload="metadata" aria-hidden="true" />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.88)_0%,rgba(20,22,28,.72)_44%,rgba(20,22,28,.28)_100%)]" />
-        <Header />
+        <Header theme={theme} onThemeToggle={toggleTheme} />
         <div className="relative z-10 mx-auto grid max-w-[96rem] items-center gap-10 px-5 pb-20 pt-12 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:pb-24 lg:pt-16 2xl:px-10">
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
             <Pill icon={Zap}>{page.eyebrow}</Pill>
@@ -219,6 +265,8 @@ export function HomePage({ page }) {
         </div>
       </section>
       <DesignSections page={page} />
+      </>
+      )}
     </PageShell>
   );
 }
@@ -496,10 +544,12 @@ function Field({ label, name, type = "text", required = false, className = "" })
 function ContactPage({ page }) {
   return (
     <PageShell>
+      {({ theme, toggleTheme }) => (
+      <>
       <section className="relative overflow-hidden bg-[#14161C]">
         <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale-[18%] saturate-[.72]" />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.92)_48%,rgba(20,22,28,.84)_100%)]" />
-        <Header />
+        <Header theme={theme} onThemeToggle={toggleTheme} />
         <div className="relative z-10 mx-auto max-w-[96rem] px-5 py-20 lg:px-8 2xl:px-10">
           <div className="mx-auto max-w-5xl text-center">
             <Pill>{page.eyebrow}</Pill>
@@ -557,6 +607,8 @@ function ContactPage({ page }) {
           </div>
         </div>
       </section>
+      </>
+      )}
     </PageShell>
   );
 }
@@ -564,8 +616,10 @@ function ContactPage({ page }) {
 function PrivacyPage({ page }) {
   return (
     <PageShell>
+      {({ theme, toggleTheme }) => (
+      <>
       <section className="bg-[#111217]">
-        <Header />
+        <Header theme={theme} onThemeToggle={toggleTheme} />
         <div className="mx-auto max-w-5xl px-5 py-20 lg:px-8">
           <Pill>{page.eyebrow}</Pill>
           <h1 className="mt-7 text-5xl font-black leading-tight text-white md:text-7xl">{page.h1}</h1>
@@ -593,6 +647,8 @@ function PrivacyPage({ page }) {
           </div>
         </div>
       </section>
+      </>
+      )}
     </PageShell>
   );
 }
@@ -607,10 +663,12 @@ export function ContentPage({ page, path }) {
 
   return (
     <PageShell>
+      {({ theme, toggleTheme }) => (
+      <>
       <section className="relative overflow-hidden">
         <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover grayscale-[18%] saturate-[.72]" />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.94)_48%,rgba(20,22,28,.76)_100%)]" />
-        <Header />
+        <Header theme={theme} onThemeToggle={toggleTheme} />
         <div className="relative z-10 mx-auto grid max-w-[96rem] items-center gap-12 px-5 pb-24 pt-16 lg:grid-cols-[.9fr_1.1fr] lg:px-8 2xl:px-10">
           <div><Pill>{page.eyebrow}</Pill><h1 className="mt-7 max-w-5xl text-5xl font-black leading-[0.95] md:text-7xl">{page.h1}</h1><p className="mt-7 max-w-3xl text-xl font-bold leading-8 text-slate-100">{page.intro}</p><div className="mt-9"><a href="/contacto/" className="font-technical inline-flex items-center gap-2 rounded-md bg-[#0B65C7] px-8 py-4 text-sm font-black uppercase tracking-[0.04em] text-white shadow-xl shadow-cyan-950/30 transition hover:bg-[#12B3CF] hover:text-[#14161C]">Solicitar diagnóstico<ArrowRight className="h-5 w-5" /></a></div></div>
           <HeroVisual />
@@ -620,6 +678,8 @@ export function ContentPage({ page, path }) {
       <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto grid max-w-7xl gap-8">{page.sections?.map((section) => <article key={section.h2} className="rounded-[2rem] bg-white p-8 shadow-xl shadow-slate-200/70"><h2 className="text-4xl font-black leading-tight">{section.h2}</h2>{section.text && <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-600">{section.text}</p>}{section.features && <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{section.features.map(([title, text]) => <div key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><BadgeCheck className="mb-4 h-6 w-6 text-cyan-700" /><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}{section.steps && <div className="mt-8 grid gap-5 md:grid-cols-4">{section.steps.map(([title, text], index) => <div key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><div className="mb-5 text-4xl font-black text-cyan-700">0{index + 1}</div><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}</article>)}</div></section>
       {page.caseStudy && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl rounded-[2.8rem] bg-[#14161C] p-8 text-white shadow-2xl shadow-slate-300/70 md:p-12"><Pill>Caso de referencia</Pill><h2 className="mt-6 text-4xl font-black leading-tight">Caso de referencia</h2><p className="mt-5 max-w-4xl text-lg leading-8 text-white/68">{page.caseStudy}</p></div></section>}
       {page.benefits && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><div className="mb-10 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">Beneficios</div><div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{page.benefits.map((benefit) => <div key={benefit} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 font-bold text-slate-700"><BadgeCheck className="h-5 w-5 shrink-0 text-cyan-700" />{benefit}</div>)}</div></div></section>}
+      </>
+      )}
     </PageShell>
   );
 }

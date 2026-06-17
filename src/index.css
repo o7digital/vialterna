@@ -25,3 +25,138 @@ body {
 .font-technical {
   font-family: "Inter", system-ui, sans-serif;
 }
+
+.theme-light {
+  background: #f6f9fb;
+  color: #111827;
+}
+
+.theme-light header,
+.theme-light footer,
+.theme-light .bg-\[\#14161C\],
+.theme-light .bg-\[\#14161C\]\/96,
+.theme-light .bg-\[\#14161C\]\/98,
+.theme-light .bg-\[\#111217\],
+.theme-light .bg-\[\#071622\],
+.theme-light .bg-\[\#061521\] {
+  background-color: rgba(255, 255, 255, 0.96);
+  color: #111827;
+}
+
+.theme-light header,
+.theme-light footer {
+  border-color: rgba(11, 101, 199, 0.16);
+  box-shadow: 0 1px 0 rgba(11, 101, 199, 0.08);
+}
+
+.theme-light section.bg-\[\#111217\],
+.theme-light section.bg-\[\#071622\],
+.theme-light section.bg-\[\#14161C\],
+.theme-light section.bg-white,
+.theme-light section.bg-\[\#F4FAFC\] {
+  background: #f6f9fb;
+  color: #111827;
+}
+
+.theme-light .text-white,
+.theme-light .text-slate-100,
+.theme-light .text-cyan-100 {
+  color: #111827;
+}
+
+.theme-light .text-white\/85,
+.theme-light .text-white\/82,
+.theme-light .text-white\/80,
+.theme-light .text-white\/78,
+.theme-light .text-white\/72,
+.theme-light .text-white\/70,
+.theme-light .text-white\/68,
+.theme-light .text-white\/64,
+.theme-light .text-white\/62,
+.theme-light .text-white\/60,
+.theme-light .text-white\/55,
+.theme-light .text-white\/45,
+.theme-light .text-slate-600,
+.theme-light .text-slate-700 {
+  color: #475569;
+}
+
+.theme-light .text-\[\#F5F5F5\]\/85,
+.theme-light .text-\[\#F5F5F5\]\/80,
+.theme-light .text-\[\#F5F5F5\]\/78,
+.theme-light .text-\[\#F5F5F5\]\/72,
+.theme-light .text-\[\#F5F5F5\]\/60,
+.theme-light .text-\[\#F5F5F5\]\/55 {
+  color: #475569;
+}
+
+.theme-light .bg-white\/\[0\.075\],
+.theme-light .bg-white\/\[0\.055\],
+.theme-light .bg-white\/\[0\.045\],
+.theme-light .bg-white\/\[0\.035\],
+.theme-light .bg-white\/8,
+.theme-light .bg-white\/7,
+.theme-light .bg-white\/10,
+.theme-light .bg-white\/12,
+.theme-light .bg-white\/\[0\.025\],
+.theme-light .bg-\[\#0B65C7\]\/8,
+.theme-light .bg-\[\#0B65C7\]\/10,
+.theme-light .bg-\[\#0B65C7\]\/12 {
+  background-color: rgba(255, 255, 255, 0.86);
+}
+
+.theme-light article,
+.theme-light .rounded-md,
+.theme-light .rounded-\[1\.6rem\],
+.theme-light .rounded-\[2rem\],
+.theme-light .rounded-\[2\.8rem\],
+.theme-light .border-white\/10,
+.theme-light .border-white\/12,
+.theme-light .border-white\/16,
+.theme-light .border-white\/18 {
+  border-color: rgba(11, 101, 199, 0.16);
+}
+
+.theme-light .shadow-black\/20,
+.theme-light .shadow-black\/25,
+.theme-light .shadow-black\/30,
+.theme-light .shadow-black\/35,
+.theme-light .shadow-black\/45,
+.theme-light .shadow-slate-300\/70,
+.theme-light .shadow-slate-200\/70 {
+  --tw-shadow-color: rgba(15, 23, 42, 0.14);
+}
+
+.theme-light .theme-toggle,
+.theme-light .theme-toggle-mobile,
+.theme-light header a[aria-label="LinkedIn"],
+.theme-light header button[aria-label="Abrir menú"] {
+  background: #ffffff;
+  color: #111827;
+}
+
+.theme-light .bg-\[\#0B65C7\],
+.theme-light a.bg-\[\#0B65C7\],
+.theme-light button.bg-\[\#0B65C7\] {
+  color: #ffffff;
+}
+
+.theme-light .bg-black {
+  background-color: #ffffff;
+}
+
+.theme-light .absolute.inset-0.bg-\[linear-gradient\(110deg\2c rgba\(20\2c 22\2c 28\2c \.88\)_0\%\2c rgba\(20\2c 22\2c 28\2c \.72\)_44\%\2c rgba\(20\2c 22\2c 28\2c \.28\)_100\%\)\],
+.theme-light .absolute.inset-0.bg-\[linear-gradient\(110deg\2c rgba\(20\2c 22\2c 28\2c \.98\)_0\%\2c rgba\(20\2c 22\2c 28\2c \.94\)_48\%\2c rgba\(20\2c 22\2c 28\2c \.76\)_100\%\)\],
+.theme-light .absolute.inset-0.bg-\[linear-gradient\(110deg\2c rgba\(20\2c 22\2c 28\2c \.98\)_0\%\2c rgba\(20\2c 22\2c 28\2c \.92\)_48\%\2c rgba\(20\2c 22\2c 28\2c \.84\)_100\%\)\] {
+  background: linear-gradient(110deg, rgba(246, 249, 251, 0.94) 0%, rgba(246, 249, 251, 0.76) 48%, rgba(246, 249, 251, 0.36) 100%);
+}
+
+.theme-light input,
+.theme-light textarea {
+  background: #ffffff;
+  color: #111827;
+}
+
+.theme-light img[src="/logo-vialterna.svg"] {
+  filter: none;
+}
