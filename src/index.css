@@ -148,7 +148,9 @@ body {
 .theme-light .absolute.inset-0.bg-\[linear-gradient\(110deg\2c rgba\(20\2c 22\2c 28\2c \.88\)_0\%\2c rgba\(20\2c 22\2c 28\2c \.72\)_44\%\2c rgba\(20\2c 22\2c 28\2c \.28\)_100\%\)\],
 .theme-light .absolute.inset-0.bg-\[linear-gradient\(110deg\2c rgba\(20\2c 22\2c 28\2c \.98\)_0\%\2c rgba\(20\2c 22\2c 28\2c \.94\)_48\%\2c rgba\(20\2c 22\2c 28\2c \.76\)_100\%\)\],
 .theme-light .absolute.inset-0.bg-\[linear-gradient\(110deg\2c rgba\(20\2c 22\2c 28\2c \.98\)_0\%\2c rgba\(20\2c 22\2c 28\2c \.92\)_48\%\2c rgba\(20\2c 22\2c 28\2c \.84\)_100\%\)\] {
-  background: linear-gradient(110deg, rgba(246, 249, 251, 0.94) 0%, rgba(246, 249, 251, 0.76) 48%, rgba(246, 249, 251, 0.36) 100%);
+  background:
+    linear-gradient(90deg, rgba(246, 249, 251, 0.74) 0%, rgba(246, 249, 251, 0.46) 42%, rgba(17, 24, 39, 0.24) 100%),
+    linear-gradient(0deg, rgba(17, 24, 39, 0.18), rgba(17, 24, 39, 0.18));
 }
 
 .theme-light input,
