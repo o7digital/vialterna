@@ -292,8 +292,24 @@ body {
 
 .theme-light .hero-video-gradient {
   background:
-    linear-gradient(90deg, rgba(20, 22, 28, 0.86) 0%, rgba(20, 22, 28, 0.62) 36%, rgba(20, 22, 28, 0.16) 100%),
-    linear-gradient(0deg, rgba(20, 22, 28, 0.8) 0%, rgba(20, 22, 28, 0.34) 42%, rgba(20, 22, 28, 0.12) 100%);
+    linear-gradient(90deg, rgba(8, 13, 22, 0.94) 0%, rgba(8, 13, 22, 0.76) 38%, rgba(8, 13, 22, 0.32) 100%),
+    linear-gradient(0deg, rgba(8, 13, 22, 0.88) 0%, rgba(8, 13, 22, 0.46) 44%, rgba(8, 13, 22, 0.2) 100%);
+}
+
+.theme-light [data-motion="hero"] [data-motion="hero-content"],
+.theme-light [data-motion="hero"] [data-motion="hero-content"] .site-heading,
+.theme-light [data-motion="hero"] [data-motion="hero-copy"],
+.theme-light [data-motion="hero"] [data-motion="hero-content"] .text-white,
+.theme-light [data-motion="hero"] [data-motion="hero-content"] .text-slate-100 {
+  color: #ffffff;
+}
+
+.theme-light [data-motion="hero"] [data-motion="hero-copy"] {
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+}
+
+.theme-light [data-motion="hero"] [data-motion="hero-content"] .site-heading {
+  text-shadow: 0 2px 34px rgba(0, 0, 0, 0.58);
 }
 
 .theme-light .bg-black {
