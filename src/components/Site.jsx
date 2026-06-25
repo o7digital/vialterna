@@ -35,6 +35,7 @@ import {
   visualCards,
   workSteps
 } from "../data/siteContent.js";
+import * as englishContent from "../data/siteContent.en.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -311,6 +312,17 @@ function localizeHref(href, language) {
   return href === "/" ? "/en/" : `/en${href}`;
 }
 
+function localeContent(language) {
+  return language === "en"
+    ? englishContent
+    : { navigation, solutions, industries, visualCards, metrics, workSteps, sdWanFeatures, iotFeatures };
+}
+
+const ui = {
+  es: { tagline: "Conectividad resiliente", solutions: "Soluciones", company: "Empresa", industries: "Industrias", insights: "Noticias", contact: "Contacto", privacy: "Aviso de privacidad", talk: "Habla con un experto", more: "Ver más", benefits: "Beneficios", caseStudy: "Caso de referencia", team: "Equipo Vialterna" },
+  en: { tagline: "Resilient connectivity", solutions: "Solutions", company: "Company", industries: "Industries", insights: "Insights", contact: "Contact", privacy: "Privacy Notice", talk: "Talk to an expert", more: "Learn more", benefits: "Benefits", caseStudy: "Reference case", team: "Vialterna Team" }
+};
+
 function LanguageSwitch({ language, path }) {
   const spanishHref = path;
   const englishHref = path === "/" ? "/en/" : `/en${path}`;
@@ -343,6 +355,7 @@ function ThemeToggle({ theme, onToggle }) {
 
 function Header({ theme, onThemeToggle, language = "es" }) {
   const [open, setOpen] = useState(false);
+  const localizedNavigation = localeContent(language).navigation;
   return (
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-[#0B65C7]/35 bg-[#14161C]/96 shadow-[0_1px_0_rgba(18,179,207,0.12)] backdrop-blur-xl">
       <div className="mx-auto flex max-w-[96rem] items-center justify-between px-5 py-4 lg:px-8 2xl:px-10">
@@ -352,12 +365,12 @@ function Header({ theme, onThemeToggle, language = "es" }) {
         </div>
         <div className="hidden sm:block">
           <div className="font-technical text-[10px] uppercase tracking-[0.34em] text-[#F5F5F5]/60">
-            Conectividad resiliente
+            {ui[language].tagline}
           </div>
         </div>
       </a>
       <nav className="font-technical hidden items-center gap-1 border-l border-[#0B65C7]/25 pl-5 text-[13px] font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/78 xl:flex">
-        {navigation.map((item) => (
+        {localizedNavigation.map((item) => (
           <div key={item.label} className="group relative">
             <a href={localizeHref(item.href, language)} className="block whitespace-nowrap rounded-sm px-3 py-3 transition hover:bg-[#0B65C7]/12 hover:text-[#12B3CF] 2xl:px-4">{item.label}</a>
             {item.children && (
@@ -381,7 +394,7 @@ function Header({ theme, onThemeToggle, language = "es" }) {
       </button>
       {open && (
         <div className="font-technical absolute left-5 right-5 top-[76px] z-40 rounded-md border border-[#0B65C7]/40 bg-[#14161C]/98 p-3 backdrop-blur-xl xl:hidden">
-          {navigation.map((item) => (
+          {localizedNavigation.map((item) => (
             <div key={item.href} className="border-b border-[#0B65C7]/20 last:border-b-0">
               <a href={localizeHref(item.href, language)} className="block px-2 py-3 text-sm font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/85">{item.label}</a>
               {item.children && (
@@ -408,6 +421,7 @@ function Header({ theme, onThemeToggle, language = "es" }) {
 }
 
 function Footer({ language = "es" }) {
+  const localizedSolutions = localeContent(language).solutions;
   return (
     <footer className="border-t border-white/10 bg-[#14161C] px-5 py-12 text-white lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-4">
@@ -415,17 +429,17 @@ function Footer({ language = "es" }) {
           <div className="grid h-14 min-w-[162px] place-items-center px-0">
             <BrandLogo compact />
           </div>
-          <div className="text-xs text-white/45">Conectividad resiliente</div>
+          <div className="text-xs text-white/45">{ui[language].tagline}</div>
         </div>
-        <div><h4 className="font-black">Soluciones</h4><div className="mt-4 grid gap-2 text-white/55">{solutions.map((s) => <a href={localizeHref(s.href, language)} key={s.href}>{s.title}</a>)}</div></div>
-        <div><h4 className="font-black">Empresa</h4><div className="mt-4 grid gap-2 text-white/55"><a href={localizeHref("/industrias/", language)}>Industrias</a><a href={localizeHref("/empresa/", language)}>Empresa</a><a href={localizeHref("/insights/", language)}>Noticias</a><a href={localizeHref("/faq/", language)}>FAQ</a><a href={localizeHref("/aviso-de-privacidad/", language)}>Aviso de privacidad</a></div></div>
-        <div><h4 className="font-black">Contacto</h4><div className="mt-4 grid gap-2 text-white/55"><span>atencionaclientes@vialterna.com</span><span>55 8062 6884</span><span>2026 Vialterna</span></div></div>
+        <div><h4 className="font-black">{ui[language].solutions}</h4><div className="mt-4 grid gap-2 text-white/55">{localizedSolutions.map((s) => <a href={localizeHref(s.href, language)} key={s.href}>{s.title}</a>)}</div></div>
+        <div><h4 className="font-black">{ui[language].company}</h4><div className="mt-4 grid gap-2 text-white/55"><a href={localizeHref("/industrias/", language)}>{ui[language].industries}</a><a href={localizeHref("/empresa/", language)}>{ui[language].company}</a><a href={localizeHref("/insights/", language)}>{ui[language].insights}</a><a href={localizeHref("/faq/", language)}>FAQ</a><a href={localizeHref("/aviso-de-privacidad/", language)}>{ui[language].privacy}</a></div></div>
+        <div><h4 className="font-black">{ui[language].contact}</h4><div className="mt-4 grid gap-2 text-white/55"><span>atencionaclientes@vialterna.com</span><span>+52 55 8062 6884</span><span>2026 Vialterna</span></div></div>
       </div>
     </footer>
   );
 }
 
-function HeroVisual() {
+function HeroVisual({ language = "es" }) {
   return (
     <motion.div initial={{ opacity: 0, scale: 0.94, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.08 }} className="relative mx-auto w-full max-w-[740px]">
       <div className="absolute -inset-4 rounded-lg bg-[linear-gradient(135deg,rgba(11,101,199,0.18),rgba(18,179,207,0.06))] blur-2xl" />
@@ -445,22 +459,26 @@ function HeroVisual() {
 
           <div className="relative mt-5">
             <div className="font-technical inline-flex rounded-md border border-[#12B3CF]/25 bg-[#0B65C7]/10 px-3 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#12B3CF]">
-              Gestión administrada
+              {language === "en" ? "Managed service" : "Gestión administrada"}
             </div>
             <h2 className="site-heading mt-4 text-3xl leading-[1.08] text-white md:text-4xl">
-              Continuidad operativa para sitios, enlaces y dispositivos críticos.
+              {language === "en" ? "Operational continuity for critical sites, links and devices." : "Continuidad operativa para sitios, enlaces y dispositivos críticos."}
             </h2>
             <p className="mt-3 max-w-xl leading-7 text-white/64">
-              Una capa administrada para mantener visibles, respaldadas y conectadas las operaciones distribuidas en México.
+              {language === "en" ? "A managed layer that keeps distributed operations in Mexico visible, backed up and connected." : "Una capa administrada para mantener visibles, respaldadas y conectadas las operaciones distribuidas en México."}
             </p>
           </div>
 
           <div className="relative mt-5 grid gap-3 md:grid-cols-3">
-            {[
+            {(language === "en" ? [
+              [Router, "Multi-carrier", "Flexible architecture"],
+              [ShieldCheck, "SLA", "Backed availability"],
+              [Gauge, "Backup", "Operational continuity"],
+            ] : [
               [Router, "Multioperador", "Arquitectura flexible"],
               [ShieldCheck, "SLA", "Disponibilidad respaldada"],
               [Gauge, "Respaldo", "Continuidad operativa"],
-            ].map(([Icon, title, text]) => (
+            ]).map(([Icon, title, text]) => (
               <div key={title} className="hero-visual-card rounded-md p-4">
                 <Icon className="mb-3 h-5 w-5 text-[#12B3CF]" />
                 <div className="font-black">{title}</div>
@@ -471,11 +489,11 @@ function HeroVisual() {
 
           <div className="hero-visual-card relative mt-4 rounded-md p-4">
             <div className="mb-3 flex items-center justify-between">
-              <div className="font-technical text-sm font-black uppercase tracking-[0.08em] text-[#F5F5F5]/80">Arquitectura de disponibilidad</div>
+              <div className="font-technical text-sm font-black uppercase tracking-[0.08em] text-[#F5F5F5]/80">{language === "en" ? "Availability architecture" : "Arquitectura de disponibilidad"}</div>
               <Gauge className="h-5 w-5 text-[#12B3CF]" />
             </div>
             <div className="grid gap-3">
-              {["Respaldo LTE / 5G", "Failover satelital", "Supervisión centralizada"].map((name) => (
+              {(language === "en" ? ["LTE / 5G backup", "Satellite failover", "Centralized monitoring"] : ["Respaldo LTE / 5G", "Failover satelital", "Supervisión centralizada"]).map((name) => (
                 <div key={name} className="flex items-center gap-3">
                   <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#12B3CF] shadow-[0_0_18px_rgba(18,179,207,0.65)]" />
                   <div className="h-px flex-1 bg-gradient-to-r from-[#12B3CF]/80 via-[#0B65C7]/55 to-transparent" />
@@ -569,7 +587,7 @@ export function HomePage({ page, language = "es", path = "/" }) {
             </motion.div>
             <motion.h1 data-motion="title-lines" initial={false} className="site-heading mt-7 max-w-5xl text-5xl leading-[1.06] md:text-6xl xl:text-[4.75rem]">{page.h1}</motion.h1>
             <motion.p data-motion="hero-copy" initial={false} className="mt-7 max-w-2xl text-xl font-bold leading-8 text-slate-100 md:text-2xl md:leading-9">{page.intro}</motion.p>
-            <motion.div data-motion="hero-cta" initial={false} className="mt-9 flex flex-col gap-4 sm:flex-row"><a href={localizeHref("/contacto/", language)} className="cta-button font-technical inline-flex items-center justify-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">Habla con un experto <ChevronRight className="h-5 w-5" /></a></motion.div>
+            <motion.div data-motion="hero-cta" initial={false} className="mt-9 flex flex-col gap-4 sm:flex-row"><a href={localizeHref("/contacto/", language)} className="cta-button font-technical inline-flex items-center justify-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">{ui[language].talk} <ChevronRight className="h-5 w-5" /></a></motion.div>
           </motion.div>
         </div>
       </section>
@@ -583,10 +601,11 @@ export function HomePage({ page, language = "es", path = "/" }) {
 function CardGrid({ cards, language = "es" }) {
   const { item } = useRevealMotion();
 
-  return <div className="grid items-stretch gap-6 lg:grid-cols-4">{cards.map(({ icon: Icon, title, text, image, href }, index) => <motion.article data-motion={index % 2 === 0 ? "reveal-left" : "reveal-right"} {...item(index)} whileHover={{ y: -8, scale: 1.01 }} key={title} className="group flex h-full flex-col overflow-hidden rounded-md border border-white/16 bg-black shadow-2xl shadow-black/25 transition hover:border-[#12B3CF]/70"><div data-motion="parallax-media" className="media-hover relative h-48 overflow-hidden">{image && <img src={image} alt={title} className="h-full w-full object-cover opacity-80" loading="lazy" />}<div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" /><div className="absolute bottom-5 left-5 grid h-12 w-12 place-items-center rounded-md bg-white text-[#14161C]"><Icon className="h-6 w-6" /></div></div><div className="flex flex-1 flex-col p-7 text-white"><h3 className="text-2xl font-light tracking-tight">{title}</h3><p className="mt-4 leading-7 text-white/72">{text}</p>{href && <div className="mt-auto pt-7"><a href={localizeHref(href, language)} className="inline-flex w-fit items-center gap-2 rounded-md border-2 border-[#ff6d31] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#ff6d31]">Ver más<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></a></div>}</div></motion.article>)}</div>;
+  return <div className="grid items-stretch gap-6 lg:grid-cols-4">{cards.map(({ icon: Icon, title, text, image, href }, index) => <motion.article data-motion={index % 2 === 0 ? "reveal-left" : "reveal-right"} {...item(index)} whileHover={{ y: -8, scale: 1.01 }} key={title} className="group flex h-full flex-col overflow-hidden rounded-md border border-white/16 bg-black shadow-2xl shadow-black/25 transition hover:border-[#12B3CF]/70"><div data-motion="parallax-media" className="media-hover relative h-48 overflow-hidden">{image && <img src={image} alt={title} className="h-full w-full object-cover opacity-80" loading="lazy" />}<div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" /><div className="absolute bottom-5 left-5 grid h-12 w-12 place-items-center rounded-md bg-white text-[#14161C]"><Icon className="h-6 w-6" /></div></div><div className="flex flex-1 flex-col p-7 text-white"><h3 className="text-2xl font-light tracking-tight">{title}</h3><p className="mt-4 leading-7 text-white/72">{text}</p>{href && <div className="mt-auto pt-7"><a href={localizeHref(href, language)} className="inline-flex w-fit items-center gap-2 rounded-md border-2 border-[#ff6d31] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#ff6d31]">{ui[language].more}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></a></div>}</div></motion.article>)}</div>;
 }
 
 function DesignSections({ page, language = "es" }) {
+  const localized = localeContent(language);
   const [riskSection, approachesSection, availabilitySection, processSection] = page.sections ?? [];
   const { reveal, item } = useRevealMotion();
 
@@ -598,7 +617,7 @@ function DesignSections({ page, language = "es" }) {
           <motion.p data-motion="reveal-left" {...item(1, 25)} className="mx-auto mt-7 max-w-5xl text-xl leading-9 text-white/72">{riskSection?.text}</motion.p>
           <motion.div data-motion="reveal-right" {...item(2)} className="mx-auto mt-14 max-w-5xl border-l-4 border-[#12B3CF] bg-[#14161C] p-8 text-left shadow-2xl shadow-black/25">
             <p className="text-2xl font-bold leading-10 text-white/82">
-              El tiempo de inactividad impacta directamente tu P&amp;L. <span className="text-[#12B3CF]">La mayoría de las empresas nunca lo han cuantificado.</span>
+              {language === "en" ? "Downtime directly affects your P&L. Most companies have never quantified it." : <>El tiempo de inactividad impacta directamente tu P&amp;L. <span className="text-[#12B3CF]">La mayoría de las empresas nunca lo han cuantificado.</span></>}
             </p>
           </motion.div>
         </div>
@@ -623,10 +642,10 @@ function DesignSections({ page, language = "es" }) {
           <div className="availability-heading mx-auto max-w-6xl text-center">
             <motion.h2 data-motion="title-lines" {...reveal} className="site-heading text-4xl leading-[1.08] md:text-6xl">{availabilitySection?.h2}</motion.h2>
             <motion.p data-motion="reveal-left" {...item(1, 25)} className="mx-auto mt-7 max-w-5xl text-xl leading-9 text-white/72">{availabilitySection?.text}</motion.p>
-            <motion.p data-motion="reveal-right" {...item(2, 25)} className="mx-auto mt-9 max-w-4xl text-xl leading-8 text-white/78">Tres pilares sustentan el servicio. Juntos, son la forma en que diseñamos disponibilidad en lugar de vender enlaces.</motion.p>
+            <motion.p data-motion="reveal-right" {...item(2, 25)} className="mx-auto mt-9 max-w-4xl text-xl leading-8 text-white/78">{language === "en" ? "Three pillars support the service. Together, they let us design availability instead of selling links." : "Tres pilares sustentan el servicio. Juntos, son la forma en que diseñamos disponibilidad en lugar de vender enlaces."}</motion.p>
           </div>
           <div className="mt-16 grid gap-8 lg:grid-cols-3">
-            {visualCards.map(([Icon, title, text], index) => (
+            {localized.visualCards.map(([Icon, title, text], index) => (
               <motion.article data-motion={index === 1 ? "reveal-pillarRight" : "reveal-pillarLeft"} {...item(index)} key={title} className="grid gap-5 lg:grid-cols-[10rem_1fr]">
                 <div data-motion="reveal-up" className="font-technical text-8xl font-light leading-none text-[#0B65C7]">0{index + 1}</div>
                 <div>
@@ -644,13 +663,13 @@ function DesignSections({ page, language = "es" }) {
         <div className="mx-auto max-w-[86rem] overflow-hidden rounded-md border border-white/12 bg-white/[0.075] p-8 shadow-2xl shadow-black/35 md:p-12">
           <div className="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:items-center">
             <motion.div data-motion="reveal-left" {...reveal}>
-              <Pill icon={Gauge}>Operación</Pill>
+              <Pill icon={Gauge}>{language === "en" ? "Operations" : "Operación"}</Pill>
               <h2 data-motion="title-lines" className="site-heading mt-7 text-4xl leading-[1.08] md:text-6xl">
                 NOC 24/7, SLA y gestión multioperador en un solo modelo de servicio.
               </h2>
             </motion.div>
             <div data-motion="metric" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {metrics.map(([value, label], index) => (
+              {localized.metrics.map(([value, label], index) => (
                 <motion.div data-stagger-item {...item(index)} key={label} className="metric-tile rounded-md p-6">
                   <div data-metric-value={value} className="metric-value text-4xl font-black text-cyan-100">{value}</div>
                   <div className="mt-4 text-sm font-black uppercase tracking-[0.14em] text-white/55">{label}</div>
@@ -682,7 +701,7 @@ function DesignSections({ page, language = "es" }) {
             <motion.h2 data-motion="title-lines" {...reveal} className="site-heading text-4xl leading-[1.08] md:text-6xl">Cuatro soluciones. Una plataforma. Lo que necesites para mantener tus operaciones en línea.</motion.h2>
             <motion.p data-motion="reveal-up" {...item(1, 25)} className="mx-auto mt-6 max-w-4xl text-xl leading-8 text-white/70">Cada solución corresponde a un problema de conectividad concreto.</motion.p>
           </div>
-          <CardGrid cards={solutions} language={language} />
+          <CardGrid cards={localized.solutions} language={language} />
         </div>
       </section>
 
@@ -692,7 +711,7 @@ function DesignSections({ page, language = "es" }) {
             <Pill>Industrias</Pill>
             <h2 data-motion="title-lines" className="site-heading mt-5 text-4xl leading-[1.08] md:text-6xl">Construido para operaciones distribuidas donde el tiempo de inactividad tiene precio.</h2>
           </motion.div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{industries.map(({ icon: Icon, title, text, href }, index) => <motion.a data-motion={index % 2 === 0 ? "reveal-left" : "reveal-right"} {...item(index)} href={localizeHref(href, language)} key={title} className="rounded-md border border-white/12 bg-white/[0.045] p-6 backdrop-blur-xl"><Icon className="mb-6 h-8 w-8 text-[#12B3CF]" /><h3 className="text-2xl font-black">{title}</h3><p className="mt-3 leading-7 text-white/72">{text}</p></motion.a>)}</div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{localized.industries.map(({ icon: Icon, title, text, href }, index) => <motion.a data-motion={index % 2 === 0 ? "reveal-left" : "reveal-right"} {...item(index)} href={localizeHref(href, language)} key={title} className="rounded-md border border-white/12 bg-white/[0.045] p-6 backdrop-blur-xl"><Icon className="mb-6 h-8 w-8 text-[#12B3CF]" /><h3 className="text-2xl font-black">{title}</h3><p className="mt-3 leading-7 text-white/72">{text}</p></motion.a>)}</div>
         </div>
       </section>
 
@@ -710,7 +729,7 @@ function DesignSections({ page, language = "es" }) {
               Combinamos fibra, LTE, 5G, satélite y enlaces inalámbricos en una arquitectura administrada con failover automático, agregación de enlaces y monitoreo centralizado.
             </p>
             <div data-motion="stagger" className="mt-8 grid gap-3 sm:grid-cols-2">
-              {sdWanFeatures.map((feature, index) => (
+              {localized.sdWanFeatures.map((feature, index) => (
                 <motion.div data-stagger-item {...item(index)} key={feature} className="flex items-center gap-3 rounded-md border border-slate-200 bg-white p-4 font-bold text-slate-700">
                   <BadgeCheck className="h-5 w-5 shrink-0 text-cyan-700" />
                   {feature}
@@ -858,6 +877,12 @@ function Field({ label, name, type = "text", required = false, className = "" })
 function ContactPage({ page, language = "es", path = "/contacto/" }) {
   const pageRef = useRef(null);
   useHomeMotion(pageRef);
+  const cards = language === "en" ? [
+    { icon: MessageCircle, title: "Solution Design", text: "Start a direct conversation with our business development team.", detail: "+52 55 8062 6884", href: "https://wa.me/525580626884", action: "Open WhatsApp" },
+    { icon: Mail, title: "Project Specifications", text: "Send your infrastructure requirements for a detailed technical proposal.", detail: "atencionaclientes@vialterna.com", href: "mailto:atencionaclientes@vialterna.com", action: "Send email" },
+    { icon: MapPin, title: "Meet Us", text: "Montes Urales 720, Lomas de Chapultepec, Miguel Hidalgo, Mexico City.", detail: "Mon-Fri | 09:00-18:00 CST", href: "https://www.google.com/maps/search/?api=1&query=Montes%20Urales%20720%20Lomas%20de%20Chapultepec%20Miguel%20Hidalgo%2011000", action: "View map" },
+    { icon: LinkedInMark, title: "Follow Vialterna", text: "Case studies, industry trends and managed-connectivity updates.", detail: "Visit our LinkedIn", href: "https://www.linkedin.com/company/vialterna/", action: "Open LinkedIn" }
+  ] : contactCards;
 
   return (
     <PageShell language={language} path={path}>
@@ -875,7 +900,7 @@ function ContactPage({ page, language = "es", path = "/contacto/" }) {
           </div>
 
           <div data-motion="stagger" className="mt-14 grid gap-5 lg:grid-cols-4">
-            {contactCards.map(({ icon: Icon, title, text, detail, href, action }, index) => (
+            {cards.map(({ icon: Icon, title, text, detail, href, action }, index) => (
               <a data-stagger-item key={title} href={href} className="group rounded-md border border-[#0B65C7]/35 bg-white/[0.055] p-6 text-center shadow-xl shadow-black/25 backdrop-blur-xl transition hover:border-[#12B3CF] hover:bg-[#0B65C7]/12">
                 <Icon className="mx-auto h-9 w-9 text-[#12B3CF]" />
                 <h2 className="mt-5 text-xl font-black text-white">{title}</h2>
@@ -898,25 +923,25 @@ function ContactPage({ page, language = "es", path = "/contacto/" }) {
               />
               <div className="relative">
                 <div className="max-w-4xl">
-                  <h2 data-motion="title-lines" className="site-heading text-4xl leading-[1.08] text-white md:text-5xl">Empieza con un diagnóstico</h2>
+                  <h2 data-motion="title-lines" className="site-heading text-4xl leading-[1.08] text-white md:text-5xl">{language === "en" ? "Start with an assessment" : "Empieza con un diagnóstico"}</h2>
                   <p className="mt-5 text-lg leading-8 text-white/72">
-                    Analizamos tu infraestructura de conectividad, contratos con operadores, gasto, redundancias y desempeño para identificar riesgos de desconexión y oportunidades de optimización.
+                    {language === "en" ? "We review your connectivity infrastructure, carrier contracts, spend, redundancy and performance to identify disconnection risks and optimization opportunities." : "Analizamos tu infraestructura de conectividad, contratos con operadores, gasto, redundancias y desempeño para identificar riesgos de desconexión y oportunidades de optimización."}
                   </p>
                 </div>
 
                 <form data-motion="stagger" action="mailto:atencionaclientes@vialterna.com" method="post" encType="text/plain" className="mt-9 grid gap-5">
                   <div className="grid gap-5 md:grid-cols-2">
-                    <div data-stagger-item><Field label="Nombre" name="nombre" required /></div>
-                    <div data-stagger-item><Field label="Empresa" name="empresa" required /></div>
-                    <div data-stagger-item><Field label="Correo" name="correo" type="email" required /></div>
-                    <div data-stagger-item><Field label="Teléfono" name="telefono" type="tel" required /></div>
+                    <div data-stagger-item><Field label={language === "en" ? "Name" : "Nombre"} name="nombre" required /></div>
+                    <div data-stagger-item><Field label={language === "en" ? "Company" : "Empresa"} name="empresa" required /></div>
+                    <div data-stagger-item><Field label={language === "en" ? "Email" : "Correo"} name="correo" type="email" required /></div>
+                    <div data-stagger-item><Field label={language === "en" ? "Phone" : "Teléfono"} name="telefono" type="tel" required /></div>
                   </div>
                   <label data-stagger-item className="grid gap-2">
-                    <span className="text-sm font-bold text-white/70">Cómo podemos ayudarte</span>
+                    <span className="text-sm font-bold text-white/70">{language === "en" ? "How can we help?" : "Cómo podemos ayudarte"}</span>
                     <textarea name="mensaje" rows={4} className="rounded-md border border-[#0B65C7]/25 bg-white px-4 py-3 text-[#14161C] outline-none transition focus:border-[#12B3CF] focus:ring-2 focus:ring-[#12B3CF]/25" />
                   </label>
                   <button data-stagger-item type="submit" className="cta-button font-technical mt-4 inline-flex w-fit items-center justify-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">
-                    Enviar <ArrowRight className="h-5 w-5" />
+                    {language === "en" ? "Send" : "Enviar"} <ArrowRight className="h-5 w-5" />
                   </button>
                 </form>
               </div>
@@ -1015,10 +1040,10 @@ function FaqPage({ page, language = "es", path = "/faq/" }) {
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
           <aside data-motion="reveal-left" className="lg:sticky lg:top-28 lg:h-fit">
             <div className="rounded-md border border-slate-200 bg-white p-7 shadow-xl shadow-slate-200/70">
-              <div className="font-technical text-sm font-black uppercase tracking-[0.18em] text-cyan-800">FAQ / ES + EN</div>
-              <h2 data-motion="title-lines" className="site-heading mt-5 text-4xl leading-[1.08]">Dudas frecuentes antes de diseñar una red resiliente.</h2>
-              <p className="mt-5 leading-8 text-slate-600">Todas las respuestas están abiertas en la página para consulta rápida, lectura completa e indexación.</p>
-              <a href={localizeHref("/contacto/", language)} className="cta-button mt-7 inline-flex items-center gap-2 rounded-md px-6 py-4 font-bold text-white">Habla con un experto <ArrowRight className="h-5 w-5" /></a>
+              <div className="font-technical text-sm font-black uppercase tracking-[0.18em] text-cyan-800">FAQ</div>
+              <h2 data-motion="title-lines" className="site-heading mt-5 text-4xl leading-[1.08]">{language === "en" ? "Common questions before designing a resilient network." : "Dudas frecuentes antes de diseñar una red resiliente."}</h2>
+              <p className="mt-5 leading-8 text-slate-600">{language === "en" ? "Every answer is available on the page for quick reference, complete reading and search indexing." : "Todas las respuestas están abiertas en la página para consulta rápida, lectura completa e indexación."}</p>
+              <a href={localizeHref("/contacto/", language)} className="cta-button mt-7 inline-flex items-center gap-2 rounded-md px-6 py-4 font-bold text-white">{ui[language].talk} <ArrowRight className="h-5 w-5" /></a>
             </div>
           </aside>
 
@@ -1059,7 +1084,8 @@ function FaqPage({ page, language = "es", path = "/faq/" }) {
 
 function NewsBlogSection({ articles, language = "es" }) {
   if (!articles?.length) return null;
-  const categories = ["Todas", ...new Set(articles.map((article) => article.category))];
+  const allLabel = language === "en" ? "All" : "Todas";
+  const categories = [allLabel, ...new Set(articles.map((article) => article.category))];
 
   return (
     <section className="bg-white px-5 py-20 text-slate-950 lg:px-8">
@@ -1067,7 +1093,7 @@ function NewsBlogSection({ articles, language = "es" }) {
         <div data-motion="reveal-up" className="mb-14 flex justify-center">
           <div className="flex max-w-5xl flex-wrap justify-center gap-4">
             {categories.map((category) => (
-              <span key={category} className={`rounded-full border px-7 py-3 text-sm font-black ${category === "Todas" ? "border-[#ff6d31] bg-[#ff6d31] text-white" : "border-slate-200 bg-white text-slate-950"}`}>
+              <span key={category} className={`rounded-full border px-7 py-3 text-sm font-black ${category === allLabel ? "border-[#ff6d31] bg-[#ff6d31] text-white" : "border-slate-200 bg-white text-slate-950"}`}>
                 {category}
               </span>
             ))}
@@ -1085,7 +1111,7 @@ function NewsBlogSection({ articles, language = "es" }) {
               </div>
               <div className="relative pt-7">
                 <div className="flex flex-wrap items-center gap-2 text-base text-slate-500">
-                  <span className="font-semibold text-slate-950">Equipo Vialterna</span>
+                  <span className="font-semibold text-slate-950">{ui[language].team}</span>
                   <span>{article.readTime}</span>
                   <span className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-black uppercase tracking-[0.1em] text-cyan-800">{article.category}</span>
                 </div>
@@ -1126,15 +1152,15 @@ export function ContentPage({ page, path, language = "es" }) {
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.94)_48%,rgba(20,22,28,.76)_100%)]" />
         <Header theme={theme} onThemeToggle={toggleTheme} language={language} />
         <div className="relative z-10 mx-auto grid max-w-[96rem] items-center gap-12 px-5 pb-24 pt-32 lg:grid-cols-[.9fr_1.1fr] lg:px-8 lg:pt-36 2xl:px-10">
-          <div data-motion="hero-content"><div data-motion="hero-label"><Pill>{page.eyebrow}</Pill></div><h1 data-motion="title-lines" className="site-heading mt-7 max-w-5xl text-5xl leading-[1.06] md:text-7xl">{page.h1}</h1><p data-motion="hero-copy" className="mt-7 max-w-3xl text-xl font-bold leading-8 text-slate-100">{page.intro}</p><div data-motion="hero-cta" className="mt-9"><a href={localizeHref("/contacto/", language)} className="cta-button font-technical inline-flex items-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">Habla con un experto<ArrowRight className="h-5 w-5" /></a></div></div>
-          <div data-motion="reveal-right"><HeroVisual /></div>
+          <div data-motion="hero-content"><div data-motion="hero-label"><Pill>{page.eyebrow}</Pill></div><h1 data-motion="title-lines" className="site-heading mt-7 max-w-5xl text-5xl leading-[1.06] md:text-7xl">{page.h1}</h1><p data-motion="hero-copy" className="mt-7 max-w-3xl text-xl font-bold leading-8 text-slate-100">{page.intro}</p><div data-motion="hero-cta" className="mt-9"><a href={localizeHref("/contacto/", language)} className="cta-button font-technical inline-flex items-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">{ui[language].talk}<ArrowRight className="h-5 w-5" /></a></div></div>
+          <div data-motion="reveal-right"><HeroVisual language={language} /></div>
         </div>
       </section>
       {page.kind === "hub" && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><CardGrid cards={page.cards} language={language} /></div></section>}
       {!page.news && <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto grid max-w-7xl gap-8">{page.sections?.map((section, sectionIndex) => <article data-motion={sectionIndex % 2 === 0 ? "reveal-left" : "reveal-right"} key={section.h2} className="rounded-[2rem] bg-white p-8 shadow-xl shadow-slate-200/70"><h2 data-motion="title-lines" className="site-heading text-4xl leading-[1.08]">{section.h2}</h2>{section.text && <p data-motion="reveal-up" className="mt-5 max-w-4xl text-lg leading-8 text-slate-600">{section.text}</p>}{section.features && <div data-motion="stagger" className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{section.features.map(([title, text], index) => <div data-stagger-item key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><BadgeCheck className="mb-4 h-6 w-6 text-cyan-700" /><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}{section.steps && <div data-motion="timeline" className="relative mt-8 grid gap-5 md:grid-cols-4">{section.steps.map(([title, text], index) => <div data-stagger-item key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><div className="mb-5 text-4xl font-black text-cyan-700">0{index + 1}</div><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}</article>)}</div></section>}
       {page.news && <NewsBlogSection articles={page.news} language={language} />}
-      {page.caseStudy && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div data-motion="reveal-up" className="theme-dark-panel mx-auto max-w-7xl rounded-[2.8rem] bg-[#14161C] p-8 text-white shadow-2xl shadow-slate-300/70 md:p-12"><Pill>Caso de referencia</Pill><h2 data-motion="title-lines" className="site-heading mt-6 text-4xl leading-[1.08]">Caso de referencia</h2><p data-motion="reveal-left" className="mt-5 max-w-4xl text-lg leading-8 text-white/68">{page.caseStudy}</p></div></section>}
-      {page.benefits && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><div data-motion="reveal-left" className="mb-10 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">Beneficios</div><div data-motion="stagger" className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{page.benefits.map((benefit) => <div data-stagger-item key={benefit} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 font-bold text-slate-700 shadow-sm"><BadgeCheck className="h-5 w-5 shrink-0 text-cyan-700" />{benefit}</div>)}</div></div></section>}
+      {page.caseStudy && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div data-motion="reveal-up" className="theme-dark-panel mx-auto max-w-7xl rounded-[2.8rem] bg-[#14161C] p-8 text-white shadow-2xl shadow-slate-300/70 md:p-12"><Pill>{ui[language].caseStudy}</Pill><h2 data-motion="title-lines" className="site-heading mt-6 text-4xl leading-[1.08]">{ui[language].caseStudy}</h2><p data-motion="reveal-left" className="mt-5 max-w-4xl text-lg leading-8 text-white/68">{page.caseStudy}</p></div></section>}
+      {page.benefits && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><div data-motion="reveal-left" className="mb-10 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">{ui[language].benefits}</div><div data-motion="stagger" className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{page.benefits.map((benefit) => <div data-stagger-item key={benefit} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 font-bold text-slate-700 shadow-sm"><BadgeCheck className="h-5 w-5 shrink-0 text-cyan-700" />{benefit}</div>)}</div></div></section>}
       </div>
       )}
     </PageShell>

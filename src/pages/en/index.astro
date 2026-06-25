@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { HomePage } from "../../components/Site.jsx";
-import { home } from "../../data/siteContent.js";
+import { home } from "../../data/siteContent.en.js";
 ---
 
 <Layout
@@ -11,7 +11,6 @@ import { home } from "../../data/siteContent.js";
   language="en"
   alternateEs="/"
   alternateEn="/en/"
-  noindex
 >
   <HomePage page={home} language="en" path="/" client:load />
 </Layout>

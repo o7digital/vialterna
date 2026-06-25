@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { ContentPage } from "../../components/Site.jsx";
-import { pages } from "../../data/siteContent.js";
+import { pages } from "../../data/siteContent.en.js";
 
 export function getStaticPaths() {
   return Object.entries(pages).map(([path, page]) => ({
@@ -31,7 +31,6 @@ const englishPath = `/en${path}`;
   language="en"
   alternateEs={path}
   alternateEn={englishPath}
-  noindex
 >
   <ContentPage page={page} path={path} language="en" client:load />
 </Layout>
