@@ -919,9 +919,9 @@ function PrivacyPage({ page }) {
     <PageShell>
       {({ theme, toggleTheme }) => (
       <div ref={pageRef}>
-      <section data-motion="hero" className="bg-[#111217]">
+      <section data-motion="hero" className="privacy-page bg-[#111217]">
         <Header theme={theme} onThemeToggle={toggleTheme} />
-        <div data-motion="hero-content" className="mx-auto max-w-5xl px-5 pb-20 pt-32 lg:px-8 lg:pt-36">
+        <div data-motion="hero-content" className="privacy-content mx-auto max-w-5xl px-5 pb-20 pt-32 lg:px-8 lg:pt-36">
           <div data-motion="hero-label"><Pill>{page.eyebrow}</Pill></div>
           <h1 data-motion="title-lines" className="site-heading mt-7 text-5xl leading-[1.06] text-white md:text-7xl">{page.h1}</h1>
           <p data-motion="hero-copy" className="mt-6 max-w-3xl text-xl leading-8 text-white/68">{page.intro}</p>

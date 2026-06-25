@@ -312,6 +312,20 @@ body {
   text-shadow: 0 2px 34px rgba(0, 0, 0, 0.58);
 }
 
+.theme-light .privacy-page [data-motion="hero-content"].privacy-content,
+.theme-light .privacy-page [data-motion="hero-content"].privacy-content .site-heading,
+.theme-light .privacy-page [data-motion="hero-content"].privacy-content [data-motion="hero-copy"],
+.theme-light .privacy-page [data-motion="hero-content"].privacy-content .text-white {
+  color: #111827;
+  text-shadow: none;
+}
+
+.theme-light .privacy-page [data-motion="hero-content"].privacy-content .text-white\/72,
+.theme-light .privacy-page [data-motion="hero-content"].privacy-content .text-white\/68 {
+  color: #475569;
+  text-shadow: none;
+}
+
 .theme-light .bg-black {
   background-color: #ffffff;
 }
