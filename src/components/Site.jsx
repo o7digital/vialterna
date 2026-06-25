@@ -1027,62 +1027,43 @@ function FaqPage({ page }) {
 function NewsBlogSection({ articles }) {
   if (!articles?.length) return null;
   const categories = ["Todas", ...new Set(articles.map((article) => article.category))];
-  const featured = articles[0];
-  const secondary = articles.slice(1);
 
   return (
-    <section className="bg-white px-5 py-24 text-slate-950 lg:px-8">
+    <section className="bg-white px-5 py-20 text-slate-950 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div data-motion="reveal-left" className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <div className="font-technical inline-flex rounded-md bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">Blog</div>
-            <h2 data-motion="title-lines" className="site-heading mt-5 max-w-4xl text-4xl leading-[1.08] md:text-6xl">Noticias para equipos que operan redes críticas.</h2>
-          </div>
-          <div className="flex flex-wrap gap-2">
+        <div data-motion="reveal-up" className="mb-14 flex justify-center">
+          <div className="flex max-w-5xl flex-wrap justify-center gap-4">
             {categories.map((category) => (
-              <span key={category} className="font-technical rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-black uppercase tracking-[0.12em] text-slate-600">
+              <span key={category} className={`rounded-full border px-7 py-3 text-sm font-black ${category === "Todas" ? "border-[#ff6d31] bg-[#ff6d31] text-white" : "border-slate-200 bg-white text-slate-950"}`}>
                 {category}
               </span>
             ))}
           </div>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-[1.12fr_.88fr]">
-          <article data-motion="reveal-left" className="group overflow-hidden rounded-md border border-slate-200 bg-slate-950 text-white shadow-2xl shadow-slate-300/70">
-            <div data-motion="parallax-media" className="media-hover relative min-h-[420px] overflow-hidden">
-              <img src={featured.image} alt={featured.title} className="h-full min-h-[420px] w-full object-cover opacity-82" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/45 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-7 md:p-9">
-                <div className="font-technical flex flex-wrap gap-3 text-xs font-black uppercase tracking-[0.14em] text-cyan-100">
-                  <span>{featured.category}</span>
-                  <span>{featured.date}</span>
-                  <span>{featured.readTime}</span>
+        <div data-motion="stagger" className="grid gap-x-10 gap-y-14 lg:grid-cols-2">
+          {articles.map((article) => (
+            <article data-stagger-item key={article.title} className="group">
+              <div data-motion="parallax-media" className="media-hover relative aspect-[1.55] overflow-hidden rounded-[1.35rem] bg-slate-100">
+                <img src={article.image} alt={article.title} className="h-full w-full object-cover" loading="lazy" />
+                <div className="absolute left-5 top-5 rounded-full bg-white px-4 py-2 text-sm font-bold text-slate-950 shadow-lg">
+                  {article.date.toUpperCase()}
                 </div>
-                <h3 className="mt-5 max-w-3xl text-4xl font-black leading-tight">{featured.title}</h3>
-                <p className="mt-4 max-w-2xl text-lg leading-8 text-white/72">{featured.excerpt}</p>
               </div>
-            </div>
-          </article>
-
-          <div data-motion="stagger" className="grid gap-5">
-            {secondary.map((article, index) => (
-              <article data-stagger-item key={article.title} className="group grid overflow-hidden rounded-md border border-slate-200 bg-white shadow-xl shadow-slate-200/70 transition hover:border-cyan-500/45 md:grid-cols-[13rem_1fr]">
-                <div data-motion="parallax-media" className="media-hover relative min-h-[190px] overflow-hidden bg-slate-900">
-                  <img src={article.image} alt={article.title} className="h-full min-h-[190px] w-full object-cover opacity-86" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 to-transparent" />
+              <div className="relative pt-7">
+                <div className="flex flex-wrap items-center gap-2 text-base text-slate-500">
+                  <span className="font-semibold text-slate-950">Equipo Vialterna</span>
+                  <span>{article.readTime}</span>
+                  <span className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-black uppercase tracking-[0.1em] text-cyan-800">{article.category}</span>
                 </div>
-                <div className="p-6">
-                  <div className="font-technical flex flex-wrap gap-3 text-xs font-black uppercase tracking-[0.14em] text-cyan-800">
-                    <span>{article.category}</span>
-                    <span>{article.date}</span>
-                    <span>{article.readTime}</span>
-                  </div>
-                  <h3 className="mt-4 text-2xl font-black leading-tight text-slate-950">{article.title}</h3>
-                  <p className="mt-3 leading-7 text-slate-600">{article.excerpt}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+                <h3 className="mt-5 max-w-2xl text-3xl font-black leading-tight text-slate-950 md:text-4xl">{article.title}</h3>
+                <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">{article.excerpt}</p>
+                <a href="/contacto/" aria-label={article.title} className="mt-6 grid h-16 w-16 place-items-center rounded-full bg-slate-950 text-white transition group-hover:bg-[#ff6d31] md:absolute md:right-0 md:top-7 md:mt-0">
+                  <ArrowRight className="h-7 w-7 -rotate-45" />
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -1117,7 +1098,7 @@ export function ContentPage({ page, path }) {
         </div>
       </section>
       {page.kind === "hub" && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><CardGrid cards={page.cards} /></div></section>}
-      <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto grid max-w-7xl gap-8">{page.sections?.map((section, sectionIndex) => <article data-motion={sectionIndex % 2 === 0 ? "reveal-left" : "reveal-right"} key={section.h2} className="rounded-[2rem] bg-white p-8 shadow-xl shadow-slate-200/70"><h2 data-motion="title-lines" className="site-heading text-4xl leading-[1.08]">{section.h2}</h2>{section.text && <p data-motion="reveal-up" className="mt-5 max-w-4xl text-lg leading-8 text-slate-600">{section.text}</p>}{section.features && <div data-motion="stagger" className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{section.features.map(([title, text], index) => <div data-stagger-item key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><BadgeCheck className="mb-4 h-6 w-6 text-cyan-700" /><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}{section.steps && <div data-motion="timeline" className="relative mt-8 grid gap-5 md:grid-cols-4">{section.steps.map(([title, text], index) => <div data-stagger-item key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><div className="mb-5 text-4xl font-black text-cyan-700">0{index + 1}</div><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}</article>)}</div></section>
+      {!page.news && <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto grid max-w-7xl gap-8">{page.sections?.map((section, sectionIndex) => <article data-motion={sectionIndex % 2 === 0 ? "reveal-left" : "reveal-right"} key={section.h2} className="rounded-[2rem] bg-white p-8 shadow-xl shadow-slate-200/70"><h2 data-motion="title-lines" className="site-heading text-4xl leading-[1.08]">{section.h2}</h2>{section.text && <p data-motion="reveal-up" className="mt-5 max-w-4xl text-lg leading-8 text-slate-600">{section.text}</p>}{section.features && <div data-motion="stagger" className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{section.features.map(([title, text], index) => <div data-stagger-item key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><BadgeCheck className="mb-4 h-6 w-6 text-cyan-700" /><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}{section.steps && <div data-motion="timeline" className="relative mt-8 grid gap-5 md:grid-cols-4">{section.steps.map(([title, text], index) => <div data-stagger-item key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><div className="mb-5 text-4xl font-black text-cyan-700">0{index + 1}</div><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}</article>)}</div></section>}
       {page.news && <NewsBlogSection articles={page.news} />}
       {page.caseStudy && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div data-motion="reveal-up" className="theme-dark-panel mx-auto max-w-7xl rounded-[2.8rem] bg-[#14161C] p-8 text-white shadow-2xl shadow-slate-300/70 md:p-12"><Pill>Caso de referencia</Pill><h2 data-motion="title-lines" className="site-heading mt-6 text-4xl leading-[1.08]">Caso de referencia</h2><p data-motion="reveal-left" className="mt-5 max-w-4xl text-lg leading-8 text-white/68">{page.caseStudy}</p></div></section>}
       {page.benefits && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><div data-motion="reveal-left" className="mb-10 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">Beneficios</div><div data-motion="stagger" className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{page.benefits.map((benefit) => <div data-stagger-item key={benefit} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 font-bold text-slate-700 shadow-sm"><BadgeCheck className="h-5 w-5 shrink-0 text-cyan-700" />{benefit}</div>)}</div></div></section>}

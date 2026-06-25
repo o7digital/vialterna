@@ -544,7 +544,7 @@ export const pages = {
     eyebrow: "Noticias",
     h1: "Noticias: análisis de conectividad, redes empresariales y soluciones Edge",
     intro: "Perspectivas técnicas sobre conectividad administrada, Soluciones Edge, redes SD-WAN, IoT, SIMs empresariales y continuidad operativa.",
-    sections: [{ h2: "Artículos recomendados", features: [["4G/LTE vs. 5G", "Comparación de tecnologías celulares para routers y conectividad móvil."], ["Abandonando MPLS por SD-WAN", "Contenido para empresas que evalúan arquitecturas más flexibles."], ["GPS + IoT", "Rastreo, sensores, conectividad celular y gestión de flotas inteligentes."]] }],
+    sections: [],
     news: newsArticles,
     cta
   },
