@@ -11,8 +11,17 @@ export function getStaticPaths() {
 }
 
 const { path, page } = Astro.props;
+
+const hubRedirects = {
+  "/soluciones/": "/soluciones/conectividad-sitios-distribuidos/",
+  "/industrias/": "/industrias/servicios-financieros/"
+};
+
+if (hubRedirects[path]) {
+  return Astro.redirect(hubRedirects[path], 301);
+}
 ---
 
-<Layout title={page.title} description={page.description} canonical={path}>
-  <ContentPage page={page} path={path} client:load />
+<Layout title={page.title} description={page.description} canonical={path} language="es" alternateEs={path} alternateEn={`/en${path}`}>
+  <ContentPage page={page} path={path} language="es" client:load />
 </Layout>

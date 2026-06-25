@@ -1,18 +1,32 @@
 ---
 import "../index.css";
 
-const { title, description, canonical = Astro.url.pathname } = Astro.props;
+const {
+  title,
+  description,
+  canonical = Astro.url.pathname,
+  language = "es",
+  alternateEs,
+  alternateEn,
+  noindex = false
+} = Astro.props;
 const canonicalUrl = new URL(canonical, Astro.site ?? "https://vialterna.com").toString();
+const alternateEsUrl = alternateEs ? new URL(alternateEs, Astro.site ?? "https://vialterna.com").toString() : null;
+const alternateEnUrl = alternateEn ? new URL(alternateEn, Astro.site ?? "https://vialterna.com").toString() : null;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={language}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex,follow" />}
     <link rel="canonical" href={canonicalUrl} />
+    {alternateEsUrl && <link rel="alternate" hreflang="es-MX" href={alternateEsUrl} />}
+    {alternateEnUrl && <link rel="alternate" hreflang="en" href={alternateEnUrl} />}
+    {alternateEsUrl && <link rel="alternate" hreflang="x-default" href={alternateEsUrl} />}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

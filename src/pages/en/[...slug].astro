@@ -1,0 +1,36 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { ContentPage } from "../../components/Site.jsx";
+import { pages } from "../../data/siteContent.en.js";
+
+export function getStaticPaths() {
+  return Object.entries(pages).map(([path, page]) => ({
+    params: { slug: path.replace(/^\/|\/$/g, "") },
+    props: { path, page }
+  }));
+}
+
+const { path, page } = Astro.props;
+
+const hubRedirects = {
+  "/soluciones/": "/en/soluciones/conectividad-sitios-distribuidos/",
+  "/industrias/": "/en/industrias/servicios-financieros/"
+};
+
+if (hubRedirects[path]) {
+  return Astro.redirect(hubRedirects[path], 301);
+}
+
+const englishPath = `/en${path}`;
+---
+
+<Layout
+  title={page.title}
+  description={page.description}
+  canonical={englishPath}
+  language="en"
+  alternateEs={path}
+  alternateEn={englishPath}
+>
+  <ContentPage page={page} path={path} language="en" client:load />
+</Layout>

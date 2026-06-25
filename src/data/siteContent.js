@@ -15,13 +15,17 @@ import {
 
 export const heroVideo =
   "https://vialterna.com/wp-content/uploads/2026/04/Conectividad-Vialterna-original.mp4";
+export const heroVideos = [
+  "https://vialterna.com/wp-content/uploads/2026/04/Conectividad-Vialterna-original.mp4",
+  "https://vialterna.com/wp-content/uploads/2026/03/Conectividad-Vialterna.mp4"
+];
 export const heroImage =
   "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1800&q=82";
 
 export const navigation = [
   {
     label: "Soluciones",
-    href: "/soluciones/",
+    href: "/soluciones/conectividad-sitios-distribuidos/",
     children: [
       { label: "Soluciones Edge", href: "/soluciones/conectividad-sitios-distribuidos/" },
       { label: "Soluciones para Sitios Centrales", href: "/soluciones/sitios-centrales/" },
@@ -31,7 +35,7 @@ export const navigation = [
   },
   {
     label: "Industrias",
-    href: "/industrias/",
+    href: "/industrias/servicios-financieros/",
     children: [
       { label: "Servicios financieros", href: "/industrias/servicios-financieros/" },
       { label: "Retail y franquicias", href: "/industrias/retail-franquicias/" },
@@ -40,7 +44,8 @@ export const navigation = [
     ]
   },
   { label: "Empresa", href: "/empresa/" },
-  { label: "Insights", href: "/insights/" },
+  { label: "Noticias", href: "/insights/" },
+  { label: "FAQ", href: "/faq/" },
   { label: "Contacto", href: "/contacto/" }
 ];
 
@@ -88,159 +93,385 @@ const cta = {
   label: "Solicitar diagnóstico"
 };
 
+const legalDocuments = [
+  { label: "Carta de derechos mínimos", href: "/legal/carta-derechos-minimos.pdf" },
+  { label: "Registro de contrato adhesión a la PROFECO", href: "/legal/registro-contrato-adhesion-profeco.pdf" },
+  { label: "Código de prácticas comerciales", href: "/legal/vialterna-codigo-practicas-comerciales.pdf" },
+  { label: "Colaboración en materia de seguridad y justicia", href: "/legal/vialterna-colaboracion-seguridad-justicia.pdf" }
+];
+
 const privacySections = [
   {
-    h2: "1. Identidad y domicilio del responsable",
+    h2: "Área legal",
     paragraphs: [
-      "VIALTERNA COMUNICACIONES, con RFC VCO1012206A8, con domicilio en Montes Urales 720 PB, Lomas de Chapultepec II Sección, Miguel Hidalgo, Ciudad de México, México, C.P. 11000, es responsable del tratamiento de los datos personales que recabe a través de su sitio web, formularios de contacto, comunicaciones comerciales, correos electrónicos, llamadas, mensajes, solicitudes de información, propuestas de servicios y cualquier otro canal habilitado para la atención de clientes, prospectos, proveedores o usuarios.",
-      "Para cualquier asunto relacionado con privacidad, protección de datos personales o ejercicio de derechos, puede contactarnos en contacto@vialterna.com."
+      "Esta sección reúne los documentos legales publicados por Vialterna y los avisos de privacidad aplicables a clientes, usuarios de página web y usuarios de Vial Client."
+    ],
+    documents: legalDocuments
+  },
+  {
+    h2: "Aviso de Privacidad Integral - Clientes y usuarios de página web",
+    paragraphs: [
+      "En cumplimiento con las disposiciones de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (“LFPD”), su Reglamento y el resto de las disposiciones normativas aplicables al tratamiento de datos personales, ponemos a su disposición el presente Aviso de Privacidad Integral, para informarle sobre los términos bajo los cuales trataremos sus datos personales, identificando a la entidad responsable de su información; las finalidades o acciones que motivan la obtención, uso y custodia de sus datos personales; los terceros a quienes se transferirán o se podrán transferir sus datos personales; los mecanismos para que pueda ejercer sus derechos, entre otra información que le permitirá tomar decisiones informadas sobre el uso de sus datos personales."
     ]
   },
   {
-    h2: "2. Marco legal aplicable",
+    h2: "Identidad y domicilio del Responsable",
     paragraphs: [
-      "El presente Aviso de Privacidad se emite en cumplimiento de la legislación mexicana aplicable en materia de protección de datos personales en posesión de particulares, incluyendo la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y demás disposiciones aplicables.",
-      "Asimismo, cuando resulte aplicable por la ubicación del usuario o por la naturaleza del tratamiento, VIALTERNA COMUNICACIONES podrá considerar principios y derechos reconocidos por normativas internacionales."
+      "Vialterna Comunicaciones, S.A. de C.V. (“Responsable”), es el responsable de sus datos personales. Para todos los casos, el Responsable señala como domicilio para oír y recibir notificaciones, el ubicado en Montes Pirineos 720-B Lomas de Chapultepec, Miguel Hidalgo, C.P. 11000, Ciudad de México, México."
+    ]
+  },
+  {
+    h2: "Datos personales que serán tratados por el Responsable",
+    paragraphs: ["Para cumplir con las finalidades descritas en este Aviso de Privacidad, el Responsable tratará las siguientes categorías de datos personales:"],
+    bullets: [
+      "Datos identificativos y de contacto.",
+      "Datos patrimoniales y/o financieros.",
+      "Datos de navegación, dispositivos y geolocalización."
+    ]
+  },
+  {
+    h2: "Tratamiento de datos personales sensibles",
+    paragraphs: ["Para el cumplimiento de las finalidades establecidas en este Aviso de Privacidad, el Responsable no recaba datos personales sensibles."]
+  },
+  {
+    h2: "Datos personales de terceros",
+    paragraphs: [
+      "Si Usted entrega al Responsable datos personales de terceros, por ejemplo familiares, para el cumplimiento de finalidades identificadas en el presente Aviso de Privacidad, deberá informarles sobre la existencia del tratamiento de sus datos personales y el contenido de este Aviso de Privacidad.",
+      "Si proporciona datos personales de terceros manifiesta con su entrega que cuenta previamente con el consentimiento de sus titulares para proporcionar su información al Responsable y que los mismos son correctos y completos."
+    ]
+  },
+  {
+    h2: "Datos personales de menores de edad",
+    paragraphs: [
+      "Para las finalidades establecidas en el presente Aviso de Privacidad, el Responsable no recaba directamente datos personales de menores de edad a través de formularios, cuestionarios, ni a través de su página web y/o aplicación móvil.",
+      "Si cualquier titular de datos personales fuera menor de edad en el momento de proporcionar su información al Responsable, este considerará que dicho titular cuenta con la autorización de sus padres o tutores para hacerlo y que ha informado a ellos de la finalidad de entrega de sus datos, salvo prueba o declaración en contrario.",
+      "Los padres y/o tutores podrán ejercer en todo momento los Derechos ARCO en nombre de sus hijos o tutelados, o bien, revocar el consentimiento para el tratamiento de los datos personales que hubiesen proporcionado al Responsable para las finalidades señaladas, en aquellos supuestos que la legislación vigente así lo permita."
+    ]
+  },
+  {
+    h2: "Finalidades del tratamiento de datos personales",
+    paragraphs: ["El Responsable podrá tratar sus datos personales para dos tipos de finalidades, primarias y secundarias. Finalidades primarias:"],
+    bullets: [
+      "Informar a los titulares de datos personales sobre los servicios comercializados por el Responsable, cuando estos así lo solicitan. La información proporcionada podrá incluir modalidades y precios de nuestros servicios para su contratación online o de forma personal.",
+      "Facilitar la contratación de los servicios ofrecidos por el Responsable, a través de medios electrónicos.",
+      "Instalación de equipo en ubicaciones indicadas por el Cliente.",
+      "Procesamiento electrónico de pagos por la adquisición, entrega y/o instalación de equipos.",
+      "Facturación de los servicios proporcionados por el Responsable.",
+      "Gestión, control y administración contable, administrativa y fiscal de nuestros clientes.",
+      "Atención a través de medios electrónicos.",
+      "Estadística y registro histórico de navegación en la página web."
+    ]
+  },
+  {
+    h2: "Finalidades secundarias",
+    paragraphs: ["El Responsable no utilizará sus datos personales para finalidades secundarias."]
+  },
+  {
+    h2: "Transferencias de datos personales",
+    paragraphs: [
+      "Sus datos personales podrán ser transferidos dentro de los Estados Unidos Mexicanos (“México”) o hacia el extranjero, a las siguientes categorías de destinatarios y para las finalidades identificadas:"
     ],
     bullets: [
-      "Reglamento General de Protección de Datos de la Unión Europea — RGPD / GDPR.",
-      "Legislación aplicable en Estados Unidos, incluyendo, cuando corresponda, principios de privacidad reconocidos por leyes estatales como CCPA/CPRA para residentes de California.",
-      "Normas aplicables al uso de cookies, tecnologías de rastreo, analítica web y preferencias de privacidad digital."
+      "Organismos públicos; administraciones públicas federales, estatales y/o municipales; comisiones; institutos y/o entidades reguladoras, para el cumplimiento de la normativa sobre seguridad pública, así como para el cumplimiento de requerimientos judiciales o administrativos emitidos por autoridades competentes.",
+      "Prestadores de servicios, para obtener servicios con finalidades de resguardo centralizado de la información; control de altas y bajas; modificaciones sobre el alcance de los servicios contratados; así como para la realización de análisis y estadísticas sobre nuestros clientes, con el objeto de evaluar, mejorar y diseñar nuevos servicios."
     ]
   },
   {
-    h2: "3. Datos personales que podemos recabar",
-    paragraphs: ["VIALTERNA COMUNICACIONES podrá recabar los siguientes datos personales, según la relación que mantenga con usted:"],
+    h2: "Consentimiento para transferencias",
+    paragraphs: [
+      "La LFPD establece que las transferencias antes indicadas no requieren de su consentimiento para poder ser efectuadas, pero el Responsable sí está obligado a informar sobre ellas.",
+      "Cualquier transferencia de sus datos personales que sí requiera de su consentimiento será informada previamente, a través de la comunicación y actualización de este Aviso de Privacidad y de forma previa a la realización de esa comunicación de datos."
+    ]
+  },
+  {
+    h2: "Mecanismos y procedimiento para el ejercicio de los Derechos ARCO",
+    paragraphs: ["Los Derechos ARCO se refieren a los derechos de:"],
     bullets: [
-      "Datos de identificación: nombre completo, empresa u organización, cargo o área de responsabilidad, RFC o datos fiscales cuando sean necesarios.",
-      "Datos de contacto: correo electrónico, número telefónico, dirección laboral o comercial, datos proporcionados mediante formularios de contacto o solicitudes de diagnóstico.",
-      "Datos relacionados con proyectos o servicios: necesidades de conectividad, infraestructura, telecomunicaciones o servicios tecnológicos, ubicación general de sitios, requerimientos técnicos y datos necesarios para propuestas, diagnósticos o seguimiento comercial.",
-      "Datos técnicos y de navegación: dirección IP, tipo de navegador, sistema operativo, páginas visitadas, fecha y hora de acceso, fuente de tráfico, interacciones e identificadores de cookies o tecnologías similares."
+      "Acceso: derecho de conocer qué datos personales tratamos sobre Usted, así como información relativa a las condiciones y generalidades del tratamiento.",
+      "Rectificación: derecho de solicitar en todo momento, la rectificación de sus datos que resulten inexactos o incompletos.",
+      "Cancelación: derecho a que cese el tratamiento de sus datos personales, a partir de un bloqueo y su posterior supresión.",
+      "Oposición: derecho a oponerse, por causa legítima, al tratamiento de sus datos personales."
     ]
   },
   {
-    h2: "4. Datos personales sensibles",
+    h2: "Ejercicio de Derechos ARCO",
     paragraphs: [
-      "VIALTERNA COMUNICACIONES no solicita ni recaba intencionalmente datos personales sensibles a través de su sitio web.",
-      "Si por error usted proporciona datos sensibles en un formulario, correo electrónico o mensaje, VIALTERNA COMUNICACIONES podrá eliminarlos cuando no sean necesarios para la finalidad de contacto o atención solicitada."
-    ]
-  },
-  {
-    h2: "5. Finalidades del tratamiento de datos personales",
-    paragraphs: ["Los datos personales recabados podrán ser utilizados para finalidades primarias y secundarias relacionadas con atención, seguimiento, prestación de servicios, cumplimiento legal, comunicación comercial y mejora del sitio."],
+      "Usted cuenta con los Derechos ARCO para tener control sobre sus datos personales, incluyendo su actualización, y cuando ello resulte procedente, su eliminación.",
+      "Para ejercer cualquiera de los Derechos ARCO, Usted deberá presentar una solicitud dirigida a nuestro Departamento de Datos Personales, a través de cualquiera de los siguientes canales:"
+    ],
     bullets: [
-      "Atender solicitudes de información, contactar prospectos, clientes, proveedores o usuarios y dar seguimiento a formularios enviados a través del sitio web.",
-      "Elaborar diagnósticos, propuestas técnicas, cotizaciones o presentaciones comerciales.",
-      "Evaluar necesidades relacionadas con conectividad, infraestructura, telecomunicaciones, soluciones administradas o servicios tecnológicos.",
-      "Prestar servicios contratados, administrar la relación comercial, contractual o técnica con clientes y coordinar reuniones, llamadas, visitas técnicas o comunicaciones comerciales.",
-      "Cumplir obligaciones legales, fiscales, administrativas o contractuales y mantener registros internos.",
-      "Enviar información comercial, newsletters, actualizaciones, contenidos técnicos o comunicaciones informativas, siempre que usted no se oponga.",
-      "Realizar análisis estadístico, mejorar la experiencia de navegación, medir campañas digitales y desarrollar actividades de marketing cuando exista consentimiento o base legal aplicable."
+      "Enviando una solicitud al correo electrónico: protecciondedatos@vialterna.com.",
+      "Enviando una solicitud debidamente firmada a la dirección: Montes Pirineos 720-B Lomas de Chapultepec, Miguel Hidalgo, C.P. 11000, Ciudad de México, México."
     ]
   },
   {
-    h2: "6. Base legal del tratamiento",
-    paragraphs: ["El tratamiento de sus datos personales se realiza con base en una o varias bases legales, según corresponda."],
+    h2: "Contenido de la solicitud ARCO",
+    paragraphs: ["La solicitud deberá contener o estar acompañada de:"],
     bullets: [
-      "Su consentimiento.",
-      "La relación jurídica, comercial, precontractual o contractual con usted o con la empresa que representa.",
-      "El cumplimiento de obligaciones legales.",
-      "El interés legítimo de VIALTERNA COMUNICACIONES para atender solicitudes, gestionar relaciones comerciales, mejorar sus servicios y proteger la seguridad de sus sistemas.",
-      "La necesidad de ejecutar medidas precontractuales solicitadas por el titular, como diagnósticos, cotizaciones o propuestas."
+      "Su nombre y domicilio completos, u otro medio para comunicar la respuesta a su solicitud.",
+      "Copia de un documento que acredite su identidad y en su caso, la representación legal si alguien ejerce el derecho en su nombre. Podrá omitir este requisito si aporta información que lo acredite como empleado del Responsable y lo identifique de forma indubitable.",
+      "Una descripción clara y precisa del Derecho ARCO que desea ejercer y de los datos personales relacionados con su solicitud.",
+      "En su caso, cualquier otra información o documento que nos ayude a localizar sus datos personales."
     ]
   },
   {
-    h2: "7. Transferencias de datos personales",
+    h2: "Plazos de respuesta ARCO",
     paragraphs: [
-      "VIALTERNA COMUNICACIONES podrá compartir sus datos personales con terceros únicamente cuando sea necesario para cumplir las finalidades descritas en este Aviso de Privacidad.",
-      "Dichos terceros pueden incluir proveedores de hosting, infraestructura tecnológica, correo electrónico, CRM, analítica web, servicios administrativos, contables, legales, fiscales o tecnológicos, socios técnicos, autoridades competentes, empresas relacionadas, afiliadas o aliadas comerciales.",
-      "VIALTERNA COMUNICACIONES no vende sus datos personales."
+      "El Responsable responderá a su solicitud dentro de los 20 días hábiles siguientes a la fecha en que sea enviada y recibida. Si la solicitud resulta procedente, el Responsable la hará efectiva dentro de los 15 días hábiles siguientes a la fecha en que comunique la respuesta.",
+      "En caso de que la información y/o documentación proporcionada en su solicitud resulten incompletas, erróneas y/o insuficientes, o bien, no se acompañen los documentos necesarios para acreditar su identidad o la representación legal correspondiente, el Responsable le solicitará la corrección y subsanación de las deficiencias para poder dar trámite a dicha solicitud. Usted contará con 10 días hábiles para atender el requerimiento y corrección de la solicitud; en caso contrario ésta se tendrá por no presentada.",
+      "El uso de medios electrónicos para el ejercicio de los Derechos ARCO autoriza al Responsable para dar respuesta a la solicitud correspondiente a través del mismo medio, salvo que Usted indique otro medio de contacto en su solicitud, de forma clara y expresa.",
+      "El derecho de cancelación no es absoluto. El Responsable debe conservar información para cumplir con diversas obligaciones legales y en tales casos es posible que el derecho de cancelación deba solicitarse ante la entidad que recibió sus datos personales."
     ]
   },
   {
-    h2: "8. Conservación de datos personales",
+    h2: "Revocación del consentimiento",
     paragraphs: [
-      "VIALTERNA COMUNICACIONES conservará sus datos personales únicamente durante el tiempo necesario para cumplir las finalidades descritas en este Aviso de Privacidad, atender obligaciones legales, fiscales, administrativas o contractuales, resolver posibles controversias y mantener registros internos de operación.",
-      "Cuando los datos personales dejen de ser necesarios, serán eliminados, bloqueados, anonimizados o conservados únicamente durante los plazos legalmente aplicables."
+      "En algunos casos, Usted puede revocar el consentimiento para el tratamiento de sus datos personales; sin embargo, esta revocación no puede tener efectos retroactivos, es decir, no puede afectar a situaciones, trámites o transferencias realizadas antes de la revocación de su consentimiento.",
+      "Tampoco podrá revocarse en los casos en que dicha revocación suponga la imposibilidad de cumplir con obligaciones derivadas de una relación jurídica vigente entre Usted y el Responsable, o suponga el incumplimiento de disposiciones generales de orden público que establezcan la obligación de mantener el tratamiento de sus datos personales durante determinado período.",
+      "Usted puede enviar una solicitud de revocación de consentimiento al correo electrónico protecciondedatos@vialterna.com, siguiendo las instrucciones aplicables al ejercicio de los Derechos ARCO."
     ]
   },
   {
-    h2: "9. Medidas de seguridad",
+    h2: "Limitaciones sobre el uso y divulgación de sus datos personales",
     paragraphs: [
-      "VIALTERNA COMUNICACIONES implementa medidas razonables de seguridad administrativas, técnicas y físicas para proteger los datos personales contra daño, pérdida, alteración, destrucción, uso, acceso o tratamiento no autorizado.",
-      "Ningún sistema digital es absolutamente invulnerable; sin embargo, VIALTERNA COMUNICACIONES procura aplicar buenas prácticas para proteger la información bajo su responsabilidad."
+      "Usted puede limitar el uso o divulgación de sus datos personales dirigiendo la solicitud correspondiente a nuestro Departamento de Datos Personales, siguiendo para tales efectos el procedimiento y las instrucciones aplicables al ejercicio de los Derechos ARCO.",
+      "El Responsable cuenta con medios y procedimientos para asegurar la inclusión de algunos de sus datos personales en listados de exclusión propios, para evitar que sus datos sean divulgados. En tales casos, el Responsable otorgará a los titulares que soliciten su registro, la constancia de inscripción correspondiente."
     ]
   },
   {
-    h2: "10. Derechos ARCO en México",
-    paragraphs: ["Usted tiene derecho a acceder, rectificar, cancelar u oponerse al tratamiento de sus datos personales. Para ejercer estos derechos deberá enviar una solicitud al correo contacto@vialterna.com."],
+    h2: "Medios automáticos para recabar datos personales",
+    paragraphs: [
+      "En nuestro sitio web usamos archivos conocidos como “cookies”, para facilitar la navegación y comunicación a través de la misma. Si Usted visita nuestro sitio web y/o envía información a través de este, las cookies que usamos nos permitirán recopilar, analizar y conservar información técnica relacionada con sus hábitos de navegación, el uso de dichos canales de comunicación y, en su caso, su posición geográfica.",
+      "Usted puede deshabilitar la instalación de cookies en su navegador de internet. Si desea obtener información más detallada acerca de las cookies y la forma de evitar su instalación, recomendamos visitar el sitio www.allaboutcookies.org.",
+      "También le informamos que, si desactiva la instalación de cookies o rechaza la recolección de su posición geográfica, es posible que Usted no pueda usar determinadas secciones o servicios del sitio web."
+    ]
+  },
+  {
+    h2: "Modificaciones al Aviso de Privacidad",
+    paragraphs: [
+      "El Responsable se reserva el derecho de modificar, actualizar, extender y/o de cualquier otra forma cambiar el contenido y alcance de este Aviso de Privacidad, en cualquier momento y bajo su completa discreción; en tales casos, el Responsable publicará dichos cambios en el sitio web https://vialterna.com/, sección “Avisos de Privacidad”.",
+      "El Aviso de Privacidad que regule el tratamiento de sus datos personales será el que aparezca publicado en el sitio web https://vialterna.com/, sección “Avisos de Privacidad”."
+    ]
+  },
+  {
+    h2: "Contacto para dudas o solicitudes",
+    paragraphs: [
+      "Si tiene alguna duda o solicitud favor de dirigirse al correo: atencionautoridades@vialterna.com o protecciondedatos@vialterna.com."
+    ]
+  },
+  {
+    h2: "Aviso de Privacidad Integral Vial Client (Aplicación móvil)",
+    paragraphs: [
+      "En cumplimiento de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y demás normativa aplicable, queremos informarte sobre cómo tratamos tus datos personales.",
+      "A través de este Aviso de Privacidad Integral, te proporcionaremos información sobre quién es el Responsable de tus datos, para qué finalidades los recabamos, con quién podemos compartirlos y cómo puedes ejercer tus derechos. Esto te permitirá tomar decisiones informadas sobre el uso de tus datos personales."
+    ]
+  },
+  {
+    h2: "Responsable del tratamiento de datos en Vial Client",
+    paragraphs: [
+      "Vialterna Comunicaciones, S.A. de C.V. (en adelante el “Responsable” o “Vialterna”), es responsable de tus datos personales. En todos los casos, Vialterna señala como domicilio para oír y recibir notificaciones, el ubicado en Montes Pirineos 720-B Lomas de Chapultepec, Miguel Hidalgo, Código Postal 11000, Ciudad de México, México."
+    ]
+  },
+  {
+    h2: "Datos recabados por Vial Client",
+    paragraphs: ["Con el fin de cumplir con las finalidades mencionadas en este Aviso de Privacidad, Vialterna tratará las siguientes categorías de datos personales:"],
+    bullets: ["Datos de geolocalización."]
+  },
+  {
+    h2: "Datos sensibles en Vial Client",
+    paragraphs: ["Con el fin de cumplir con las finalidades enlistadas en este Aviso de Privacidad, Vialterna no solicitará ni tratará datos personales sensibles. Como usuario de Vialterna, te pedimos que no proporciones este tipo de información."]
+  },
+  {
+    h2: "Finalidades primarias de Vial Client",
+    paragraphs: ["Vialterna tratará tus datos personales para las siguientes finalidades:"],
     bullets: [
-      "Nombre completo del titular.",
-      "Medio de contacto para recibir respuesta.",
-      "Descripción clara del derecho que desea ejercer.",
-      "Datos personales sobre los que desea ejercer el derecho.",
-      "Documento que acredite su identidad o representación legal, cuando corresponda.",
-      "Cualquier información adicional que facilite la localización de sus datos."
+      "Monitorizar, vigilar y rastrear los dispositivos que se hayan vinculado a través de Vial Client en tiempo real.",
+      "Recolectar y analizar el nivel de carga de la batería de los dispositivos mientras utilizan Vial Client.",
+      "Atender y canalizar las solicitudes de ayuda o alertas de emergencia que se realicen a través de Vial Client."
     ]
   },
   {
-    h2: "11. Derechos aplicables a usuarios de la Unión Europea",
-    paragraphs: ["Cuando el RGPD/GDPR resulte aplicable, los usuarios ubicados en la Unión Europea o el Espacio Económico Europeo podrán tener derechos de acceso, rectificación, supresión, limitación, oposición, portabilidad, retiro del consentimiento y reclamación ante una autoridad de control competente."]
+    h2: "Finalidades secundarias de Vial Client",
+    paragraphs: ["No existen."]
   },
   {
-    h2: "12. Derechos aplicables a residentes de Estados Unidos",
-    paragraphs: [
-      "Cuando resulte aplicable la legislación de privacidad de Estados Unidos, incluyendo leyes estatales como la California Consumer Privacy Act y sus modificaciones, los residentes de ciertos estados podrán tener derechos específicos sobre su información personal.",
-      "VIALTERNA COMUNICACIONES no vende datos personales."
-    ]
-  },
-  {
-    h2: "13. Uso de cookies y tecnologías similares",
-    paragraphs: ["El sitio web de VIALTERNA COMUNICACIONES puede utilizar cookies, píxeles, etiquetas, almacenamiento local u otras tecnologías similares para permitir el funcionamiento del sitio, mejorar la experiencia del usuario, analizar tráfico, recordar preferencias y medir el desempeño de contenidos o campañas digitales."],
+    h2: "Transferencias de datos en Vial Client",
+    paragraphs: ["Tus datos personales podrán ser transferidos dentro de México o hacia el extranjero, a las siguientes categorías de destinatarios y para las finalidades identificadas:"],
     bullets: [
-      "Cookies estrictamente necesarias.",
-      "Cookies de analítica.",
-      "Cookies de funcionalidad.",
-      "Cookies de marketing o publicidad, cuando exista consentimiento o base legal aplicable."
+      "Usuarios con autorización para recibir notificaciones, con la finalidad de que estos apoyen a Vialterna a dar seguimiento a las alertas y solicitudes de ayuda o emergencia realizadas a través de Vial Client.",
+      "Organismos públicos; administraciones públicas federales, estatales y/o municipales; comisiones; institutos y/o entidades reguladoras, con la finalidad de dar cumplimiento a obligaciones informativas, de transparencia y prevención de actividades ilícitas, así como para el cumplimiento de requerimientos judiciales o administrativos fundados y motivados por autoridades competentes."
     ]
   },
   {
-    h2: "14. Gestión de cookies",
+    h2: "Derechos ARCO en Vial Client",
     paragraphs: [
-      "Al ingresar al sitio web, el usuario podrá recibir información sobre el uso de cookies y, cuando corresponda, podrá aceptar, rechazar o configurar sus preferencias.",
-      "El usuario también puede bloquear, eliminar o deshabilitar cookies desde la configuración de su navegador. Algunas funciones del sitio podrían no operar correctamente si se deshabilitan determinadas cookies técnicas."
+      "La Ley regula los Derechos ARCO con que cuentas como titular de datos personales: Acceso, Rectificación, Cancelación y Oposición.",
+      "Para ejercer cualquiera de los derechos ARCO, Usted deberá presentar una solicitud dirigida a nuestro Departamento de Datos Personales, a través del correo electrónico protecciondedatos@vialterna.com."
+    ],
+    bullets: [
+      "Su nombre y domicilio completos, u otro medio para comunicar la respuesta a su solicitud.",
+      "Copia de un documento que acredite su identidad y en su caso, la representación legal si alguien ejerce el derecho en su nombre.",
+      "Una descripción clara y precisa del Derecho ARCO que desea ejercer y de los datos personales relacionados con su solicitud.",
+      "En su caso, cualquier otra información o documento que nos ayude a localizar tus datos personales."
     ]
   },
   {
-    h2: "15. Herramientas de terceros",
-    paragraphs: ["El sitio web puede utilizar herramientas de terceros para analítica, hosting, seguridad, formularios, CRM, correo electrónico, mapas, reproducción de contenido, medición de campañas o servicios similares. Estas herramientas pueden tratar datos técnicos o de navegación conforme a sus propias políticas de privacidad."]
-  },
-  {
-    h2: "16. Enlaces a sitios de terceros",
-    paragraphs: ["El sitio web de VIALTERNA COMUNICACIONES puede contener enlaces a sitios web de terceros, redes sociales, plataformas externas o servicios no controlados por VIALTERNA COMUNICACIONES. Este Aviso de Privacidad no aplica a dichos sitios externos."]
-  },
-  {
-    h2: "17. Menores de edad",
-    paragraphs: ["Los servicios y el sitio web de VIALTERNA COMUNICACIONES están dirigidos principalmente a empresas, organizaciones, profesionales y usuarios mayores de edad. VIALTERNA COMUNICACIONES no busca recabar intencionalmente datos personales de menores de edad."]
-  },
-  {
-    h2: "18. Revocación del consentimiento",
-    paragraphs: ["Usted puede revocar el consentimiento otorgado para el tratamiento de sus datos personales, siempre que dicha revocación sea legalmente procedente y no impida el cumplimiento de obligaciones pendientes. Para solicitar la revocación del consentimiento, deberá escribir a contacto@vialterna.com."]
-  },
-  {
-    h2: "19. Limitación del uso o divulgación de datos",
-    paragraphs: ["Usted puede solicitar la limitación del uso o divulgación de sus datos personales para finalidades secundarias, comerciales o de marketing, escribiendo a contacto@vialterna.com."]
-  },
-  {
-    h2: "20. Cambios al Aviso de Privacidad",
-    paragraphs: ["VIALTERNA COMUNICACIONES podrá modificar, actualizar o complementar el presente Aviso de Privacidad en cualquier momento. Las modificaciones estarán disponibles en el sitio web oficial o podrán comunicarse por los medios que se consideren adecuados."]
-  },
-  {
-    h2: "21. Contacto",
+    h2: "Revocación, limitaciones y cambios de Vial Client",
     paragraphs: [
-      "Para cualquier duda, solicitud o comentario relacionado con este Aviso de Privacidad, el tratamiento de sus datos personales, el ejercicio de derechos ARCO, derechos bajo RGPD/GDPR, derechos aplicables en Estados Unidos o gestión de cookies, puede contactarnos en contacto@vialterna.com.",
-      "VIALTERNA COMUNICACIONES. RFC: VCO1012206A8. Domicilio: Montes Urales 720 PB, Lomas de Chapultepec II Sección, Miguel Hidalgo, Ciudad de México, México, C.P. 11000."
+      "En algunos casos, puedes revocar el consentimiento para el tratamiento de tus datos personales; sin embargo, esta revocación no puede tener efectos retroactivos.",
+      "Puedes limitar el uso o divulgación de tus datos personales realizando una solicitud a nuestro Departamento de Datos Personales, siguiendo el procedimiento aplicable al ejercicio de los Derechos ARCO.",
+      "El presente Aviso de Privacidad puede sufrir modificaciones, cambios o actualizaciones derivadas de nuevos requerimientos legales, de nuestras propias necesidades por los productos o servicios que ofrecemos, de nuestras prácticas de privacidad, de cambios en nuestro modelo de negocio o por otras causas.",
+      "En caso de tener dudas o aclaraciones sobre el presente Aviso de Privacidad, puede contactar a nuestro Departamento de Datos Personales a través del correo electrónico protecciondedatos@vialterna.com.",
+      "Fecha de última actualización: 30/08/2023."
     ]
+  }
+];
+
+const faqContent = {
+  es: {
+    label: "ES",
+    title: "Preguntas frecuentes",
+    intro: "Respuestas directas sobre el modelo de servicio, alcance, despliegue y operación de Vialterna.",
+    items: [
+      {
+        question: "¿Qué hace Vialterna?",
+        answer: "Vialterna diseña, despliega y opera conectividad empresarial resiliente para empresas con sitios distribuidos en México. Integramos diferentes operadores y tecnologías para mantener conectadas operaciones críticas."
+      },
+      {
+        question: "¿Vialterna es un operador tradicional?",
+        answer: "No. Vialterna es agnóstico de operador. Diseñamos la arquitectura alrededor de la operación del cliente, no alrededor de una red propia. Podemos combinar fibra, LTE, 5G, satélite y otras tecnologías según cada ubicación."
+      },
+      {
+        question: "¿Qué tipo de empresas atiende Vialterna?",
+        answer: "Trabajamos con empresas que operan múltiples sitios, sucursales, cajeros automáticos, tiendas, franquicias, centros de distribución, sitios industriales, dispositivos IoT o infraestructura transaccional."
+      },
+      {
+        question: "¿Qué significa Disponibilidad como Servicio?",
+        answer: "Significa que no entregamos solamente enlaces. Diseñamos, implementamos, monitoreamos y gestionamos una arquitectura de conectividad orientada a mantener la operación disponible, con visibilidad, soporte y continuidad."
+      },
+      {
+        question: "¿Pueden trabajar con mis operadores actuales?",
+        answer: "Sí. Podemos evaluar los enlaces existentes, identificar riesgos, detectar redundancias, proponer mejoras y complementar la arquitectura con operadores o tecnologías adicionales cuando sea necesario."
+      },
+      {
+        question: "¿Vialterna ofrece respaldo satelital o celular?",
+        answer: "Sí. Diseñamos conectividad de respaldo con LTE, 5G, satélite LEO u otras rutas secundarias para reducir la dependencia de un solo enlace o tecnología."
+      },
+      {
+        question: "¿Qué incluye un diagnóstico de conectividad?",
+        answer: "El diagnóstico revisa cobertura, operadores, enlaces existentes, puntos únicos de falla, criticidad por sitio, gasto, desempeño, riesgos de desconexión y oportunidades de optimización."
+      },
+      {
+        question: "¿Pueden iniciar con un piloto?",
+        answer: "Sí. En muchos casos el proceso inicia con un piloto de pocos sitios para validar cobertura, desempeño, failover y operación antes de escalar a un despliegue mayor."
+      },
+      {
+        question: "¿Vialterna gestiona SIMs empresariales e IoT?",
+        answer: "Sí. Administramos SIMs, conectividad celular, consumo, activaciones, alertas, optimización de planes y ciclo de vida para dispositivos conectados o flotas IoT."
+      },
+      {
+        question: "¿Cómo puedo contactar a Vialterna?",
+        answer: "Puedes escribir a atencionaclientes@vialterna.com o comunicarte por WhatsApp al 55 8062 6884 para iniciar una conversación o solicitar un diagnóstico."
+      }
+    ]
+  },
+  en: {
+    label: "EN",
+    title: "Frequently Asked Questions",
+    intro: "Direct answers about Vialterna's service model, scope, deployment process and operations.",
+    items: [
+      {
+        question: "What does Vialterna do?",
+        answer: "Vialterna designs, deploys and operates resilient enterprise connectivity for companies with distributed sites in Mexico. We integrate multiple carriers and technologies to keep critical operations connected."
+      },
+      {
+        question: "Is Vialterna a traditional carrier?",
+        answer: "No. Vialterna is carrier-agnostic. We design the architecture around the client's operation, not around a proprietary network. We can combine fiber, LTE, 5G, satellite and other technologies depending on each location."
+      },
+      {
+        question: "What types of companies does Vialterna support?",
+        answer: "We work with companies that operate multiple sites, branches, ATMs, stores, franchises, distribution centers, industrial locations, IoT devices or transactional infrastructure."
+      },
+      {
+        question: "What does Availability as a Service mean?",
+        answer: "It means we do not simply deliver links. We design, implement, monitor and manage a connectivity architecture focused on keeping operations available, with visibility, support and continuity."
+      },
+      {
+        question: "Can Vialterna work with my current carriers?",
+        answer: "Yes. We can evaluate existing links, identify risks, detect redundancies, propose improvements and complement the architecture with additional carriers or technologies when needed."
+      },
+      {
+        question: "Does Vialterna provide satellite or cellular backup?",
+        answer: "Yes. We design backup connectivity using LTE, 5G, LEO satellite or other secondary routes to reduce dependency on a single link or technology."
+      },
+      {
+        question: "What is included in a connectivity assessment?",
+        answer: "The assessment reviews coverage, carriers, existing links, single points of failure, site criticality, spend, performance, disconnection risks and optimization opportunities."
+      },
+      {
+        question: "Can Vialterna start with a pilot?",
+        answer: "Yes. In many cases the process starts with a small-site pilot to validate coverage, performance, failover and operations before scaling to a larger rollout."
+      },
+      {
+        question: "Does Vialterna manage enterprise SIMs and IoT connectivity?",
+        answer: "Yes. We manage SIMs, cellular connectivity, usage, activations, alerts, plan optimization and lifecycle for connected devices or IoT fleets."
+      },
+      {
+        question: "How can I contact Vialterna?",
+        answer: "You can write to atencionaclientes@vialterna.com or contact us by WhatsApp at 55 8062 6884 to start a conversation or request an assessment."
+      }
+    ]
+  }
+};
+
+const newsArticles = [
+  {
+    category: "Redes",
+    date: "18-jun",
+    readTime: "5 min",
+    title: "Cómo diseñar conectividad resiliente para sitios distribuidos",
+    excerpt: "Criterios prácticos para combinar operadores, tecnologías y rutas de respaldo sin depender de un solo enlace.",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=82"
+  },
+  {
+    category: "SD-WAN",
+    date: "06-jun",
+    readTime: "6 min",
+    title: "Cuándo migrar de MPLS a una arquitectura SD-WAN multioperador",
+    excerpt: "Señales operativas, riesgos y beneficios de pasar a una red flexible con failover y visibilidad centralizada.",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=82"
+  },
+  {
+    category: "IoT",
+    date: "24-may",
+    readTime: "4 min",
+    title: "SIMs empresariales: control de consumo y ciclo de vida para flotas IoT",
+    excerpt: "Buenas prácticas para administrar activaciones, alertas, planes y dispositivos conectados en operación nacional.",
+    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=82"
+  },
+  {
+    category: "Respaldo",
+    date: "09-may",
+    readTime: "5 min",
+    title: "Respaldo satelital y celular: cómo evitar un punto único de falla",
+    excerpt: "Cuándo usar LTE, 5G o satélite LEO como rutas secundarias para sitios críticos y ubicaciones remotas.",
+    image: "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=1200&q=82"
+  },
+  {
+    category: "Operación",
+    date: "22-abr",
+    readTime: "3 min",
+    title: "Qué debe medir un NOC para proteger disponibilidad empresarial",
+    excerpt: "Indicadores clave para anticipar degradaciones, incidentes y fallas antes de que afecten al negocio.",
+    image: "https://images.unsplash.com/photo-1600267165477-6d4cc741b379?auto=format&fit=crop&w=1200&q=82"
+  },
+  {
+    category: "Finanzas",
+    date: "04-abr",
+    readTime: "4 min",
+    title: "El costo oculto de una tienda, sucursal o cajero desconectado",
+    excerpt: "Cómo traducir downtime en impacto operativo y financiero para priorizar inversiones de conectividad.",
+    image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&w=1200&q=82"
   }
 ];
 
@@ -373,6 +604,7 @@ export const pages = {
     cta
   },
   "/empresa/": {
+    heroImage: "/o7-meeting-room.webp",
     title: "Empresa de telecomunicaciones empresariales en México | Vialterna",
     description: "Vialterna conecta empresas, sucursales, dispositivos y operaciones en campo con redes administradas, SD-WAN, IoT y conectividad resiliente.",
     eyebrow: "Empresa",
@@ -386,12 +618,23 @@ export const pages = {
     cta
   },
   "/insights/": {
-    title: "Insights de conectividad y redes empresariales | Vialterna",
-    description: "Análisis de conectividad administrada, Soluciones Edge, redes SD-WAN, IoT, SIMs empresariales y continuidad operativa.",
-    eyebrow: "Insights",
-    h1: "Insights: análisis de conectividad, redes empresariales y soluciones Edge",
+    title: "Noticias de conectividad y redes empresariales | Vialterna",
+    description: "Noticias y análisis de conectividad administrada, Soluciones Edge, redes SD-WAN, IoT, SIMs empresariales y continuidad operativa.",
+    eyebrow: "Noticias",
+    h1: "Noticias: análisis de conectividad, redes empresariales y soluciones Edge",
     intro: "Perspectivas técnicas sobre conectividad administrada, Soluciones Edge, redes SD-WAN, IoT, SIMs empresariales y continuidad operativa.",
-    sections: [{ h2: "Artículos recomendados", features: [["4G/LTE vs. 5G", "Comparación de tecnologías celulares para routers y conectividad móvil."], ["Abandonando MPLS por SD-WAN", "Contenido para empresas que evalúan arquitecturas más flexibles."], ["GPS + IoT", "Rastreo, sensores, conectividad celular y gestión de flotas inteligentes."]] }],
+    sections: [],
+    news: newsArticles,
+    cta
+  },
+  "/faq/": {
+    title: "FAQ | Preguntas frecuentes de conectividad | Vialterna",
+    description: "Preguntas frecuentes en español e inglés sobre conectividad empresarial, SD-WAN, respaldo, SIMs, IoT y servicios administrados de Vialterna.",
+    kind: "faq",
+    eyebrow: "FAQ",
+    h1: "Preguntas frecuentes sobre conectividad empresarial",
+    intro: "Información esencial para entender cómo Vialterna diseña, despliega y opera conectividad resiliente para empresas distribuidas.",
+    faq: faqContent,
     cta
   },
   "/contacto/": {
