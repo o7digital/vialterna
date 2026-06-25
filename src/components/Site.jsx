@@ -941,6 +941,22 @@ function PrivacyPage({ page }) {
                         ))}
                       </ul>
                     )}
+                    {section.documents && (
+                      <div className="grid gap-3 pt-2">
+                        {section.documents.map((document) => (
+                          <a
+                            key={document.href}
+                            href={document.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="flex items-center justify-between gap-4 rounded-md border border-white/12 bg-white/[0.045] px-5 py-4 font-bold text-white transition hover:border-cyan-400/50 hover:bg-white/[0.08]"
+                          >
+                            <span>{document.label}</span>
+                            <ArrowRight className="h-5 w-5 shrink-0 -rotate-45 text-cyan-300" />
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </section>
               ))}
