@@ -1032,9 +1032,9 @@ function ContactPage({ page, language = "es", path = "/contacto/" }) {
     <PageShell language={language} path={path}>
       {({ theme, toggleTheme }) => (
       <div ref={pageRef}>
-      <section data-motion="hero" className="relative overflow-hidden bg-[#14161C]">
+      <section data-motion="hero" className="contact-hero relative overflow-hidden bg-[#14161C]">
         <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale-[18%] saturate-[.72]" />
-        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.92)_48%,rgba(20,22,28,.84)_100%)]" />
+        <div className="contact-hero-overlay absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.92)_48%,rgba(20,22,28,.84)_100%)]" />
         <Header theme={theme} onThemeToggle={toggleTheme} language={language} />
         <div className="relative z-10 mx-auto max-w-[96rem] px-5 pb-20 pt-32 lg:px-8 lg:pt-36 2xl:px-10">
           <div data-motion="hero-content" className="mx-auto max-w-5xl text-center">
