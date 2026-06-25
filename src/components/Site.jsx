@@ -317,9 +317,9 @@ function LanguageSwitch({ language, path }) {
 
   return (
     <nav className="language-switch" aria-label="Selector de idioma">
-      <a href={spanishHref} lang="es" hrefLang="es-MX" aria-current={language === "es" ? "page" : undefined}>ES</a>
-      <span aria-hidden="true" />
       <a href={englishHref} lang="en" hrefLang="en" aria-current={language === "en" ? "page" : undefined}>EN</a>
+      <span aria-hidden="true" />
+      <a href={spanishHref} lang="es" hrefLang="es-MX" aria-current={language === "es" ? "page" : undefined}>ES</a>
     </nav>
   );
 }
