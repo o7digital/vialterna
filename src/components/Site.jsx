@@ -94,27 +94,23 @@ function useHomeMotion(rootRef) {
     if (!root) return undefined;
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const mobileMotion = window.matchMedia("(max-width: 767px)").matches;
     const ctx = gsap.context(() => {
       if (reduceMotion) {
-        gsap.set("[data-motion], .motion-line-inner", { clearProps: "all", opacity: 1 });
+        gsap.set("[data-motion]", { clearProps: "all", opacity: 1 });
         return;
       }
 
       gsap.utils.toArray("[data-motion='title-lines']").forEach((heading) => {
-        splitHeadingLines(heading);
         if (heading.closest("[data-motion='hero']")) return;
-        const lines = heading.querySelectorAll(".motion-line-inner");
-        gsap.from(lines, {
-          yPercent: 112,
-          x: (index) => (index % 2 === 0 ? -34 : 34),
-          rotation: (index) => (index % 2 === 0 ? -0.8 : 0.8),
+        gsap.from(heading, {
+          y: 25,
           opacity: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          stagger: 0.11,
+          duration: 0.65,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: heading,
-            start: "top 82%",
+            start: "top 85%",
             once: true
           }
         });
@@ -122,58 +118,27 @@ function useHomeMotion(rootRef) {
 
       const hero = root.querySelector("[data-motion='hero']");
       if (hero) {
-        const heroLines = hero.querySelectorAll(".motion-line-inner");
-        gsap.timeline({ defaults: { ease: "power3.out" } })
-          .from(hero.querySelector("[data-motion='hero-label']"), { y: 70, opacity: 0, duration: 0.75 })
-          .from(heroLines, { yPercent: 112, opacity: 0, duration: 0.95, stagger: 0.12 }, "-=0.38")
-          .from(hero.querySelector("[data-motion='hero-copy']"), { y: 64, opacity: 0, duration: 0.78 }, "-=0.4")
-          .from(hero.querySelector("[data-motion='hero-cta']"), { y: 56, opacity: 0, duration: 0.7 }, "-=0.36");
-
-        gsap.to(hero.querySelector("[data-motion='hero-content']"), {
-          y: -72,
-          opacity: 0.34,
-          ease: "none",
-          scrollTrigger: {
-            trigger: hero,
-            start: "55% top",
-            end: "bottom top",
-            scrub: true
-          }
-        });
-
-        gsap.fromTo(hero.querySelectorAll(".hero-video-layer"), { scale: 1.06 }, {
-          scale: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: hero,
-            start: "top top",
-            end: "bottom top",
-            scrub: true
-          }
-        });
+        const label = hero.querySelector("[data-motion='hero-label']");
+        const title = hero.querySelector("[data-motion='title-lines']");
+        const copy = hero.querySelector("[data-motion='hero-copy']");
+        const cta = hero.querySelector("[data-motion='hero-cta']");
+        const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
+        if (label) timeline.from(label, { y: 20, opacity: 0, duration: 0.65 });
+        if (title) timeline.from(title, { y: mobileMotion ? 25 : 30, opacity: 0, duration: mobileMotion ? 0.6 : 0.8 }, "-=0.42");
+        if (copy) timeline.from(copy, { y: 20, opacity: 0, duration: 0.7 }, "-=0.48");
+        if (cta) timeline.from(cta, { y: 15, opacity: 0, duration: 0.6 }, "-=0.42");
+        gsap.fromTo(hero.querySelectorAll(".hero-video-layer"), { scale: 1.02 }, { scale: 1, duration: 0.9, ease: "power2.out" });
       }
 
-      const presets = {
-        up: { y: 86, x: 0, scale: 0.97, rotation: 0 },
-        left: { x: -140, y: 0, scale: 0.94, rotation: -1.2 },
-        right: { x: 140, y: 0, scale: 0.94, rotation: 1.2 },
-        pillarLeft: { x: -160, y: 0, scale: 0.93, rotation: -0.8 },
-        pillarRight: { x: 160, y: 0, scale: 0.93, rotation: 0.8 },
-        mediaLeft: { x: -120, y: 0, scale: 0.96, rotation: 0 },
-        mediaRight: { x: 120, y: 0, scale: 0.96, rotation: 0 }
-      };
-
       gsap.utils.toArray("[data-motion^='reveal-']").forEach((element) => {
-        const key = element.dataset.motion.replace("reveal-", "");
-        const from = presets[key] || presets.up;
         gsap.from(element, {
-          ...from,
+          y: 25,
           opacity: 0,
-          duration: 0.95,
-          ease: "power3.out",
+          duration: 0.65,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: element,
-            start: "top 84%",
+            start: "top 85%",
             once: true
           }
         });
@@ -182,15 +147,15 @@ function useHomeMotion(rootRef) {
       gsap.utils.toArray("[data-motion='stagger']").forEach((group) => {
         const children = group.querySelectorAll("[data-stagger-item]");
         gsap.from(children, {
-          y: 96,
+          y: mobileMotion ? 25 : group.dataset.motionVariant === "approaches" ? 60 : 30,
           opacity: 0,
-          scale: 0.95,
-          duration: 0.82,
-          ease: "power3.out",
-          stagger: 0.1,
+          scale: group.dataset.motionVariant === "approaches" ? 0.98 : 1,
+          duration: mobileMotion ? 0.6 : 0.7,
+          ease: "power2.out",
+          stagger: group.dataset.motionVariant === "approaches" ? 0.12 : 0.08,
           scrollTrigger: {
             trigger: group,
-            start: "top 82%",
+            start: "top 85%",
             once: true
           }
         });
@@ -199,15 +164,14 @@ function useHomeMotion(rootRef) {
       gsap.utils.toArray("[data-motion='metric']").forEach((group) => {
         const tiles = group.querySelectorAll("[data-stagger-item]");
         gsap.from(tiles, {
-          y: 92,
+          y: 30,
           opacity: 0,
-          scale: 0.94,
-          duration: 0.78,
-          ease: "power3.out",
-          stagger: 0.09,
+          duration: 0.65,
+          ease: "power2.out",
+          stagger: 0.08,
           scrollTrigger: {
             trigger: group,
-            start: "top 82%",
+            start: "top 85%",
             once: true
           }
         });
@@ -218,7 +182,7 @@ function useHomeMotion(rootRef) {
           const counter = { value: 0 };
           gsap.to(counter, {
             value: Number(match[1]),
-            duration: 1,
+            duration: 0.8,
             ease: "power2.out",
             scrollTrigger: {
               trigger: valueNode,
@@ -252,30 +216,28 @@ function useHomeMotion(rootRef) {
         }
         steps.forEach((step) => {
           gsap.from(step, {
-            y: 80,
-            opacity: 0.45,
-            scale: 0.97,
-            duration: 0.72,
-            ease: "power3.out",
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: step,
-              start: "top 84%",
-              toggleActions: "play none none reverse"
+              start: "top 85%",
+              once: true
             }
           });
         });
       });
 
       gsap.utils.toArray("[data-motion='parallax-media']").forEach((media) => {
-        gsap.fromTo(media, { clipPath: "inset(12% 0% 12% 0%)", y: 44, scale: 1.04 }, {
-          clipPath: "inset(0% 0% 0% 0%)",
-          y: 0,
+        gsap.fromTo(media, { opacity: 0, scale: 1.015 }, {
+          opacity: 1,
           scale: 1,
-          duration: 1,
-          ease: "power3.out",
+          duration: 0.75,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: media,
-            start: "top 84%",
+            start: "top 85%",
             once: true
           }
         });
@@ -441,7 +403,7 @@ function Footer({ language = "es" }) {
 
 function HeroVisual({ language = "es" }) {
   return (
-    <motion.div initial={{ opacity: 0, scale: 0.94, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.08 }} className="relative mx-auto w-full max-w-[740px]">
+    <motion.div initial={{ opacity: 0, scale: 0.98, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.75, delay: 0.08 }} className="relative mx-auto w-full max-w-[740px]">
       <div className="absolute -inset-4 rounded-lg bg-[linear-gradient(135deg,rgba(11,101,199,0.18),rgba(18,179,207,0.06))] blur-2xl" />
       <div className="hero-visual-frame relative overflow-hidden rounded-lg p-3 shadow-2xl backdrop-blur-md">
         <div className="hero-visual-surface relative overflow-hidden rounded-md p-4 md:p-5">
@@ -601,7 +563,7 @@ export function HomePage({ page, language = "es", path = "/" }) {
 function CardGrid({ cards, language = "es" }) {
   const { item } = useRevealMotion();
 
-  return <div className="grid items-stretch gap-6 lg:grid-cols-4">{cards.map(({ icon: Icon, title, text, image, href }, index) => <motion.article data-motion={index % 2 === 0 ? "reveal-left" : "reveal-right"} {...item(index)} whileHover={{ y: -8, scale: 1.01 }} key={title} className="group flex h-full flex-col overflow-hidden rounded-md border border-white/16 bg-black shadow-2xl shadow-black/25 transition hover:border-[#12B3CF]/70"><div data-motion="parallax-media" className="media-hover relative h-48 overflow-hidden">{image && <img src={image} alt={title} className="h-full w-full object-cover opacity-80" loading="lazy" />}<div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" /><div className="absolute bottom-5 left-5 grid h-12 w-12 place-items-center rounded-md bg-white text-[#14161C]"><Icon className="h-6 w-6" /></div></div><div className="flex flex-1 flex-col p-7 text-white"><h3 className="text-2xl font-light tracking-tight">{title}</h3><p className="mt-4 leading-7 text-white/72">{text}</p>{href && <div className="mt-auto pt-7"><a href={localizeHref(href, language)} className="inline-flex w-fit items-center gap-2 rounded-md border-2 border-[#ff6d31] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#ff6d31]">{ui[language].more}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></a></div>}</div></motion.article>)}</div>;
+  return <div data-motion="stagger" className="grid items-stretch gap-6 lg:grid-cols-4">{cards.map(({ icon: Icon, title, text, image, href }, index) => <motion.article data-stagger-item {...item(index)} whileHover={{ y: -4 }} key={title} className="group flex h-full flex-col overflow-hidden rounded-md border border-white/16 bg-black shadow-2xl shadow-black/25 transition duration-300 hover:border-[#12B3CF]/70"><div data-motion="parallax-media" className="media-hover relative h-48 overflow-hidden">{image && <img src={image} alt={title} className="h-full w-full object-cover opacity-80" loading="lazy" />}<div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" /><div className="absolute bottom-5 left-5 grid h-12 w-12 place-items-center rounded-md bg-white text-[#14161C]"><Icon className="h-6 w-6" /></div></div><div className="flex flex-1 flex-col p-7 text-white"><h3 className="text-2xl font-light tracking-tight">{title}</h3><p className="mt-4 leading-7 text-white/72">{text}</p>{href && <div className="mt-auto pt-7"><a href={localizeHref(href, language)} className="inline-flex w-fit items-center gap-2 rounded-md border-2 border-[#ff6d31] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#ff6d31]">{ui[language].more}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></a></div>}</div></motion.article>)}</div>;
 }
 
 function DesignSections({ page, language = "es" }) {
@@ -626,9 +588,9 @@ function DesignSections({ page, language = "es" }) {
       <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-[96rem]">
           <motion.h2 data-motion="title-lines" {...reveal} className="site-heading mx-auto max-w-6xl text-center text-4xl leading-[1.08] md:text-6xl">{approachesSection?.h2}</motion.h2>
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          <div data-motion="stagger" data-motion-variant="approaches" className="mt-14 grid gap-6 lg:grid-cols-3">
             {approachesSection?.approaches?.map(([title, text], index) => (
-              <motion.article data-motion={index === 0 ? "reveal-left" : index === 1 ? "reveal-up" : "reveal-right"} {...item(index)} whileHover={{ y: -7, scale: 1.015 }} key={title} className="min-h-[24rem] rounded-md border border-white/18 bg-white/[0.035] p-8 shadow-2xl shadow-black/20 transition hover:border-[#12B3CF]/55 hover:bg-white/[0.055]">
+              <motion.article data-stagger-item {...item(index)} whileHover={{ y: -4 }} key={title} className="min-h-[24rem] rounded-md border border-white/18 bg-white/[0.035] p-8 shadow-2xl shadow-black/20 transition duration-300 hover:border-[#12B3CF]/55 hover:bg-white/[0.055]">
                 <h3 className="text-3xl font-bold leading-tight text-white">{title}</h3>
                 <p className="mt-6 text-lg leading-8 text-white/72">{text}</p>
               </motion.article>
@@ -644,10 +606,10 @@ function DesignSections({ page, language = "es" }) {
             <motion.p data-motion="reveal-left" {...item(1, 25)} className="mx-auto mt-7 max-w-5xl text-xl leading-9 text-white/72">{availabilitySection?.text}</motion.p>
             <motion.p data-motion="reveal-right" {...item(2, 25)} className="mx-auto mt-9 max-w-4xl text-xl leading-8 text-white/78">{language === "en" ? "Three pillars support the service. Together, they let us design availability instead of selling links." : "Tres pilares sustentan el servicio. Juntos, son la forma en que diseñamos disponibilidad en lugar de vender enlaces."}</motion.p>
           </div>
-          <div className="mt-16 grid gap-8 lg:grid-cols-3">
+          <div data-motion="stagger" className="mt-16 grid gap-8 lg:grid-cols-3">
             {localized.visualCards.map(([Icon, title, text], index) => (
-              <motion.article data-motion={index === 1 ? "reveal-pillarRight" : "reveal-pillarLeft"} {...item(index)} key={title} className="grid gap-5 lg:grid-cols-[10rem_1fr]">
-                <div data-motion="reveal-up" className="font-technical text-8xl font-light leading-none text-[#0B65C7]">0{index + 1}</div>
+              <motion.article data-stagger-item {...item(index)} key={title} className="grid gap-5 lg:grid-cols-[10rem_1fr]">
+                <div className="font-technical text-8xl font-light leading-none text-[#0B65C7]">0{index + 1}</div>
                 <div>
                   <Icon className="mb-6 h-9 w-9 text-[#12B3CF]" />
                   <h3 className="text-4xl font-light leading-tight text-white">{title}</h3>
@@ -711,7 +673,7 @@ function DesignSections({ page, language = "es" }) {
             <Pill>{language === "en" ? "Industries" : "Industrias"}</Pill>
             <h2 data-motion="title-lines" className="site-heading mt-5 text-4xl leading-[1.08] md:text-6xl">{language === "en" ? "Built for distributed operations where downtime has a price." : "Construido para operaciones distribuidas donde el tiempo de inactividad tiene precio."}</h2>
           </motion.div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{localized.industries.map(({ icon: Icon, title, text, href }, index) => <motion.a data-motion={index % 2 === 0 ? "reveal-left" : "reveal-right"} {...item(index)} href={localizeHref(href, language)} key={title} className="rounded-md border border-white/12 bg-white/[0.045] p-6 backdrop-blur-xl"><Icon className="mb-6 h-8 w-8 text-[#12B3CF]" /><h3 className="text-2xl font-black">{title}</h3><p className="mt-3 leading-7 text-white/72">{text}</p></motion.a>)}</div>
+          <div data-motion="stagger" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{localized.industries.map(({ icon: Icon, title, text, href }, index) => <motion.a data-stagger-item {...item(index)} href={localizeHref(href, language)} key={title} className="rounded-md border border-white/12 bg-white/[0.045] p-6 backdrop-blur-xl"><Icon className="mb-6 h-8 w-8 text-[#12B3CF]" /><h3 className="text-2xl font-black">{title}</h3><p className="mt-3 leading-7 text-white/72">{text}</p></motion.a>)}</div>
         </div>
       </section>
 
@@ -1037,7 +999,7 @@ function FaqPage({ page, language = "es", path = "/faq/" }) {
 
       <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
-          <aside data-motion="reveal-left" className="lg:sticky lg:top-28 lg:h-fit">
+          <aside data-motion="reveal-up" className="lg:h-fit">
             <div className="rounded-md border border-slate-200 bg-white p-7 shadow-xl shadow-slate-200/70">
               <div className="font-technical text-sm font-black uppercase tracking-[0.18em] text-cyan-800">FAQ</div>
               <h2 data-motion="title-lines" className="site-heading mt-5 text-4xl leading-[1.08]">{language === "en" ? "Common questions before designing a resilient network." : "Dudas frecuentes antes de diseñar una red resiliente."}</h2>

@@ -92,28 +92,22 @@ body {
 
 .media-hover {
   background-size: 100% 100%;
-  transition: background-size 550ms ease, transform 550ms ease;
+  transition: background-size 280ms ease;
   transform: translateZ(0);
 }
 
 .media-hover img {
   transform: scale(1);
-  transition: transform 550ms ease;
+  transition: transform 280ms ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .media-hover:hover {
-    background-size: 103% 103%;
+    background-size: 102% 102%;
   }
 
   .media-hover:hover img {
-    transform: scale(1.03);
-  }
-
-  [data-motion="reveal-left"]:hover,
-  [data-motion="reveal-right"]:hover,
-  [data-motion="reveal-up"]:hover {
-    transform: translateY(-5px) scale(1.01);
+    transform: scale(1.02);
   }
 }
 
