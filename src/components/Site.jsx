@@ -1131,6 +1131,7 @@ function NewsBlogSection({ articles, language = "es" }) {
 export function ContentPage({ page, path, language = "es" }) {
   const pageRef = useRef(null);
   useHomeMotion(pageRef);
+  const isCompanyPage = path === "/empresa/";
 
   if (page.kind === "contact" || path === "/contacto/") {
     return <ContactPage page={page} language={language} path={path} />;
@@ -1150,9 +1151,9 @@ export function ContentPage({ page, path, language = "es" }) {
         <img src={page.heroImage || heroImage} alt="" className="absolute inset-0 h-full w-full object-cover grayscale-[18%] saturate-[.72]" />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.94)_48%,rgba(20,22,28,.76)_100%)]" />
         <Header theme={theme} onThemeToggle={toggleTheme} language={language} />
-        <div className="relative z-10 mx-auto grid max-w-[96rem] items-center gap-12 px-5 pb-24 pt-32 lg:grid-cols-[.9fr_1.1fr] lg:px-8 lg:pt-36 2xl:px-10">
-          <div data-motion="hero-content"><div data-motion="hero-label"><Pill>{page.eyebrow}</Pill></div><h1 data-motion="title-lines" className="site-heading mt-7 max-w-5xl text-5xl leading-[1.06] md:text-7xl">{page.h1}</h1><p data-motion="hero-copy" className="mt-7 max-w-3xl text-xl font-bold leading-8 text-slate-100">{page.intro}</p><div data-motion="hero-cta" className="mt-9"><a href={localizeHref("/contacto/", language)} className="cta-button font-technical inline-flex items-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">{ui[language].talk}<ArrowRight className="h-5 w-5" /></a></div></div>
-          <div data-motion="reveal-right"><HeroVisual language={language} /></div>
+        <div className={`relative z-10 mx-auto grid max-w-[96rem] items-center gap-12 px-5 pb-24 pt-32 lg:px-8 lg:pt-36 2xl:px-10 ${isCompanyPage ? "" : "lg:grid-cols-[.9fr_1.1fr]"}`}>
+          <div data-motion="hero-content" className={isCompanyPage ? "max-w-4xl" : ""}><div data-motion="hero-label"><Pill>{page.eyebrow}</Pill></div><h1 data-motion="title-lines" className="site-heading mt-7 max-w-5xl text-5xl leading-[1.06] md:text-7xl">{page.h1}</h1><p data-motion="hero-copy" className="mt-7 max-w-3xl text-xl font-bold leading-8 text-slate-100">{page.intro}</p><div data-motion="hero-cta" className="mt-9"><a href={localizeHref("/contacto/", language)} className="cta-button font-technical inline-flex items-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">{ui[language].talk}<ArrowRight className="h-5 w-5" /></a></div></div>
+          {!isCompanyPage && <div data-motion="reveal-right"><HeroVisual language={language} /></div>}
         </div>
       </section>
       {page.kind === "hub" && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><CardGrid cards={page.cards} language={language} /></div></section>}
