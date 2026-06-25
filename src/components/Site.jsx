@@ -839,24 +839,27 @@ function Field({ label, name, type = "text", required = false, className = "" })
 }
 
 function ContactPage({ page }) {
+  const pageRef = useRef(null);
+  useHomeMotion(pageRef);
+
   return (
     <PageShell>
       {({ theme, toggleTheme }) => (
-      <>
-      <section className="relative overflow-hidden bg-[#14161C]">
+      <div ref={pageRef}>
+      <section data-motion="hero" className="relative overflow-hidden bg-[#14161C]">
         <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale-[18%] saturate-[.72]" />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.92)_48%,rgba(20,22,28,.84)_100%)]" />
         <Header theme={theme} onThemeToggle={toggleTheme} />
         <div className="relative z-10 mx-auto max-w-[96rem] px-5 pb-20 pt-32 lg:px-8 lg:pt-36 2xl:px-10">
-          <div className="mx-auto max-w-5xl text-center">
-            <Pill>{page.eyebrow}</Pill>
-            <h1 className="site-heading mt-7 text-5xl leading-[1.06] text-white md:text-7xl">{page.h1}</h1>
-            <p className="mx-auto mt-6 max-w-4xl text-2xl font-bold leading-9 text-white/78">{page.intro}</p>
+          <div data-motion="hero-content" className="mx-auto max-w-5xl text-center">
+            <div data-motion="hero-label"><Pill>{page.eyebrow}</Pill></div>
+            <h1 data-motion="title-lines" className="site-heading mt-7 text-5xl leading-[1.06] text-white md:text-7xl">{page.h1}</h1>
+            <p data-motion="hero-copy" className="mx-auto mt-6 max-w-4xl text-2xl font-bold leading-9 text-white/78">{page.intro}</p>
           </div>
 
-          <div className="mt-14 grid gap-5 lg:grid-cols-4">
-            {contactCards.map(({ icon: Icon, title, text, detail, href, action }) => (
-              <a key={title} href={href} className="group rounded-md border border-[#0B65C7]/35 bg-white/[0.055] p-6 text-center shadow-xl shadow-black/25 backdrop-blur-xl transition hover:border-[#12B3CF] hover:bg-[#0B65C7]/12">
+          <div data-motion="stagger" className="mt-14 grid gap-5 lg:grid-cols-4">
+            {contactCards.map(({ icon: Icon, title, text, detail, href, action }, index) => (
+              <a data-stagger-item key={title} href={href} className="group rounded-md border border-[#0B65C7]/35 bg-white/[0.055] p-6 text-center shadow-xl shadow-black/25 backdrop-blur-xl transition hover:border-[#12B3CF] hover:bg-[#0B65C7]/12">
                 <Icon className="mx-auto h-9 w-9 text-[#12B3CF]" />
                 <h2 className="mt-5 text-xl font-black text-white">{title}</h2>
                 <p className="mt-4 leading-7 text-white/62">{text}</p>
@@ -866,7 +869,7 @@ function ContactPage({ page }) {
             ))}
           </div>
 
-          <div className="mt-14 overflow-hidden rounded-md border border-[#0B65C7]/40 bg-[#14161C]/74 shadow-2xl shadow-black/35 backdrop-blur-xl">
+          <div data-motion="reveal-up" className="mt-14 overflow-hidden rounded-md border border-[#0B65C7]/40 bg-[#14161C]/74 shadow-2xl shadow-black/35 backdrop-blur-xl">
             <div className="relative p-6 md:p-10">
               <div
                 className="pointer-events-none absolute inset-0 opacity-[0.13]"
@@ -878,24 +881,24 @@ function ContactPage({ page }) {
               />
               <div className="relative">
                 <div className="max-w-4xl">
-                  <h2 className="site-heading text-4xl leading-[1.08] text-white md:text-5xl">Empieza con un diagnóstico</h2>
+                  <h2 data-motion="title-lines" className="site-heading text-4xl leading-[1.08] text-white md:text-5xl">Empieza con un diagnóstico</h2>
                   <p className="mt-5 text-lg leading-8 text-white/72">
                     Analizamos tu infraestructura de conectividad, contratos con operadores, gasto, redundancias y desempeño para identificar riesgos de desconexión y oportunidades de optimización.
                   </p>
                 </div>
 
-                <form action="mailto:atencionaclientes@vialterna.com" method="post" encType="text/plain" className="mt-9 grid gap-5">
+                <form data-motion="stagger" action="mailto:atencionaclientes@vialterna.com" method="post" encType="text/plain" className="mt-9 grid gap-5">
                   <div className="grid gap-5 md:grid-cols-2">
-                    <Field label="Nombre" name="nombre" required />
-                    <Field label="Empresa" name="empresa" required />
-                    <Field label="Correo" name="correo" type="email" required />
-                    <Field label="Teléfono" name="telefono" type="tel" required />
+                    <div data-stagger-item><Field label="Nombre" name="nombre" required /></div>
+                    <div data-stagger-item><Field label="Empresa" name="empresa" required /></div>
+                    <div data-stagger-item><Field label="Correo" name="correo" type="email" required /></div>
+                    <div data-stagger-item><Field label="Teléfono" name="telefono" type="tel" required /></div>
                   </div>
-                  <label className="grid gap-2">
+                  <label data-stagger-item className="grid gap-2">
                     <span className="text-sm font-bold text-white/70">Cómo podemos ayudarte</span>
                     <textarea name="mensaje" rows={4} className="rounded-md border border-[#0B65C7]/25 bg-white px-4 py-3 text-[#14161C] outline-none transition focus:border-[#12B3CF] focus:ring-2 focus:ring-[#12B3CF]/25" />
                   </label>
-                  <button type="submit" className="cta-button font-technical mt-4 inline-flex w-fit items-center justify-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">
+                  <button data-stagger-item type="submit" className="cta-button font-technical mt-4 inline-flex w-fit items-center justify-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">
                     Enviar <ArrowRight className="h-5 w-5" />
                   </button>
                 </form>
@@ -904,28 +907,31 @@ function ContactPage({ page }) {
           </div>
         </div>
       </section>
-      </>
+      </div>
       )}
     </PageShell>
   );
 }
 
 function PrivacyPage({ page }) {
+  const pageRef = useRef(null);
+  useHomeMotion(pageRef);
+
   return (
     <PageShell>
       {({ theme, toggleTheme }) => (
-      <>
-      <section className="bg-[#111217]">
+      <div ref={pageRef}>
+      <section data-motion="hero" className="bg-[#111217]">
         <Header theme={theme} onThemeToggle={toggleTheme} />
-        <div className="mx-auto max-w-5xl px-5 pb-20 pt-32 lg:px-8 lg:pt-36">
-          <Pill>{page.eyebrow}</Pill>
-          <h1 className="site-heading mt-7 text-5xl leading-[1.06] text-white md:text-7xl">{page.h1}</h1>
-          <p className="mt-6 max-w-3xl text-xl leading-8 text-white/68">{page.intro}</p>
-          <div className="mt-12 rounded-md border border-white/10 bg-white/[0.045] p-6 text-white/72 md:p-10">
+        <div data-motion="hero-content" className="mx-auto max-w-5xl px-5 pb-20 pt-32 lg:px-8 lg:pt-36">
+          <div data-motion="hero-label"><Pill>{page.eyebrow}</Pill></div>
+          <h1 data-motion="title-lines" className="site-heading mt-7 text-5xl leading-[1.06] text-white md:text-7xl">{page.h1}</h1>
+          <p data-motion="hero-copy" className="mt-6 max-w-3xl text-xl leading-8 text-white/68">{page.intro}</p>
+          <div data-motion="reveal-up" className="mt-12 rounded-md border border-white/10 bg-white/[0.045] p-6 text-white/72 md:p-10">
             <div className="space-y-10">
-              {page.sections?.map((section) => (
-                <section key={section.h2} className="border-b border-white/10 pb-10 last:border-b-0 last:pb-0">
-                  <h2 className="site-heading text-2xl leading-[1.1] text-white md:text-3xl">{section.h2}</h2>
+              {page.sections?.map((section, index) => (
+                <section data-motion={index % 2 === 0 ? "reveal-left" : "reveal-right"} key={section.h2} className="border-b border-white/10 pb-10 last:border-b-0 last:pb-0">
+                  <h2 data-motion="title-lines" className="site-heading text-2xl leading-[1.1] text-white md:text-3xl">{section.h2}</h2>
                   <div className="mt-5 space-y-4 text-base leading-8">
                     {section.paragraphs?.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
@@ -944,13 +950,16 @@ function PrivacyPage({ page }) {
           </div>
         </div>
       </section>
-      </>
+      </div>
       )}
     </PageShell>
   );
 }
 
 export function ContentPage({ page, path }) {
+  const pageRef = useRef(null);
+  useHomeMotion(pageRef);
+
   if (page.kind === "contact" || path === "/contacto/") {
     return <ContactPage page={page} />;
   }
@@ -961,21 +970,21 @@ export function ContentPage({ page, path }) {
   return (
     <PageShell>
       {({ theme, toggleTheme }) => (
-      <>
-      <section className="relative overflow-hidden">
+      <div ref={pageRef}>
+      <section data-motion="hero" className="relative overflow-hidden">
         <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover grayscale-[18%] saturate-[.72]" />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.94)_48%,rgba(20,22,28,.76)_100%)]" />
         <Header theme={theme} onThemeToggle={toggleTheme} />
         <div className="relative z-10 mx-auto grid max-w-[96rem] items-center gap-12 px-5 pb-24 pt-32 lg:grid-cols-[.9fr_1.1fr] lg:px-8 lg:pt-36 2xl:px-10">
-          <div><Pill>{page.eyebrow}</Pill><h1 className="site-heading mt-7 max-w-5xl text-5xl leading-[1.06] md:text-7xl">{page.h1}</h1><p className="mt-7 max-w-3xl text-xl font-bold leading-8 text-slate-100">{page.intro}</p><div className="mt-9"><a href="/contacto/" className="cta-button font-technical inline-flex items-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">Habla con un experto<ArrowRight className="h-5 w-5" /></a></div></div>
-          <HeroVisual />
+          <div data-motion="hero-content"><div data-motion="hero-label"><Pill>{page.eyebrow}</Pill></div><h1 data-motion="title-lines" className="site-heading mt-7 max-w-5xl text-5xl leading-[1.06] md:text-7xl">{page.h1}</h1><p data-motion="hero-copy" className="mt-7 max-w-3xl text-xl font-bold leading-8 text-slate-100">{page.intro}</p><div data-motion="hero-cta" className="mt-9"><a href="/contacto/" className="cta-button font-technical inline-flex items-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">Habla con un experto<ArrowRight className="h-5 w-5" /></a></div></div>
+          <div data-motion="reveal-right"><HeroVisual /></div>
         </div>
       </section>
       {page.kind === "hub" && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><CardGrid cards={page.cards} /></div></section>}
-      <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto grid max-w-7xl gap-8">{page.sections?.map((section) => <article key={section.h2} className="rounded-[2rem] bg-white p-8 shadow-xl shadow-slate-200/70"><h2 className="site-heading text-4xl leading-[1.08]">{section.h2}</h2>{section.text && <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-600">{section.text}</p>}{section.features && <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{section.features.map(([title, text]) => <div key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><BadgeCheck className="mb-4 h-6 w-6 text-cyan-700" /><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}{section.steps && <div className="mt-8 grid gap-5 md:grid-cols-4">{section.steps.map(([title, text], index) => <div key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><div className="mb-5 text-4xl font-black text-cyan-700">0{index + 1}</div><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}</article>)}</div></section>
-      {page.caseStudy && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="theme-dark-panel mx-auto max-w-7xl rounded-[2.8rem] bg-[#14161C] p-8 text-white shadow-2xl shadow-slate-300/70 md:p-12"><Pill>Caso de referencia</Pill><h2 className="site-heading mt-6 text-4xl leading-[1.08]">Caso de referencia</h2><p className="mt-5 max-w-4xl text-lg leading-8 text-white/68">{page.caseStudy}</p></div></section>}
-      {page.benefits && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><div className="mb-10 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">Beneficios</div><div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{page.benefits.map((benefit) => <div key={benefit} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 font-bold text-slate-700 shadow-sm"><BadgeCheck className="h-5 w-5 shrink-0 text-cyan-700" />{benefit}</div>)}</div></div></section>}
-      </>
+      <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto grid max-w-7xl gap-8">{page.sections?.map((section, sectionIndex) => <article data-motion={sectionIndex % 2 === 0 ? "reveal-left" : "reveal-right"} key={section.h2} className="rounded-[2rem] bg-white p-8 shadow-xl shadow-slate-200/70"><h2 data-motion="title-lines" className="site-heading text-4xl leading-[1.08]">{section.h2}</h2>{section.text && <p data-motion="reveal-up" className="mt-5 max-w-4xl text-lg leading-8 text-slate-600">{section.text}</p>}{section.features && <div data-motion="stagger" className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">{section.features.map(([title, text], index) => <div data-stagger-item key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><BadgeCheck className="mb-4 h-6 w-6 text-cyan-700" /><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}{section.steps && <div data-motion="timeline" className="relative mt-8 grid gap-5 md:grid-cols-4">{section.steps.map(([title, text], index) => <div data-stagger-item key={title} className="rounded-[1.6rem] border border-slate-200 bg-slate-50 p-6"><div className="mb-5 text-4xl font-black text-cyan-700">0{index + 1}</div><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-600">{text}</p></div>)}</div>}</article>)}</div></section>
+      {page.caseStudy && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div data-motion="reveal-up" className="theme-dark-panel mx-auto max-w-7xl rounded-[2.8rem] bg-[#14161C] p-8 text-white shadow-2xl shadow-slate-300/70 md:p-12"><Pill>Caso de referencia</Pill><h2 data-motion="title-lines" className="site-heading mt-6 text-4xl leading-[1.08]">Caso de referencia</h2><p data-motion="reveal-left" className="mt-5 max-w-4xl text-lg leading-8 text-white/68">{page.caseStudy}</p></div></section>}
+      {page.benefits && <section className="bg-white px-5 py-24 text-slate-950 lg:px-8"><div className="mx-auto max-w-7xl"><div data-motion="reveal-left" className="mb-10 inline-flex rounded-full bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">Beneficios</div><div data-motion="stagger" className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">{page.benefits.map((benefit) => <div data-stagger-item key={benefit} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white p-4 font-bold text-slate-700 shadow-sm"><BadgeCheck className="h-5 w-5 shrink-0 text-cyan-700" />{benefit}</div>)}</div></div></section>}
+      </div>
       )}
     </PageShell>
   );
