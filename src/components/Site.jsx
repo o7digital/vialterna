@@ -357,7 +357,6 @@ function Header({ theme, onThemeToggle }) {
         <a href="https://www.linkedin.com/company/vialterna/" aria-label="LinkedIn" className="font-technical grid h-11 w-11 place-items-center rounded-md border border-[#0B65C7]/35 bg-[#14161C] text-white/85 transition hover:border-[#12B3CF] hover:text-[#12B3CF]">
           <span className="text-sm font-black">in</span>
         </a>
-        <a href="/contacto/" className="cta-button font-technical rounded-md px-5 py-3 text-sm font-bold uppercase tracking-[0.04em] text-white">Habla con un experto</a>
       </div>
       <button onClick={() => setOpen(!open)} className="rounded-md border border-[#0B65C7]/35 bg-[#14161C] p-3 text-white xl:hidden" aria-label="Abrir menú">
         {open ? <X /> : <Menu />}
@@ -382,7 +381,6 @@ function Header({ theme, onThemeToggle }) {
               {theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
             </button>
             <a href="https://www.linkedin.com/company/vialterna/" className="block rounded-sm px-2 py-3 text-sm font-bold uppercase tracking-[0.05em] text-[#F5F5F5]/85">LinkedIn</a>
-            <a href="/contacto/" className="cta-button block rounded-sm px-3 py-3 text-center text-sm font-bold uppercase tracking-[0.04em] text-white">Habla con un experto</a>
           </div>
         </div>
       )}
