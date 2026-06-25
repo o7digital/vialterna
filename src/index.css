@@ -165,9 +165,71 @@ body {
   color: #ffffff;
 }
 
+.language-switch {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  z-index: 60;
+  display: grid;
+  width: 42px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(18, 179, 207, 0.38);
+  border-right: 0;
+  border-radius: 6px 0 0 6px;
+  background: rgba(20, 22, 28, 0.94);
+  box-shadow: 0 14px 36px rgba(6, 21, 33, 0.28);
+  backdrop-filter: blur(16px);
+}
+
+.language-switch a {
+  display: grid;
+  min-height: 42px;
+  place-items: center;
+  color: rgba(245, 245, 245, 0.62);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.language-switch a:hover {
+  color: #12b3cf;
+}
+
+.language-switch a[aria-current="page"] {
+  background: #0b65c7;
+  color: #ffffff;
+}
+
+.language-switch span {
+  height: 1px;
+  background: rgba(18, 179, 207, 0.28);
+}
+
 .theme-light {
   background: #f6f9fb;
   color: #111827;
+}
+
+.theme-light .language-switch {
+  border-color: rgba(11, 101, 199, 0.28);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.14);
+}
+
+.theme-light .language-switch a {
+  color: #475569;
+}
+
+.theme-light .language-switch a:hover {
+  color: #0b65c7;
+}
+
+.theme-light .language-switch a[aria-current="page"] {
+  color: #ffffff;
 }
 
 .theme-light header,

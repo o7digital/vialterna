@@ -4,6 +4,6 @@ import { HomePage } from "../components/Site.jsx";
 import { home } from "../data/siteContent.js";
 ---
 
-<Layout title={home.title} description={home.description} canonical="/">
-  <HomePage page={home} client:load />
+<Layout title={home.title} description={home.description} canonical="/" language="es" alternateEs="/" alternateEn="/en/">
+  <HomePage page={home} language="es" path="/" client:load />
 </Layout>

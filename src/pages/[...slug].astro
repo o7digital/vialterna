@@ -22,6 +22,6 @@ if (hubRedirects[path]) {
 }
 ---
 
-<Layout title={page.title} description={page.description} canonical={path}>
-  <ContentPage page={page} path={path} client:load />
+<Layout title={page.title} description={page.description} canonical={path} language="es" alternateEs={path} alternateEn={`/en${path}`}>
+  <ContentPage page={page} path={path} language="es" client:load />
 </Layout>
