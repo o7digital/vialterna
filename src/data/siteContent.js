@@ -45,6 +45,7 @@ export const navigation = [
   },
   { label: "Empresa", href: "/empresa/" },
   { label: "Insights", href: "/insights/" },
+  { label: "FAQ", href: "/faq/" },
   { label: "Contacto", href: "/contacto/" }
 ];
 
@@ -248,6 +249,103 @@ const privacySections = [
   }
 ];
 
+const faqContent = {
+  es: {
+    label: "ES",
+    title: "Preguntas frecuentes",
+    intro: "Respuestas directas sobre el modelo de servicio, alcance, despliegue y operación de Vialterna.",
+    items: [
+      {
+        question: "¿Qué hace Vialterna?",
+        answer: "Vialterna diseña, despliega y opera conectividad empresarial resiliente para empresas con sitios distribuidos en México. Integramos diferentes operadores y tecnologías para mantener conectadas operaciones críticas."
+      },
+      {
+        question: "¿Vialterna es un operador tradicional?",
+        answer: "No. Vialterna es agnóstico de operador. Diseñamos la arquitectura alrededor de la operación del cliente, no alrededor de una red propia. Podemos combinar fibra, LTE, 5G, satélite y otras tecnologías según cada ubicación."
+      },
+      {
+        question: "¿Qué tipo de empresas atiende Vialterna?",
+        answer: "Trabajamos con empresas que operan múltiples sitios, sucursales, cajeros automáticos, tiendas, franquicias, centros de distribución, sitios industriales, dispositivos IoT o infraestructura transaccional."
+      },
+      {
+        question: "¿Qué significa Disponibilidad como Servicio?",
+        answer: "Significa que no entregamos solamente enlaces. Diseñamos, implementamos, monitoreamos y gestionamos una arquitectura de conectividad orientada a mantener la operación disponible, con visibilidad, soporte y continuidad."
+      },
+      {
+        question: "¿Pueden trabajar con mis operadores actuales?",
+        answer: "Sí. Podemos evaluar los enlaces existentes, identificar riesgos, detectar redundancias, proponer mejoras y complementar la arquitectura con operadores o tecnologías adicionales cuando sea necesario."
+      },
+      {
+        question: "¿Vialterna ofrece respaldo satelital o celular?",
+        answer: "Sí. Diseñamos conectividad de respaldo con LTE, 5G, satélite LEO u otras rutas secundarias para reducir la dependencia de un solo enlace o tecnología."
+      },
+      {
+        question: "¿Qué incluye un diagnóstico de conectividad?",
+        answer: "El diagnóstico revisa cobertura, operadores, enlaces existentes, puntos únicos de falla, criticidad por sitio, gasto, desempeño, riesgos de desconexión y oportunidades de optimización."
+      },
+      {
+        question: "¿Pueden iniciar con un piloto?",
+        answer: "Sí. En muchos casos el proceso inicia con un piloto de pocos sitios para validar cobertura, desempeño, failover y operación antes de escalar a un despliegue mayor."
+      },
+      {
+        question: "¿Vialterna gestiona SIMs empresariales e IoT?",
+        answer: "Sí. Administramos SIMs, conectividad celular, consumo, activaciones, alertas, optimización de planes y ciclo de vida para dispositivos conectados o flotas IoT."
+      },
+      {
+        question: "¿Cómo puedo contactar a Vialterna?",
+        answer: "Puedes escribir a atencionaclientes@vialterna.com o comunicarte por WhatsApp al 55 8062 6884 para iniciar una conversación o solicitar un diagnóstico."
+      }
+    ]
+  },
+  en: {
+    label: "EN",
+    title: "Frequently Asked Questions",
+    intro: "Direct answers about Vialterna's service model, scope, deployment process and operations.",
+    items: [
+      {
+        question: "What does Vialterna do?",
+        answer: "Vialterna designs, deploys and operates resilient enterprise connectivity for companies with distributed sites in Mexico. We integrate multiple carriers and technologies to keep critical operations connected."
+      },
+      {
+        question: "Is Vialterna a traditional carrier?",
+        answer: "No. Vialterna is carrier-agnostic. We design the architecture around the client's operation, not around a proprietary network. We can combine fiber, LTE, 5G, satellite and other technologies depending on each location."
+      },
+      {
+        question: "What types of companies does Vialterna support?",
+        answer: "We work with companies that operate multiple sites, branches, ATMs, stores, franchises, distribution centers, industrial locations, IoT devices or transactional infrastructure."
+      },
+      {
+        question: "What does Availability as a Service mean?",
+        answer: "It means we do not simply deliver links. We design, implement, monitor and manage a connectivity architecture focused on keeping operations available, with visibility, support and continuity."
+      },
+      {
+        question: "Can Vialterna work with my current carriers?",
+        answer: "Yes. We can evaluate existing links, identify risks, detect redundancies, propose improvements and complement the architecture with additional carriers or technologies when needed."
+      },
+      {
+        question: "Does Vialterna provide satellite or cellular backup?",
+        answer: "Yes. We design backup connectivity using LTE, 5G, LEO satellite or other secondary routes to reduce dependency on a single link or technology."
+      },
+      {
+        question: "What is included in a connectivity assessment?",
+        answer: "The assessment reviews coverage, carriers, existing links, single points of failure, site criticality, spend, performance, disconnection risks and optimization opportunities."
+      },
+      {
+        question: "Can Vialterna start with a pilot?",
+        answer: "Yes. In many cases the process starts with a small-site pilot to validate coverage, performance, failover and operations before scaling to a larger rollout."
+      },
+      {
+        question: "Does Vialterna manage enterprise SIMs and IoT connectivity?",
+        answer: "Yes. We manage SIMs, cellular connectivity, usage, activations, alerts, plan optimization and lifecycle for connected devices or IoT fleets."
+      },
+      {
+        question: "How can I contact Vialterna?",
+        answer: "You can write to atencionaclientes@vialterna.com or contact us by WhatsApp at 55 8062 6884 to start a conversation or request an assessment."
+      }
+    ]
+  }
+};
+
 export const home = {
   title: "Conectividad empresarial resiliente en México | Vialterna",
   description: "Vialterna diseña, despliega y opera conectividad administrada para empresas con operaciones distribuidas en México.",
@@ -396,6 +494,16 @@ export const pages = {
     h1: "Insights: análisis de conectividad, redes empresariales y soluciones Edge",
     intro: "Perspectivas técnicas sobre conectividad administrada, Soluciones Edge, redes SD-WAN, IoT, SIMs empresariales y continuidad operativa.",
     sections: [{ h2: "Artículos recomendados", features: [["4G/LTE vs. 5G", "Comparación de tecnologías celulares para routers y conectividad móvil."], ["Abandonando MPLS por SD-WAN", "Contenido para empresas que evalúan arquitecturas más flexibles."], ["GPS + IoT", "Rastreo, sensores, conectividad celular y gestión de flotas inteligentes."]] }],
+    cta
+  },
+  "/faq/": {
+    title: "FAQ | Preguntas frecuentes de conectividad | Vialterna",
+    description: "Preguntas frecuentes en español e inglés sobre conectividad empresarial, SD-WAN, respaldo, SIMs, IoT y servicios administrados de Vialterna.",
+    kind: "faq",
+    eyebrow: "FAQ",
+    h1: "Preguntas frecuentes sobre conectividad empresarial",
+    intro: "Información esencial para entender cómo Vialterna diseña, despliega y opera conectividad resiliente para empresas distribuidas.",
+    faq: faqContent,
     cta
   },
   "/contacto/": {

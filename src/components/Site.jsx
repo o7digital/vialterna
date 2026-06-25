@@ -402,7 +402,7 @@ function Footer() {
           <div className="text-xs text-white/45">Conectividad resiliente</div>
         </div>
         <div><h4 className="font-black">Soluciones</h4><div className="mt-4 grid gap-2 text-white/55">{solutions.map((s) => <a href={s.href} key={s.href}>{s.title}</a>)}</div></div>
-        <div><h4 className="font-black">Empresa</h4><div className="mt-4 grid gap-2 text-white/55"><a href="/industrias/">Industrias</a><a href="/empresa/">Empresa</a><a href="/insights/">Insights</a><a href="/aviso-de-privacidad/">Aviso de privacidad</a></div></div>
+        <div><h4 className="font-black">Empresa</h4><div className="mt-4 grid gap-2 text-white/55"><a href="/industrias/">Industrias</a><a href="/empresa/">Empresa</a><a href="/insights/">Insights</a><a href="/faq/">FAQ</a><a href="/aviso-de-privacidad/">Aviso de privacidad</a></div></div>
         <div><h4 className="font-black">Contacto</h4><div className="mt-4 grid gap-2 text-white/55"><span>atencionaclientes@vialterna.com</span><span>55 8062 6884</span><span>2026 Vialterna</span></div></div>
       </div>
     </footer>
@@ -956,6 +956,74 @@ function PrivacyPage({ page }) {
   );
 }
 
+function FaqPage({ page }) {
+  const pageRef = useRef(null);
+  useHomeMotion(pageRef);
+  const languages = [page.faq?.es, page.faq?.en].filter(Boolean);
+
+  return (
+    <PageShell>
+      {({ theme, toggleTheme }) => (
+      <div ref={pageRef}>
+      <section data-motion="hero" className="relative overflow-hidden bg-[#111217]">
+        <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale-[18%] saturate-[.72]" />
+        <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.94)_50%,rgba(20,22,28,.78)_100%)]" />
+        <Header theme={theme} onThemeToggle={toggleTheme} />
+        <div className="relative z-10 mx-auto max-w-[96rem] px-5 pb-20 pt-32 lg:px-8 lg:pt-36 2xl:px-10">
+          <div data-motion="hero-content" className="max-w-5xl">
+            <div data-motion="hero-label"><Pill>{page.eyebrow}</Pill></div>
+            <h1 data-motion="title-lines" className="site-heading mt-7 max-w-5xl text-5xl leading-[1.06] text-white md:text-7xl">{page.h1}</h1>
+            <p data-motion="hero-copy" className="mt-7 max-w-3xl text-xl font-bold leading-8 text-slate-100">{page.intro}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.38fr_0.62fr]">
+          <aside data-motion="reveal-left" className="lg:sticky lg:top-28 lg:h-fit">
+            <div className="rounded-md border border-slate-200 bg-white p-7 shadow-xl shadow-slate-200/70">
+              <div className="font-technical text-sm font-black uppercase tracking-[0.18em] text-cyan-800">FAQ / ES + EN</div>
+              <h2 data-motion="title-lines" className="site-heading mt-5 text-4xl leading-[1.08]">Dudas frecuentes antes de diseñar una red resiliente.</h2>
+              <p className="mt-5 leading-8 text-slate-600">Todas las respuestas están abiertas en la página para consulta rápida, lectura completa e indexación.</p>
+              <a href="/contacto/" className="cta-button mt-7 inline-flex items-center gap-2 rounded-md px-6 py-4 font-bold text-white">Habla con un experto <ArrowRight className="h-5 w-5" /></a>
+            </div>
+          </aside>
+
+          <div className="grid gap-10">
+            {languages.map((language, languageIndex) => (
+              <section data-motion={languageIndex === 0 ? "reveal-right" : "reveal-left"} key={language.label} className="rounded-md border border-slate-200 bg-white p-6 shadow-xl shadow-slate-200/70 md:p-9">
+                <div className="mb-8 flex flex-col gap-3 border-b border-slate-200 pb-7 md:flex-row md:items-end md:justify-between">
+                  <div>
+                    <div className="font-technical text-sm font-black uppercase tracking-[0.18em] text-cyan-800">{language.label}</div>
+                    <h2 data-motion="title-lines" className="site-heading mt-3 text-4xl leading-[1.08]">{language.title}</h2>
+                  </div>
+                  <p className="max-w-xl leading-7 text-slate-600">{language.intro}</p>
+                </div>
+
+                <div className="grid gap-0">
+                  {language.items.map((item, index) => (
+                    <article data-motion={index % 2 === 0 ? "reveal-left" : "reveal-right"} key={item.question} className="faq-item border-b border-slate-200 py-7 last:border-b-0">
+                      <div className="grid gap-5 md:grid-cols-[4.5rem_1fr]">
+                        <div className="font-technical text-3xl font-black text-cyan-800">{String(index + 1).padStart(2, "0")}</div>
+                        <div>
+                          <h3 className="text-2xl font-black leading-tight text-slate-950">{item.question}</h3>
+                          <p className="mt-4 text-lg leading-8 text-slate-600">{item.answer}</p>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        </div>
+      </section>
+      </div>
+      )}
+    </PageShell>
+  );
+}
+
 export function ContentPage({ page, path }) {
   const pageRef = useRef(null);
   useHomeMotion(pageRef);
@@ -965,6 +1033,9 @@ export function ContentPage({ page, path }) {
   }
   if (page.kind === "privacy" || path === "/aviso-de-privacidad/") {
     return <PrivacyPage page={page} />;
+  }
+  if (page.kind === "faq" || path === "/faq/") {
+    return <FaqPage page={page} />;
   }
 
   return (
