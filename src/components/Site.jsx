@@ -122,20 +122,61 @@ function useHomeMotion(rootRef) {
         const title = hero.querySelector("[data-motion='title-lines']");
         const copy = hero.querySelector("[data-motion='hero-copy']");
         const cta = hero.querySelector("[data-motion='hero-cta']");
-        const timeline = gsap.timeline({ defaults: { ease: "power2.out" } });
-        if (label) timeline.from(label, { y: 20, opacity: 0, duration: 0.65 });
-        if (title) timeline.from(title, { y: mobileMotion ? 25 : 30, opacity: 0, duration: mobileMotion ? 0.6 : 0.8 }, "-=0.42");
-        if (copy) timeline.from(copy, { y: 20, opacity: 0, duration: 0.7 }, "-=0.48");
-        if (cta) timeline.from(cta, { y: 15, opacity: 0, duration: 0.6 }, "-=0.42");
-        gsap.fromTo(hero.querySelectorAll(".hero-video-layer"), { scale: 1.02 }, { scale: 1, duration: 0.9, ease: "power2.out" });
+        if (title) splitHeadingLines(title);
+        const heroLines = title?.querySelectorAll(".motion-line-inner") || [];
+        const timeline = gsap.timeline({ defaults: { ease: "power3.out" } });
+        if (label) timeline.from(label, { y: 35, opacity: 0, duration: 0.7 });
+        if (heroLines.length) {
+          timeline.from(heroLines, {
+            y: 70,
+            opacity: 0,
+            duration: mobileMotion ? 0.72 : 0.82,
+            stagger: 0.12
+          }, "-=0.38");
+        } else if (title) {
+          timeline.from(title, { y: 35, opacity: 0, duration: 0.75 }, "-=0.38");
+        }
+        if (copy) timeline.from(copy, { y: 35, opacity: 0, duration: 0.72 }, "-=0.46");
+        if (cta) timeline.from(cta, { y: 25, opacity: 0, duration: 0.62 }, "-=0.44");
+        gsap.fromTo(hero.querySelectorAll(".hero-video-layer"), { scale: 1.04 }, {
+          scale: 1,
+          duration: 1.2,
+          ease: "power2.out"
+        });
+        gsap.to(hero.querySelectorAll(".hero-video-layer"), {
+          scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: hero,
+            start: "top top",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+        gsap.to(hero.querySelector("[data-motion='hero-content']"), {
+          y: mobileMotion ? -14 : -25,
+          ease: "none",
+          scrollTrigger: {
+            trigger: hero,
+            start: "top top",
+            end: "45% top",
+            scrub: true
+          }
+        });
       }
 
+      const revealPresets = {
+        "reveal-up": { y: 25 },
+        "reveal-left": { x: -72, scale: 0.98 },
+        "reveal-right": { x: 72, scale: 0.98 }
+      };
       gsap.utils.toArray("[data-motion^='reveal-']").forEach((element) => {
+        const preset = revealPresets[element.dataset.motion] || revealPresets["reveal-up"];
         gsap.from(element, {
-          y: 25,
+          ...preset,
           opacity: 0,
-          duration: 0.65,
-          ease: "power2.out",
+          duration: 0.78,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: element,
             start: "top 85%",
@@ -146,13 +187,93 @@ function useHomeMotion(rootRef) {
 
       gsap.utils.toArray("[data-motion='stagger']").forEach((group) => {
         const children = group.querySelectorAll("[data-stagger-item]");
+        const variant = group.dataset.motionVariant || "";
+        if (variant === "approaches") {
+          children.forEach((child, index) => {
+            const from = mobileMotion
+              ? { y: 30, scale: 0.98 }
+              : index === 0
+                ? { x: -80, scale: 0.97 }
+                : index === 1
+                  ? { y: 80, scale: 0.97 }
+                  : { x: 80, scale: 0.97 };
+            gsap.from(child, {
+              ...from,
+              opacity: 0,
+              duration: 0.86,
+              ease: "power3.out",
+              delay: index * 0.14,
+              scrollTrigger: {
+                trigger: group,
+                start: "top 82%",
+                once: true
+              }
+            });
+          });
+          return;
+        }
+
+        if (variant === "pillars") {
+          children.forEach((child, index) => {
+            const number = child.querySelector("[data-pillar-number]");
+            const body = child.querySelector("[data-pillar-body]");
+            const from = mobileMotion
+              ? { y: 28 }
+              : { x: index % 2 === 1 ? 90 : -90, scale: 0.96 };
+            if (number) {
+              gsap.from(number, {
+                ...from,
+                opacity: 0,
+                duration: 0.68,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: child,
+                  start: "top 84%",
+                  once: true
+                }
+              });
+            }
+            gsap.from(body || child, {
+              ...from,
+              opacity: 0,
+              duration: 0.9,
+              delay: 0.08,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: child,
+                start: "top 82%",
+                once: true
+              }
+            });
+          });
+          return;
+        }
+
+        if (variant === "solutions") {
+          children.forEach((child, index) => {
+            gsap.from(child, {
+              x: mobileMotion ? 0 : index % 2 === 0 ? -70 : 70,
+              y: mobileMotion ? 26 : 0,
+              opacity: 0,
+              scale: 0.98,
+              duration: 0.9,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: child,
+                start: "top 84%",
+                once: true
+              }
+            });
+          });
+          return;
+        }
+
         gsap.from(children, {
-          y: mobileMotion ? 25 : group.dataset.motionVariant === "approaches" ? 60 : 30,
+          y: mobileMotion ? 25 : 30,
           opacity: 0,
-          scale: group.dataset.motionVariant === "approaches" ? 0.98 : 1,
           duration: mobileMotion ? 0.6 : 0.7,
           ease: "power2.out",
-          stagger: group.dataset.motionVariant === "approaches" ? 0.12 : 0.08,
+          stagger: 0.08,
           scrollTrigger: {
             trigger: group,
             start: "top 85%",
@@ -215,33 +336,91 @@ function useHomeMotion(rootRef) {
           });
         }
         steps.forEach((step) => {
+          const number = step.querySelector("[data-step-number]");
+          const title = step.querySelector("[data-step-title]");
+          const text = step.querySelector("[data-step-text]");
           gsap.from(step, {
-            y: 20,
-            opacity: 0,
-            duration: 0.6,
-            ease: "power2.out",
+            y: 24,
+            opacity: 0.35,
+            duration: 0.68,
+            ease: "power3.out",
             scrollTrigger: {
               trigger: step,
-              start: "top 85%",
+              start: "top 86%",
               once: true
             }
           });
+          ScrollTrigger.create({
+            trigger: step,
+            start: "top 68%",
+            end: "bottom 52%",
+            onToggle: ({ isActive }) => {
+              step.classList.toggle("timeline-step-active", isActive);
+              number?.classList.toggle("timeline-step-number-active", isActive);
+              title?.classList.toggle("timeline-step-title-active", isActive);
+            }
+          });
+          if (number) {
+            gsap.fromTo(number, { scale: 1 }, {
+              scale: 1.08,
+              ease: "none",
+              scrollTrigger: {
+                trigger: step,
+                start: "top 68%",
+                end: "bottom 52%",
+                scrub: true
+              }
+            });
+          }
+          if (text) {
+            gsap.from(text, {
+              y: 25,
+              opacity: 0,
+              duration: 0.55,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: step,
+                start: "top 74%",
+                once: true
+              }
+            });
+          }
         });
       });
 
       gsap.utils.toArray("[data-motion='parallax-media']").forEach((media) => {
-        gsap.fromTo(media, { opacity: 0, scale: 1.015 }, {
+        const direction = media.dataset.motionDirection || "vertical";
+        const fromClip = direction === "left"
+          ? "inset(0% 100% 0% 0%)"
+          : direction === "right"
+            ? "inset(0% 0% 0% 100%)"
+            : "inset(100% 0% 0% 0%)";
+        gsap.fromTo(media, { opacity: 0, scale: 1.04, clipPath: fromClip }, {
           opacity: 1,
           scale: 1,
-          duration: 0.75,
-          ease: "power2.out",
+          clipPath: "inset(0% 0% 0% 0%)",
+          duration: 0.9,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: media,
-            start: "top 85%",
+            start: "top 84%",
             once: true
           }
         });
       });
+
+      if (!mobileMotion) {
+        root.querySelectorAll("[data-short-sticky='true']").forEach((element) => {
+          ScrollTrigger.create({
+            trigger: element.parentElement || element,
+            start: "top 18%",
+            end: "+=180",
+            pin: element,
+            pinSpacing: false,
+            anticipatePin: 1
+          });
+        });
+      }
 
       window.setTimeout(() => ScrollTrigger.refresh(), 350);
     }, root);
@@ -563,7 +742,7 @@ export function HomePage({ page, language = "es", path = "/" }) {
 function CardGrid({ cards, language = "es" }) {
   const { item } = useRevealMotion();
 
-  return <div data-motion="stagger" className="grid items-stretch gap-6 lg:grid-cols-4">{cards.map(({ icon: Icon, title, text, image, href }, index) => <motion.article data-stagger-item {...item(index)} whileHover={{ y: -4 }} key={title} className="group flex h-full flex-col overflow-hidden rounded-md border border-white/16 bg-black shadow-2xl shadow-black/25 transition duration-300 hover:border-[#12B3CF]/70"><div data-motion="parallax-media" className="media-hover relative h-48 overflow-hidden">{image && <img src={image} alt={title} className="h-full w-full object-cover opacity-80" loading="lazy" />}<div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" /><div className="absolute bottom-5 left-5 grid h-12 w-12 place-items-center rounded-md bg-white text-[#14161C]"><Icon className="h-6 w-6" /></div></div><div className="flex flex-1 flex-col p-7 text-white"><h3 className="text-2xl font-light tracking-tight">{title}</h3><p className="mt-4 leading-7 text-white/72">{text}</p>{href && <div className="mt-auto pt-7"><a href={localizeHref(href, language)} className="inline-flex w-fit items-center gap-2 rounded-md border-2 border-[#ff6d31] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#ff6d31]">{ui[language].more}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></a></div>}</div></motion.article>)}</div>;
+  return <div data-motion="stagger" data-motion-variant="solutions" className="grid items-stretch gap-6 lg:grid-cols-4">{cards.map(({ icon: Icon, title, text, image, href }, index) => <motion.article data-stagger-item {...item(index)} whileHover={{ y: -6 }} key={title} className="group flex h-full flex-col overflow-hidden rounded-md border border-white/16 bg-black shadow-2xl shadow-black/25 transition duration-500 hover:border-[#12B3CF]/78"><div data-motion="parallax-media" data-motion-direction={index % 2 === 0 ? "left" : "right"} className="media-hover relative h-48 overflow-hidden">{image && <img src={image} alt={title} className="h-full w-full object-cover opacity-80" loading="lazy" />}<div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" /><div className="absolute bottom-5 left-5 grid h-12 w-12 place-items-center rounded-md bg-white text-[#14161C]"><Icon className="h-6 w-6" /></div></div><div className="flex flex-1 flex-col p-7 text-white"><h3 className="text-2xl font-light tracking-tight">{title}</h3><p className="mt-4 leading-7 text-white/72">{text}</p>{href && <div className="mt-auto pt-7"><a href={localizeHref(href, language)} className="inline-flex w-fit items-center gap-2 rounded-md border-2 border-[#ff6d31] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#ff6d31]">{ui[language].more}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></a></div>}</div></motion.article>)}</div>;
 }
 
 function DesignSections({ page, language = "es" }) {
@@ -601,16 +780,16 @@ function DesignSections({ page, language = "es" }) {
 
       <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-[96rem]">
-          <div className="availability-heading mx-auto max-w-6xl text-center">
+          <div data-short-sticky="true" className="availability-heading mx-auto max-w-6xl text-center">
             <motion.h2 data-motion="title-lines" {...reveal} className="site-heading text-4xl leading-[1.08] md:text-6xl">{availabilitySection?.h2}</motion.h2>
             <motion.p data-motion="reveal-left" {...item(1, 25)} className="mx-auto mt-7 max-w-5xl text-xl leading-9 text-white/72">{availabilitySection?.text}</motion.p>
             <motion.p data-motion="reveal-right" {...item(2, 25)} className="mx-auto mt-9 max-w-4xl text-xl leading-8 text-white/78">{language === "en" ? "Three pillars support the service. Together, they let us design availability instead of selling links." : "Tres pilares sustentan el servicio. Juntos, son la forma en que diseñamos disponibilidad en lugar de vender enlaces."}</motion.p>
           </div>
-          <div data-motion="stagger" className="mt-16 grid gap-8 lg:grid-cols-3">
+          <div data-motion="stagger" data-motion-variant="pillars" className="mt-16 grid gap-8 lg:grid-cols-3">
             {localized.visualCards.map(([Icon, title, text], index) => (
               <motion.article data-stagger-item {...item(index)} key={title} className="grid gap-5 lg:grid-cols-[10rem_1fr]">
-                <div className="font-technical text-8xl font-light leading-none text-[#0B65C7]">0{index + 1}</div>
-                <div>
+                <div data-pillar-number className="font-technical text-8xl font-light leading-none text-[#0B65C7]">0{index + 1}</div>
+                <div data-pillar-body className="rounded-md border border-white/10 bg-white/[0.02] p-5 transition duration-500">
                   <Icon className="mb-6 h-9 w-9 text-[#12B3CF]" />
                   <h3 className="text-4xl font-light leading-tight text-white">{title}</h3>
                   <p className="mt-5 text-lg leading-8 text-white/72">{text}</p>
@@ -648,9 +827,12 @@ function DesignSections({ page, language = "es" }) {
           <div data-motion="timeline" className="relative mx-auto mt-14 grid max-w-5xl gap-10 pl-8">
             <span data-timeline-line className="absolute bottom-0 left-0 top-0 w-0.5 bg-[#12B3CF]" />
             {processSection?.steps?.map(([title, text], index) => (
-              <motion.article data-stagger-item {...item(index)} key={title} className="grid gap-3 border-l border-transparent md:grid-cols-[12rem_1fr]">
-                <h3 className="text-3xl font-light text-white">{title}</h3>
-                <p className="text-lg leading-8 text-white/72">{text}</p>
+              <motion.article data-stagger-item {...item(index)} key={title} className="timeline-step grid gap-3 border-l border-transparent pl-6 transition duration-300 md:grid-cols-[12rem_1fr]">
+                <div data-step-number className="font-technical text-3xl font-light text-[#12B3CF]/70">0{index + 1}</div>
+                <div>
+                  <h3 data-step-title className="text-3xl font-light text-white/74 transition duration-300">{title}</h3>
+                  <p data-step-text className="mt-2 text-lg leading-8 text-white/72">{text}</p>
+                </div>
               </motion.article>
             ))}
           </div>

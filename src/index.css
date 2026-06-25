@@ -98,17 +98,37 @@ body {
 
 .media-hover img {
   transform: scale(1);
-  transition: transform 280ms ease;
+  transition: transform 420ms ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .media-hover:hover {
-    background-size: 102% 102%;
+    background-size: 101.5% 101.5%;
   }
 
   .media-hover:hover img {
-    transform: scale(1.02);
+    transform: scale(1.03);
   }
+}
+
+.timeline-step {
+  opacity: 0.78;
+}
+
+.timeline-step-number-active {
+  color: var(--vt-soft-white);
+}
+
+.timeline-step-title-active {
+  color: var(--vt-white);
+}
+
+.timeline-step-active {
+  opacity: 1;
+}
+
+.timeline-step-active[data-stagger-item] {
+  border-left-color: rgba(18, 179, 207, 0.7);
 }
 
 .hero-visual-frame {
