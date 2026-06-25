@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowRight,
   BadgeCheck,
@@ -34,6 +36,8 @@ import {
   workSteps
 } from "../data/siteContent.js";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const revealViewport = { once: true, amount: 0.18 };
 
 function useRevealMotion() {
@@ -42,18 +46,245 @@ function useRevealMotion() {
   return {
     reduceMotion,
     reveal: {
-      initial: reduceMotion ? false : { opacity: 0, y: 25 },
-      whileInView: reduceMotion ? undefined : { opacity: 1, y: 0 },
+      initial: false,
+      whileInView: undefined,
       viewport: revealViewport,
       transition: { duration: 0.7, ease: "easeOut" }
     },
     item: (index = 0, distance = 20) => ({
-      initial: reduceMotion ? false : { opacity: 0, y: distance },
-      whileInView: reduceMotion ? undefined : { opacity: 1, y: 0 },
+      initial: false,
+      whileInView: undefined,
       viewport: revealViewport,
       transition: { duration: 0.68, ease: "easeOut", delay: index * 0.1 }
     })
   };
+}
+
+function splitHeadingLines(element) {
+  if (element.dataset.motionSplit === "true") return;
+  const text = element.textContent?.trim();
+  if (!text) return;
+
+  const words = text.split(/\s+/);
+  const chunkSize = Math.max(3, Math.ceil(words.length / Math.min(3, Math.ceil(words.length / 5))));
+  const lines = [];
+  for (let index = 0; index < words.length; index += chunkSize) {
+    lines.push(words.slice(index, index + chunkSize).join(" "));
+  }
+
+  element.setAttribute("aria-label", text);
+  element.textContent = "";
+  lines.forEach((line, index) => {
+    const wrap = document.createElement("span");
+    const inner = document.createElement("span");
+    wrap.className = "motion-line";
+    inner.className = "motion-line-inner";
+    inner.textContent = line;
+    inner.dataset.lineIndex = String(index);
+    wrap.appendChild(inner);
+    element.appendChild(wrap);
+  });
+  element.dataset.motionSplit = "true";
+}
+
+function useHomeMotion(rootRef) {
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return undefined;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ctx = gsap.context(() => {
+      if (reduceMotion) {
+        gsap.set("[data-motion], .motion-line-inner", { clearProps: "all", opacity: 1 });
+        return;
+      }
+
+      gsap.utils.toArray("[data-motion='title-lines']").forEach((heading) => {
+        splitHeadingLines(heading);
+        if (heading.closest("[data-motion='hero']")) return;
+        const lines = heading.querySelectorAll(".motion-line-inner");
+        gsap.from(lines, {
+          yPercent: 112,
+          x: (index) => (index % 2 === 0 ? -34 : 34),
+          rotation: (index) => (index % 2 === 0 ? -0.8 : 0.8),
+          opacity: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.11,
+          scrollTrigger: {
+            trigger: heading,
+            start: "top 82%",
+            once: true
+          }
+        });
+      });
+
+      const hero = root.querySelector("[data-motion='hero']");
+      if (hero) {
+        const heroLines = hero.querySelectorAll(".motion-line-inner");
+        gsap.timeline({ defaults: { ease: "power3.out" } })
+          .from(hero.querySelector("[data-motion='hero-label']"), { y: 70, opacity: 0, duration: 0.75 })
+          .from(heroLines, { yPercent: 112, opacity: 0, duration: 0.95, stagger: 0.12 }, "-=0.38")
+          .from(hero.querySelector("[data-motion='hero-copy']"), { y: 64, opacity: 0, duration: 0.78 }, "-=0.4")
+          .from(hero.querySelector("[data-motion='hero-cta']"), { y: 56, opacity: 0, duration: 0.7 }, "-=0.36");
+
+        gsap.to(hero.querySelector("[data-motion='hero-content']"), {
+          y: -72,
+          opacity: 0.34,
+          ease: "none",
+          scrollTrigger: {
+            trigger: hero,
+            start: "55% top",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+
+        gsap.fromTo(hero.querySelectorAll(".hero-video-layer"), { scale: 1.06 }, {
+          scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: hero,
+            start: "top top",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+      }
+
+      const presets = {
+        up: { y: 86, x: 0, scale: 0.97, rotation: 0 },
+        left: { x: -140, y: 0, scale: 0.94, rotation: -1.2 },
+        right: { x: 140, y: 0, scale: 0.94, rotation: 1.2 },
+        pillarLeft: { x: -160, y: 0, scale: 0.93, rotation: -0.8 },
+        pillarRight: { x: 160, y: 0, scale: 0.93, rotation: 0.8 },
+        mediaLeft: { x: -120, y: 0, scale: 0.96, rotation: 0 },
+        mediaRight: { x: 120, y: 0, scale: 0.96, rotation: 0 }
+      };
+
+      gsap.utils.toArray("[data-motion^='reveal-']").forEach((element) => {
+        const key = element.dataset.motion.replace("reveal-", "");
+        const from = presets[key] || presets.up;
+        gsap.from(element, {
+          ...from,
+          opacity: 0,
+          duration: 0.95,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: element,
+            start: "top 84%",
+            once: true
+          }
+        });
+      });
+
+      gsap.utils.toArray("[data-motion='stagger']").forEach((group) => {
+        const children = group.querySelectorAll("[data-stagger-item]");
+        gsap.from(children, {
+          y: 96,
+          opacity: 0,
+          scale: 0.95,
+          duration: 0.82,
+          ease: "power3.out",
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: group,
+            start: "top 82%",
+            once: true
+          }
+        });
+      });
+
+      gsap.utils.toArray("[data-motion='metric']").forEach((group) => {
+        const tiles = group.querySelectorAll("[data-stagger-item]");
+        gsap.from(tiles, {
+          y: 92,
+          opacity: 0,
+          scale: 0.94,
+          duration: 0.78,
+          ease: "power3.out",
+          stagger: 0.09,
+          scrollTrigger: {
+            trigger: group,
+            start: "top 82%",
+            once: true
+          }
+        });
+        group.querySelectorAll("[data-metric-value]").forEach((valueNode) => {
+          const finalValue = valueNode.dataset.metricValue || valueNode.textContent || "";
+          const match = finalValue.match(/^(\d+)(.*)$/);
+          if (!match) return;
+          const counter = { value: 0 };
+          gsap.to(counter, {
+            value: Number(match[1]),
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: valueNode,
+              start: "top 88%",
+              once: true
+            },
+            onUpdate: () => {
+              valueNode.textContent = `${Math.round(counter.value)}${match[2]}`;
+            },
+            onComplete: () => {
+              valueNode.textContent = finalValue;
+            }
+          });
+        });
+      });
+
+      gsap.utils.toArray("[data-motion='timeline']").forEach((timeline) => {
+        const line = timeline.querySelector("[data-timeline-line]");
+        const steps = timeline.querySelectorAll("[data-stagger-item]");
+        if (line) {
+          gsap.fromTo(line, { scaleY: 0, transformOrigin: "top" }, {
+            scaleY: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: timeline,
+              start: "top 78%",
+              end: "bottom 58%",
+              scrub: true
+            }
+          });
+        }
+        steps.forEach((step) => {
+          gsap.from(step, {
+            y: 80,
+            opacity: 0.45,
+            scale: 0.97,
+            duration: 0.72,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: step,
+              start: "top 84%",
+              toggleActions: "play none none reverse"
+            }
+          });
+        });
+      });
+
+      gsap.utils.toArray("[data-motion='parallax-media']").forEach((media) => {
+        gsap.fromTo(media, { clipPath: "inset(12% 0% 12% 0%)", y: 44, scale: 1.04 }, {
+          clipPath: "inset(0% 0% 0% 0%)",
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: media,
+            start: "top 84%",
+            once: true
+          }
+        });
+      });
+
+      window.setTimeout(() => ScrollTrigger.refresh(), 350);
+    }, root);
+
+    return () => ctx.revert();
+  }, [rootRef]);
 }
 
 function Pill({ children, icon: Icon }) {
@@ -304,28 +535,29 @@ function HeroVideoBackground() {
 }
 
 export function HomePage({ page }) {
-  const { reduceMotion } = useRevealMotion();
+  const homeRef = useRef(null);
+  useHomeMotion(homeRef);
 
   return (
     <PageShell>
       {({ theme, toggleTheme }) => (
-      <>
-      <section className="relative min-h-[94svh] overflow-hidden">
+      <div ref={homeRef}>
+      <section data-motion="hero" className="relative min-h-[96svh] overflow-hidden">
         <HeroVideoBackground />
         <Header theme={theme} onThemeToggle={toggleTheme} />
-        <div className="relative z-10 mx-auto flex min-h-[94svh] max-w-[96rem] items-end px-5 pb-16 pt-32 lg:px-8 lg:pb-24 lg:pt-36 2xl:px-10">
-          <motion.div className="max-w-5xl">
-            <motion.div initial={reduceMotion ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.72, ease: "easeOut" }}>
+        <div className="relative z-10 mx-auto flex min-h-[96svh] max-w-[96rem] items-end px-5 pb-16 pt-32 lg:px-8 lg:pb-24 lg:pt-36 2xl:px-10">
+          <motion.div data-motion="hero-content" className="max-w-5xl">
+            <motion.div data-motion="hero-label" initial={false}>
               <Pill icon={Zap}>{page.eyebrow}</Pill>
             </motion.div>
-            <motion.h1 initial={reduceMotion ? false : { opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.78, ease: "easeOut", delay: 0.12 }} className="site-heading mt-7 max-w-5xl text-5xl leading-[1.06] md:text-6xl xl:text-[4.75rem]">{page.h1}</motion.h1>
-            <motion.p initial={reduceMotion ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.74, ease: "easeOut", delay: 0.24 }} className="mt-7 max-w-2xl text-xl font-bold leading-8 text-slate-100 md:text-2xl md:leading-9">{page.intro}</motion.p>
-            <motion.div initial={reduceMotion ? false : { opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.68, ease: "easeOut", delay: 0.36 }} className="mt-9 flex flex-col gap-4 sm:flex-row"><a href="/contacto/" className="cta-button font-technical inline-flex items-center justify-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">Habla con un experto <ChevronRight className="h-5 w-5" /></a></motion.div>
+            <motion.h1 data-motion="title-lines" initial={false} className="site-heading mt-7 max-w-5xl text-5xl leading-[1.06] md:text-6xl xl:text-[4.75rem]">{page.h1}</motion.h1>
+            <motion.p data-motion="hero-copy" initial={false} className="mt-7 max-w-2xl text-xl font-bold leading-8 text-slate-100 md:text-2xl md:leading-9">{page.intro}</motion.p>
+            <motion.div data-motion="hero-cta" initial={false} className="mt-9 flex flex-col gap-4 sm:flex-row"><a href="/contacto/" className="cta-button font-technical inline-flex items-center justify-center gap-2 rounded-md px-8 py-4 text-sm font-bold uppercase tracking-[0.04em] text-white">Habla con un experto <ChevronRight className="h-5 w-5" /></a></motion.div>
           </motion.div>
         </div>
       </section>
       <DesignSections page={page} />
-      </>
+      </div>
       )}
     </PageShell>
   );
@@ -334,7 +566,7 @@ export function HomePage({ page }) {
 function CardGrid({ cards }) {
   const { item } = useRevealMotion();
 
-  return <div className="grid items-stretch gap-6 lg:grid-cols-4">{cards.map(({ icon: Icon, title, text, image, href }, index) => <motion.article {...item(index)} whileHover={{ y: -8 }} key={title} className="group flex h-full flex-col overflow-hidden rounded-md border border-white/16 bg-black shadow-2xl shadow-black/25 transition hover:border-[#12B3CF]/70"><div className="media-hover relative h-48 overflow-hidden">{image && <img src={image} alt={title} className="h-full w-full object-cover opacity-80" loading="lazy" />}<div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" /><div className="absolute bottom-5 left-5 grid h-12 w-12 place-items-center rounded-md bg-white text-[#14161C]"><Icon className="h-6 w-6" /></div></div><div className="flex flex-1 flex-col p-7 text-white"><h3 className="text-2xl font-light tracking-tight">{title}</h3><p className="mt-4 leading-7 text-white/72">{text}</p>{href && <div className="mt-auto pt-7"><a href={href} className="inline-flex w-fit items-center gap-2 rounded-md border-2 border-[#ff6d31] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#ff6d31]">Ver más<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></a></div>}</div></motion.article>)}</div>;
+  return <div className="grid items-stretch gap-6 lg:grid-cols-4">{cards.map(({ icon: Icon, title, text, image, href }, index) => <motion.article data-motion={index % 2 === 0 ? "reveal-left" : "reveal-right"} {...item(index)} whileHover={{ y: -8, scale: 1.01 }} key={title} className="group flex h-full flex-col overflow-hidden rounded-md border border-white/16 bg-black shadow-2xl shadow-black/25 transition hover:border-[#12B3CF]/70"><div data-motion="parallax-media" className="media-hover relative h-48 overflow-hidden">{image && <img src={image} alt={title} className="h-full w-full object-cover opacity-80" loading="lazy" />}<div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent" /><div className="absolute bottom-5 left-5 grid h-12 w-12 place-items-center rounded-md bg-white text-[#14161C]"><Icon className="h-6 w-6" /></div></div><div className="flex flex-1 flex-col p-7 text-white"><h3 className="text-2xl font-light tracking-tight">{title}</h3><p className="mt-4 leading-7 text-white/72">{text}</p>{href && <div className="mt-auto pt-7"><a href={href} className="inline-flex w-fit items-center gap-2 rounded-md border-2 border-[#ff6d31] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#ff6d31]">Ver más<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" /></a></div>}</div></motion.article>)}</div>;
 }
 
 function DesignSections({ page }) {
@@ -345,9 +577,9 @@ function DesignSections({ page }) {
     <>
       <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-6xl text-center">
-          <motion.h2 {...reveal} className="site-heading text-4xl leading-[1.08] md:text-6xl">{riskSection?.h2}</motion.h2>
-          <motion.p {...item(1, 25)} className="mx-auto mt-7 max-w-5xl text-xl leading-9 text-white/72">{riskSection?.text}</motion.p>
-          <motion.div {...item(2)} className="mx-auto mt-14 max-w-5xl border-l-4 border-[#12B3CF] bg-[#14161C] p-8 text-left shadow-2xl shadow-black/25">
+          <motion.h2 data-motion="title-lines" {...reveal} className="site-heading text-4xl leading-[1.08] md:text-6xl">{riskSection?.h2}</motion.h2>
+          <motion.p data-motion="reveal-left" {...item(1, 25)} className="mx-auto mt-7 max-w-5xl text-xl leading-9 text-white/72">{riskSection?.text}</motion.p>
+          <motion.div data-motion="reveal-right" {...item(2)} className="mx-auto mt-14 max-w-5xl border-l-4 border-[#12B3CF] bg-[#14161C] p-8 text-left shadow-2xl shadow-black/25">
             <p className="text-2xl font-bold leading-10 text-white/82">
               El tiempo de inactividad impacta directamente tu P&amp;L. <span className="text-[#12B3CF]">La mayoría de las empresas nunca lo han cuantificado.</span>
             </p>
@@ -357,10 +589,10 @@ function DesignSections({ page }) {
 
       <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-[96rem]">
-          <motion.h2 {...reveal} className="site-heading mx-auto max-w-6xl text-center text-4xl leading-[1.08] md:text-6xl">{approachesSection?.h2}</motion.h2>
+          <motion.h2 data-motion="title-lines" {...reveal} className="site-heading mx-auto max-w-6xl text-center text-4xl leading-[1.08] md:text-6xl">{approachesSection?.h2}</motion.h2>
           <div className="mt-14 grid gap-6 lg:grid-cols-3">
             {approachesSection?.approaches?.map(([title, text], index) => (
-              <motion.article {...item(index)} key={title} className="min-h-[24rem] rounded-md border border-white/18 bg-white/[0.035] p-8 shadow-2xl shadow-black/20">
+              <motion.article data-motion={index === 0 ? "reveal-left" : index === 1 ? "reveal-up" : "reveal-right"} {...item(index)} whileHover={{ y: -7, scale: 1.015 }} key={title} className="min-h-[24rem] rounded-md border border-white/18 bg-white/[0.035] p-8 shadow-2xl shadow-black/20 transition hover:border-[#12B3CF]/55 hover:bg-white/[0.055]">
                 <h3 className="text-3xl font-bold leading-tight text-white">{title}</h3>
                 <p className="mt-6 text-lg leading-8 text-white/72">{text}</p>
               </motion.article>
@@ -371,15 +603,15 @@ function DesignSections({ page }) {
 
       <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-[96rem]">
-          <div className="mx-auto max-w-6xl text-center">
-            <motion.h2 {...reveal} className="site-heading text-4xl leading-[1.08] md:text-6xl">{availabilitySection?.h2}</motion.h2>
-            <motion.p {...item(1, 25)} className="mx-auto mt-7 max-w-5xl text-xl leading-9 text-white/72">{availabilitySection?.text}</motion.p>
-            <motion.p {...item(2, 25)} className="mx-auto mt-9 max-w-4xl text-xl leading-8 text-white/78">Tres pilares sustentan el servicio. Juntos, son la forma en que diseñamos disponibilidad en lugar de vender enlaces.</motion.p>
+          <div className="availability-heading mx-auto max-w-6xl text-center">
+            <motion.h2 data-motion="title-lines" {...reveal} className="site-heading text-4xl leading-[1.08] md:text-6xl">{availabilitySection?.h2}</motion.h2>
+            <motion.p data-motion="reveal-left" {...item(1, 25)} className="mx-auto mt-7 max-w-5xl text-xl leading-9 text-white/72">{availabilitySection?.text}</motion.p>
+            <motion.p data-motion="reveal-right" {...item(2, 25)} className="mx-auto mt-9 max-w-4xl text-xl leading-8 text-white/78">Tres pilares sustentan el servicio. Juntos, son la forma en que diseñamos disponibilidad en lugar de vender enlaces.</motion.p>
           </div>
           <div className="mt-16 grid gap-8 lg:grid-cols-3">
             {visualCards.map(([Icon, title, text], index) => (
-              <motion.article {...item(index)} key={title} className="grid gap-5 lg:grid-cols-[10rem_1fr]">
-                <div className="font-technical text-8xl font-light leading-none text-[#0B65C7]">0{index + 1}</div>
+              <motion.article data-motion={index === 1 ? "reveal-pillarRight" : "reveal-pillarLeft"} {...item(index)} key={title} className="grid gap-5 lg:grid-cols-[10rem_1fr]">
+                <div data-motion="reveal-up" className="font-technical text-8xl font-light leading-none text-[#0B65C7]">0{index + 1}</div>
                 <div>
                   <Icon className="mb-6 h-9 w-9 text-[#12B3CF]" />
                   <h3 className="text-4xl font-light leading-tight text-white">{title}</h3>
@@ -394,16 +626,16 @@ function DesignSections({ page }) {
       <section className="bg-[#071622] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-[86rem] overflow-hidden rounded-md border border-white/12 bg-white/[0.075] p-8 shadow-2xl shadow-black/35 md:p-12">
           <div className="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:items-center">
-            <motion.div {...reveal}>
+            <motion.div data-motion="reveal-left" {...reveal}>
               <Pill icon={Gauge}>Operación</Pill>
-              <h2 className="site-heading mt-7 text-4xl leading-[1.08] md:text-6xl">
+              <h2 data-motion="title-lines" className="site-heading mt-7 text-4xl leading-[1.08] md:text-6xl">
                 NOC 24/7, SLA y gestión multioperador en un solo modelo de servicio.
               </h2>
             </motion.div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div data-motion="metric" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {metrics.map(([value, label], index) => (
-                <motion.div {...item(index)} key={label} className="metric-tile rounded-md p-6">
-                  <div className="text-4xl font-black text-cyan-100">{value}</div>
+                <motion.div data-stagger-item {...item(index)} key={label} className="metric-tile rounded-md p-6">
+                  <div data-metric-value={value} className="metric-value text-4xl font-black text-cyan-100">{value}</div>
                   <div className="mt-4 text-sm font-black uppercase tracking-[0.14em] text-white/55">{label}</div>
                 </motion.div>
               ))}
@@ -414,10 +646,11 @@ function DesignSections({ page }) {
 
       <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <motion.h2 {...reveal} className="site-heading mx-auto max-w-5xl text-center text-4xl leading-[1.08] md:text-6xl">{processSection?.h2}</motion.h2>
-          <div className="mx-auto mt-14 grid max-w-5xl gap-10 border-l-2 border-[#12B3CF] pl-8">
+          <motion.h2 data-motion="title-lines" {...reveal} className="site-heading mx-auto max-w-5xl text-center text-4xl leading-[1.08] md:text-6xl">{processSection?.h2}</motion.h2>
+          <div data-motion="timeline" className="relative mx-auto mt-14 grid max-w-5xl gap-10 pl-8">
+            <span data-timeline-line className="absolute bottom-0 left-0 top-0 w-0.5 bg-[#12B3CF]" />
             {processSection?.steps?.map(([title, text], index) => (
-              <motion.article {...item(index)} key={title} className="grid gap-3 md:grid-cols-[12rem_1fr]">
+              <motion.article data-stagger-item {...item(index)} key={title} className="grid gap-3 border-l border-transparent md:grid-cols-[12rem_1fr]">
                 <h3 className="text-3xl font-light text-white">{title}</h3>
                 <p className="text-lg leading-8 text-white/72">{text}</p>
               </motion.article>
@@ -429,8 +662,8 @@ function DesignSections({ page }) {
       <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
-            <motion.h2 {...reveal} className="site-heading text-4xl leading-[1.08] md:text-6xl">Cuatro soluciones. Una plataforma. Lo que necesites para mantener tus operaciones en línea.</motion.h2>
-            <motion.p {...item(1, 25)} className="mx-auto mt-6 max-w-4xl text-xl leading-8 text-white/70">Cada solución corresponde a un problema de conectividad concreto.</motion.p>
+            <motion.h2 data-motion="title-lines" {...reveal} className="site-heading text-4xl leading-[1.08] md:text-6xl">Cuatro soluciones. Una plataforma. Lo que necesites para mantener tus operaciones en línea.</motion.h2>
+            <motion.p data-motion="reveal-up" {...item(1, 25)} className="mx-auto mt-6 max-w-4xl text-xl leading-8 text-white/70">Cada solución corresponde a un problema de conectividad concreto.</motion.p>
           </div>
           <CardGrid cards={solutions} />
         </div>
@@ -438,30 +671,30 @@ function DesignSections({ page }) {
 
       <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <motion.div {...reveal} className="mb-12 max-w-4xl">
+          <motion.div data-motion="reveal-left" {...reveal} className="mb-12 max-w-4xl">
             <Pill>Industrias</Pill>
-            <h2 className="site-heading mt-5 text-4xl leading-[1.08] md:text-6xl">Construido para operaciones distribuidas donde el tiempo de inactividad tiene precio.</h2>
+            <h2 data-motion="title-lines" className="site-heading mt-5 text-4xl leading-[1.08] md:text-6xl">Construido para operaciones distribuidas donde el tiempo de inactividad tiene precio.</h2>
           </motion.div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{industries.map(({ icon: Icon, title, text, href }, index) => <motion.a {...item(index)} href={href} key={title} className="rounded-md border border-white/12 bg-white/[0.045] p-6 backdrop-blur-xl"><Icon className="mb-6 h-8 w-8 text-[#12B3CF]" /><h3 className="text-2xl font-black">{title}</h3><p className="mt-3 leading-7 text-white/72">{text}</p></motion.a>)}</div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{industries.map(({ icon: Icon, title, text, href }, index) => <motion.a data-motion={index % 2 === 0 ? "reveal-left" : "reveal-right"} {...item(index)} href={href} key={title} className="rounded-md border border-white/12 bg-white/[0.045] p-6 backdrop-blur-xl"><Icon className="mb-6 h-8 w-8 text-[#12B3CF]" /><h3 className="text-2xl font-black">{title}</h3><p className="mt-3 leading-7 text-white/72">{text}</p></motion.a>)}</div>
         </div>
       </section>
 
       <section className="bg-[#F4FAFC] px-5 py-24 text-slate-950 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[.95fr_1.05fr] lg:items-center">
-          <motion.div {...reveal}>
+          <motion.div data-motion="reveal-left" {...reveal}>
             <div className="mb-4 inline-flex items-center gap-2 rounded-md bg-cyan-100 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-900">
               <Network className="h-4 w-4" />
               SD-WAN
             </div>
-            <h2 className="site-heading text-4xl leading-[1.08] md:text-6xl">
+            <h2 data-motion="title-lines" className="site-heading text-4xl leading-[1.08] md:text-6xl">
               Redes SD-WAN multioperador para continuidad del negocio.
             </h2>
             <p className="mt-6 text-lg leading-8 text-slate-600">
               Combinamos fibra, LTE, 5G, satélite y enlaces inalámbricos en una arquitectura administrada con failover automático, agregación de enlaces y monitoreo centralizado.
             </p>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <div data-motion="stagger" className="mt-8 grid gap-3 sm:grid-cols-2">
               {sdWanFeatures.map((feature, index) => (
-                <motion.div {...item(index)} key={feature} className="flex items-center gap-3 rounded-md border border-slate-200 bg-white p-4 font-bold text-slate-700">
+                <motion.div data-stagger-item {...item(index)} key={feature} className="flex items-center gap-3 rounded-md border border-slate-200 bg-white p-4 font-bold text-slate-700">
                   <BadgeCheck className="h-5 w-5 shrink-0 text-cyan-700" />
                   {feature}
                 </motion.div>
@@ -469,7 +702,7 @@ function DesignSections({ page }) {
             </div>
           </motion.div>
 
-          <motion.div {...item(1)} className="showcase-panel rounded-md p-5 text-white shadow-2xl shadow-slate-300/70">
+          <motion.div data-motion="reveal-right" {...item(1)} className="showcase-panel rounded-md p-5 text-white shadow-2xl shadow-slate-300/70">
             <div className="showcase-surface rounded-md p-6">
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
@@ -478,7 +711,7 @@ function DesignSections({ page }) {
                 </div>
                 <Router className="h-8 w-8 text-cyan-200" />
               </div>
-              <div className="media-hover relative h-[430px] overflow-hidden rounded-md bg-[linear-gradient(135deg,rgba(6,21,33,.08),rgba(6,21,33,.42)),url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1300&q=80')] bg-cover bg-center">
+              <div data-motion="parallax-media" className="media-hover relative h-[430px] overflow-hidden rounded-md bg-[linear-gradient(135deg,rgba(6,21,33,.08),rgba(6,21,33,.42)),url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1300&q=80')] bg-cover bg-center">
                 <div className="absolute bottom-5 left-5 right-5 grid gap-3">
                   {["Fibra + LTE + 5G + satélite", "QoS y túneles seguros", "Monitoreo NOC centralizado"].map((label, index) => (
                     <motion.div {...item(index)} key={label} className="showcase-label rounded-md p-4 font-bold backdrop-blur-xl">
@@ -493,14 +726,14 @@ function DesignSections({ page }) {
       </section>
 
       <section className="bg-white px-5 py-24 text-slate-950 lg:px-8">
-        <motion.div {...reveal} className="showcase-panel mx-auto max-w-7xl overflow-hidden rounded-md text-white shadow-2xl shadow-slate-300/70">
+        <motion.div data-motion="reveal-up" {...reveal} className="showcase-panel mx-auto max-w-7xl overflow-hidden rounded-md text-white shadow-2xl shadow-slate-300/70">
           <div className="grid lg:grid-cols-[.95fr_1.05fr]">
-            <div className="p-8 md:p-12">
+            <div data-motion="reveal-left" className="p-8 md:p-12">
               <div className="mb-4 inline-flex items-center gap-2 rounded-md bg-white/10 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-100">
                 <ShieldCheck className="h-4 w-4" />
                 Conectividad de respaldo
               </div>
-              <h2 className="site-heading text-4xl leading-[1.08] md:text-6xl">
+              <h2 data-motion="title-lines" className="site-heading text-4xl leading-[1.08] md:text-6xl">
                 Respaldo satelital y celular antes de que una falla detenga la operación.
               </h2>
               <p className="mt-6 text-lg leading-8 text-white/68">
@@ -510,10 +743,10 @@ function DesignSections({ page }) {
                 Habla con un experto <ArrowRight className="h-5 w-5" />
               </a>
             </div>
-            <div className="media-hover relative min-h-[430px] bg-[linear-gradient(135deg,rgba(6,21,33,.08),rgba(6,21,33,.42)),url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1500&q=85')] bg-cover bg-center">
-              <div className="absolute bottom-8 left-8 right-8 grid gap-3 sm:grid-cols-2">
+            <div data-motion="parallax-media" className="media-hover relative min-h-[430px] bg-[linear-gradient(135deg,rgba(6,21,33,.08),rgba(6,21,33,.42)),url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1500&q=85')] bg-cover bg-center">
+              <div data-motion="stagger" className="absolute bottom-8 left-8 right-8 grid gap-3 sm:grid-cols-2">
                 {["LTE", "5G", "Satelital", "Multioperador"].map((label, index) => (
-                  <motion.div {...item(index)} key={label} className="showcase-label rounded-md p-4 font-black backdrop-blur-xl">
+                  <motion.div data-stagger-item {...item(index)} key={label} className="showcase-label rounded-md p-4 font-black backdrop-blur-xl">
                     {label}
                   </motion.div>
                 ))}
@@ -525,9 +758,9 @@ function DesignSections({ page }) {
 
       <section className="bg-[#071622] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
-          <motion.div {...reveal}>
+          <motion.div data-motion="reveal-left" {...reveal}>
             <Pill>Contacto</Pill>
-            <h2 className="site-heading mt-7 text-5xl leading-[1.06] md:text-7xl">
+            <h2 data-motion="title-lines" className="site-heading mt-7 text-5xl leading-[1.06] md:text-7xl">
               Solicita un diagnóstico de conectividad.
             </h2>
             <p className="mt-8 max-w-2xl text-xl leading-9 text-white/64">
@@ -535,7 +768,7 @@ function DesignSections({ page }) {
             </p>
           </motion.div>
 
-          <motion.div {...item(1)} className="rounded-md border border-white/12 bg-white/[0.075] p-8 shadow-2xl shadow-black/30 backdrop-blur-2xl md:p-10">
+          <motion.div data-motion="reveal-right" {...item(1)} className="rounded-md border border-white/12 bg-white/[0.075] p-8 shadow-2xl shadow-black/30 backdrop-blur-2xl md:p-10">
             <div className="font-technical text-sm font-black uppercase tracking-[0.24em] text-[#9AEAF4]">Vialterna</div>
             <div className="mt-8 grid gap-4">
               <div className="flex items-start gap-4 rounded-md bg-white/8 p-5 text-white/82">
