@@ -604,6 +604,7 @@ export const pages = {
     cta
   },
   "/empresa/": {
+    heroImage: "/o7-meeting-room.webp",
     title: "Empresa de telecomunicaciones empresariales en México | Vialterna",
     description: "Vialterna conecta empresas, sucursales, dispositivos y operaciones en campo con redes administradas, SD-WAN, IoT y conectividad resiliente.",
     eyebrow: "Empresa",

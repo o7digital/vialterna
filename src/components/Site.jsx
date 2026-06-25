@@ -665,7 +665,7 @@ function DesignSections({ page, language = "es" }) {
             <motion.div data-motion="reveal-left" {...reveal}>
               <Pill icon={Gauge}>{language === "en" ? "Operations" : "Operación"}</Pill>
               <h2 data-motion="title-lines" className="site-heading mt-7 text-4xl leading-[1.08] md:text-6xl">
-                NOC 24/7, SLA y gestión multioperador en un solo modelo de servicio.
+                {language === "en" ? "NOC 24/7, SLAs and multi-carrier management in one service model." : "NOC 24/7, SLA y gestión multioperador en un solo modelo de servicio."}
               </h2>
             </motion.div>
             <div data-motion="metric" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -698,8 +698,8 @@ function DesignSections({ page, language = "es" }) {
       <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
-            <motion.h2 data-motion="title-lines" {...reveal} className="site-heading text-4xl leading-[1.08] md:text-6xl">Cuatro soluciones. Una plataforma. Lo que necesites para mantener tus operaciones en línea.</motion.h2>
-            <motion.p data-motion="reveal-up" {...item(1, 25)} className="mx-auto mt-6 max-w-4xl text-xl leading-8 text-white/70">Cada solución corresponde a un problema de conectividad concreto.</motion.p>
+            <motion.h2 data-motion="title-lines" {...reveal} className="site-heading text-4xl leading-[1.08] md:text-6xl">{language === "en" ? "Four solutions. One platform. Everything you need to keep operations online." : "Cuatro soluciones. Una plataforma. Lo que necesites para mantener tus operaciones en línea."}</motion.h2>
+            <motion.p data-motion="reveal-up" {...item(1, 25)} className="mx-auto mt-6 max-w-4xl text-xl leading-8 text-white/70">{language === "en" ? "Each solution addresses a specific connectivity challenge." : "Cada solución corresponde a un problema de conectividad concreto."}</motion.p>
           </div>
           <CardGrid cards={localized.solutions} language={language} />
         </div>
@@ -708,8 +708,8 @@ function DesignSections({ page, language = "es" }) {
       <section className="bg-[#111217] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto max-w-7xl">
           <motion.div data-motion="reveal-left" {...reveal} className="mb-12 max-w-4xl">
-            <Pill>Industrias</Pill>
-            <h2 data-motion="title-lines" className="site-heading mt-5 text-4xl leading-[1.08] md:text-6xl">Construido para operaciones distribuidas donde el tiempo de inactividad tiene precio.</h2>
+            <Pill>{language === "en" ? "Industries" : "Industrias"}</Pill>
+            <h2 data-motion="title-lines" className="site-heading mt-5 text-4xl leading-[1.08] md:text-6xl">{language === "en" ? "Built for distributed operations where downtime has a price." : "Construido para operaciones distribuidas donde el tiempo de inactividad tiene precio."}</h2>
           </motion.div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{localized.industries.map(({ icon: Icon, title, text, href }, index) => <motion.a data-motion={index % 2 === 0 ? "reveal-left" : "reveal-right"} {...item(index)} href={localizeHref(href, language)} key={title} className="rounded-md border border-white/12 bg-white/[0.045] p-6 backdrop-blur-xl"><Icon className="mb-6 h-8 w-8 text-[#12B3CF]" /><h3 className="text-2xl font-black">{title}</h3><p className="mt-3 leading-7 text-white/72">{text}</p></motion.a>)}</div>
         </div>
@@ -723,10 +723,10 @@ function DesignSections({ page, language = "es" }) {
               SD-WAN
             </div>
             <h2 data-motion="title-lines" className="site-heading text-4xl leading-[1.08] md:text-6xl">
-              Redes SD-WAN multioperador para continuidad del negocio.
+              {language === "en" ? "Multi-carrier SD-WAN networks for business continuity." : "Redes SD-WAN multioperador para continuidad del negocio."}
             </h2>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              Combinamos fibra, LTE, 5G, satélite y enlaces inalámbricos en una arquitectura administrada con failover automático, agregación de enlaces y monitoreo centralizado.
+              {language === "en" ? "We combine fiber, LTE, 5G, satellite and wireless links in a managed architecture with automatic failover, link aggregation and centralized monitoring." : "Combinamos fibra, LTE, 5G, satélite y enlaces inalámbricos en una arquitectura administrada con failover automático, agregación de enlaces y monitoreo centralizado."}
             </p>
             <div data-motion="stagger" className="mt-8 grid gap-3 sm:grid-cols-2">
               {localized.sdWanFeatures.map((feature, index) => (
@@ -742,14 +742,14 @@ function DesignSections({ page, language = "es" }) {
             <div className="showcase-surface rounded-md p-6">
               <div className="mb-6 flex items-center justify-between gap-4">
                 <div>
-                  <div className="text-sm uppercase tracking-[0.22em] text-cyan-100/50">Arquitectura</div>
-                  <div className="mt-1 text-2xl font-black">Failover + agregación</div>
+                  <div className="text-sm uppercase tracking-[0.22em] text-cyan-100/50">{language === "en" ? "Architecture" : "Arquitectura"}</div>
+                  <div className="mt-1 text-2xl font-black">{language === "en" ? "Failover + aggregation" : "Failover + agregación"}</div>
                 </div>
                 <Router className="h-8 w-8 text-cyan-200" />
               </div>
               <div data-motion="parallax-media" className="media-hover relative h-[430px] overflow-hidden rounded-md bg-[linear-gradient(135deg,rgba(6,21,33,.08),rgba(6,21,33,.42)),url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1300&q=80')] bg-cover bg-center">
                 <div className="absolute bottom-5 left-5 right-5 grid gap-3">
-                  {["Fibra + LTE + 5G + satélite", "QoS y túneles seguros", "Monitoreo NOC centralizado"].map((label, index) => (
+                  {(language === "en" ? ["Fiber + LTE + 5G + satellite", "QoS and secure tunnels", "Centralized NOC monitoring"] : ["Fibra + LTE + 5G + satélite", "QoS y túneles seguros", "Monitoreo NOC centralizado"]).map((label, index) => (
                     <motion.div {...item(index)} key={label} className="showcase-label rounded-md p-4 font-bold backdrop-blur-xl">
                       {label}
                     </motion.div>
@@ -767,21 +767,21 @@ function DesignSections({ page, language = "es" }) {
             <div data-motion="reveal-left" className="p-8 md:p-12">
               <div className="mb-4 inline-flex items-center gap-2 rounded-md bg-white/10 px-4 py-2 text-sm font-black uppercase tracking-[0.14em] text-cyan-100">
                 <ShieldCheck className="h-4 w-4" />
-                Conectividad de respaldo
+                {language === "en" ? "Backup connectivity" : "Conectividad de respaldo"}
               </div>
               <h2 data-motion="title-lines" className="site-heading text-4xl leading-[1.08] md:text-6xl">
-                Respaldo satelital y celular antes de que una falla detenga la operación.
+                {language === "en" ? "Satellite and cellular backup before a failure stops operations." : "Respaldo satelital y celular antes de que una falla detenga la operación."}
               </h2>
               <p className="mt-6 text-lg leading-8 text-white/68">
-                Vialterna diseña capas de redundancia con LTE, 5G, satélite y acceso multioperador para mantener activos sitios críticos.
+                {language === "en" ? "Vialterna designs redundancy layers using LTE, 5G, satellite and multi-carrier access to keep critical sites online." : "Vialterna diseña capas de redundancia con LTE, 5G, satélite y acceso multioperador para mantener activos sitios críticos."}
               </p>
               <a href={localizeHref("/contacto/", language)} className="cta-button mt-8 inline-flex items-center gap-2 rounded-md px-7 py-4 font-bold text-white">
-                Habla con un experto <ArrowRight className="h-5 w-5" />
+                {ui[language].talk} <ArrowRight className="h-5 w-5" />
               </a>
             </div>
             <div data-motion="parallax-media" className="media-hover relative min-h-[430px] bg-[linear-gradient(135deg,rgba(6,21,33,.08),rgba(6,21,33,.42)),url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1500&q=85')] bg-cover bg-center">
               <div data-motion="stagger" className="absolute bottom-8 left-8 right-8 grid gap-3 sm:grid-cols-2">
-                {["LTE", "5G", "Satelital", "Multioperador"].map((label, index) => (
+                {(language === "en" ? ["LTE", "5G", "Satellite", "Multi-carrier"] : ["LTE", "5G", "Satelital", "Multioperador"]).map((label, index) => (
                   <motion.div data-stagger-item {...item(index)} key={label} className="showcase-label rounded-md p-4 font-black backdrop-blur-xl">
                     {label}
                   </motion.div>
@@ -795,12 +795,12 @@ function DesignSections({ page, language = "es" }) {
       <section className="bg-[#071622] px-5 py-24 text-white lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
           <motion.div data-motion="reveal-left" {...reveal}>
-            <Pill>Contacto</Pill>
+            <Pill>{ui[language].contact}</Pill>
             <h2 data-motion="title-lines" className="site-heading mt-7 text-5xl leading-[1.06] md:text-7xl">
-              Solicita un diagnóstico de conectividad.
+              {language === "en" ? "Request a connectivity assessment." : "Solicita un diagnóstico de conectividad."}
             </h2>
             <p className="mt-8 max-w-2xl text-xl leading-9 text-white/64">
-              Cuéntanos dónde tu operación está expuesta a riesgo de conectividad. Evaluamos puntos únicos de falla, oportunidades de optimización y mejoras posibles para tu infraestructura.
+              {language === "en" ? "Tell us where your operation is exposed to connectivity risk. We assess single points of failure, optimization opportunities and possible infrastructure improvements." : "Cuéntanos dónde tu operación está expuesta a riesgo de conectividad. Evaluamos puntos únicos de falla, oportunidades de optimización y mejoras posibles para tu infraestructura."}
             </p>
           </motion.div>
 
@@ -809,7 +809,7 @@ function DesignSections({ page, language = "es" }) {
             <div className="mt-8 grid gap-4">
               <div className="flex items-start gap-4 rounded-md bg-white/8 p-5 text-white/82">
                 <MapPin className="mt-1 h-6 w-6 shrink-0 text-[#9AEAF4]" />
-                <span>Montes Urales 720, Lomas de Chapultepec, Delegación Miguel Hidalgo, C.P. 11000</span>
+                <span>{language === "en" ? "Montes Urales 720, Lomas de Chapultepec, Miguel Hidalgo, Postal Code 11000" : "Montes Urales 720, Lomas de Chapultepec, Delegación Miguel Hidalgo, C.P. 11000"}</span>
               </div>
               <a href="mailto:atencionaclientes@vialterna.com" className="flex items-center gap-4 rounded-md bg-white/8 p-5 text-white/82 transition hover:bg-white/12">
                 <Mail className="h-6 w-6 shrink-0 text-[#9AEAF4]" />
@@ -821,7 +821,7 @@ function DesignSections({ page, language = "es" }) {
               </a>
             </div>
             <a href={localizeHref("/contacto/", language)} className="cta-button mt-8 inline-flex w-full items-center justify-center gap-3 rounded-md px-7 py-4 font-bold text-white">
-              Habla con un experto <ArrowRight className="h-5 w-5" />
+              {ui[language].talk} <ArrowRight className="h-5 w-5" />
             </a>
           </motion.div>
         </div>
@@ -1148,7 +1148,7 @@ export function ContentPage({ page, path, language = "es" }) {
       {({ theme, toggleTheme }) => (
       <div ref={pageRef}>
       <section data-motion="hero" className="relative overflow-hidden">
-        <img src={heroImage} alt="" className="absolute inset-0 h-full w-full object-cover grayscale-[18%] saturate-[.72]" />
+        <img src={page.heroImage || heroImage} alt="" className="absolute inset-0 h-full w-full object-cover grayscale-[18%] saturate-[.72]" />
         <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(20,22,28,.98)_0%,rgba(20,22,28,.94)_48%,rgba(20,22,28,.76)_100%)]" />
         <Header theme={theme} onThemeToggle={toggleTheme} language={language} />
         <div className="relative z-10 mx-auto grid max-w-[96rem] items-center gap-12 px-5 pb-24 pt-32 lg:grid-cols-[.9fr_1.1fr] lg:px-8 lg:pt-36 2xl:px-10">

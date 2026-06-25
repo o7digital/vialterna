@@ -403,6 +403,7 @@ export const pages = {
     benefits: ["Centralized SIM management.", "Bulk provisioning.", "Usage control.", "Plan optimization.", "Processing redundancy.", "Automatic failover."], cta
   },
   "/empresa/": {
+    heroImage: "/o7-meeting-room.webp",
     title: "Enterprise telecommunications company in Mexico | Vialterna",
     description: "Vialterna connects companies, branches, devices and field operations through managed networks, SD-WAN, IoT and resilient connectivity.",
     eyebrow: "Company",
