@@ -15,13 +15,17 @@ import {
 
 export const heroVideo =
   "https://vialterna.com/wp-content/uploads/2026/04/Conectividad-Vialterna-original.mp4";
+export const heroVideos = [
+  "https://vialterna.com/wp-content/uploads/2026/04/Conectividad-Vialterna-original.mp4",
+  "https://vialterna.com/wp-content/uploads/2026/03/Conectividad-Vialterna.mp4"
+];
 export const heroImage =
   "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1800&q=82";
 
 export const navigation = [
   {
     label: "Soluciones",
-    href: "/soluciones/",
+    href: "/soluciones/conectividad-sitios-distribuidos/",
     children: [
       { label: "Soluciones Edge", href: "/soluciones/conectividad-sitios-distribuidos/" },
       { label: "Soluciones para Sitios Centrales", href: "/soluciones/sitios-centrales/" },
@@ -31,7 +35,7 @@ export const navigation = [
   },
   {
     label: "Industrias",
-    href: "/industrias/",
+    href: "/industrias/servicios-financieros/",
     children: [
       { label: "Servicios financieros", href: "/industrias/servicios-financieros/" },
       { label: "Retail y franquicias", href: "/industrias/retail-franquicias/" },
