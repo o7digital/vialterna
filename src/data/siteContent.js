@@ -44,7 +44,7 @@ export const navigation = [
     ]
   },
   { label: "Empresa", href: "/empresa/" },
-  { label: "Insights", href: "/insights/" },
+  { label: "Noticias", href: "/insights/" },
   { label: "FAQ", href: "/faq/" },
   { label: "Contacto", href: "/contacto/" }
 ];
@@ -346,6 +346,57 @@ const faqContent = {
   }
 };
 
+const newsArticles = [
+  {
+    category: "Redes",
+    date: "18-jun",
+    readTime: "5 min",
+    title: "Cómo diseñar conectividad resiliente para sitios distribuidos",
+    excerpt: "Criterios prácticos para combinar operadores, tecnologías y rutas de respaldo sin depender de un solo enlace.",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=82"
+  },
+  {
+    category: "SD-WAN",
+    date: "06-jun",
+    readTime: "6 min",
+    title: "Cuándo migrar de MPLS a una arquitectura SD-WAN multioperador",
+    excerpt: "Señales operativas, riesgos y beneficios de pasar a una red flexible con failover y visibilidad centralizada.",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=82"
+  },
+  {
+    category: "IoT",
+    date: "24-may",
+    readTime: "4 min",
+    title: "SIMs empresariales: control de consumo y ciclo de vida para flotas IoT",
+    excerpt: "Buenas prácticas para administrar activaciones, alertas, planes y dispositivos conectados en operación nacional.",
+    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=82"
+  },
+  {
+    category: "Respaldo",
+    date: "09-may",
+    readTime: "5 min",
+    title: "Respaldo satelital y celular: cómo evitar un punto único de falla",
+    excerpt: "Cuándo usar LTE, 5G o satélite LEO como rutas secundarias para sitios críticos y ubicaciones remotas.",
+    image: "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?auto=format&fit=crop&w=1200&q=82"
+  },
+  {
+    category: "Operación",
+    date: "22-abr",
+    readTime: "3 min",
+    title: "Qué debe medir un NOC para proteger disponibilidad empresarial",
+    excerpt: "Indicadores clave para anticipar degradaciones, incidentes y fallas antes de que afecten al negocio.",
+    image: "https://images.unsplash.com/photo-1600267165477-6d4cc741b379?auto=format&fit=crop&w=1200&q=82"
+  },
+  {
+    category: "Finanzas",
+    date: "04-abr",
+    readTime: "4 min",
+    title: "El costo oculto de una tienda, sucursal o cajero desconectado",
+    excerpt: "Cómo traducir downtime en impacto operativo y financiero para priorizar inversiones de conectividad.",
+    image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?auto=format&fit=crop&w=1200&q=82"
+  }
+];
+
 export const home = {
   title: "Conectividad empresarial resiliente en México | Vialterna",
   description: "Vialterna diseña, despliega y opera conectividad administrada para empresas con operaciones distribuidas en México.",
@@ -488,12 +539,13 @@ export const pages = {
     cta
   },
   "/insights/": {
-    title: "Insights de conectividad y redes empresariales | Vialterna",
-    description: "Análisis de conectividad administrada, Soluciones Edge, redes SD-WAN, IoT, SIMs empresariales y continuidad operativa.",
-    eyebrow: "Insights",
-    h1: "Insights: análisis de conectividad, redes empresariales y soluciones Edge",
+    title: "Noticias de conectividad y redes empresariales | Vialterna",
+    description: "Noticias y análisis de conectividad administrada, Soluciones Edge, redes SD-WAN, IoT, SIMs empresariales y continuidad operativa.",
+    eyebrow: "Noticias",
+    h1: "Noticias: análisis de conectividad, redes empresariales y soluciones Edge",
     intro: "Perspectivas técnicas sobre conectividad administrada, Soluciones Edge, redes SD-WAN, IoT, SIMs empresariales y continuidad operativa.",
     sections: [{ h2: "Artículos recomendados", features: [["4G/LTE vs. 5G", "Comparación de tecnologías celulares para routers y conectividad móvil."], ["Abandonando MPLS por SD-WAN", "Contenido para empresas que evalúan arquitecturas más flexibles."], ["GPS + IoT", "Rastreo, sensores, conectividad celular y gestión de flotas inteligentes."]] }],
+    news: newsArticles,
     cta
   },
   "/faq/": {
