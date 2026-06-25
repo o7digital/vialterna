@@ -957,7 +957,6 @@ function ContactPage({ page, language = "es", path = "/contacto/" }) {
 
 function PrivacyPage({ page, language = "es", path = "/aviso-de-privacidad/" }) {
   const pageRef = useRef(null);
-  useHomeMotion(pageRef);
 
   return (
     <PageShell language={language} path={path}>
@@ -966,14 +965,14 @@ function PrivacyPage({ page, language = "es", path = "/aviso-de-privacidad/" }) 
       <section data-motion="hero" className="privacy-page bg-[#111217]">
         <Header theme={theme} onThemeToggle={toggleTheme} language={language} />
         <div data-motion="hero-content" className="privacy-content mx-auto max-w-5xl px-5 pb-20 pt-32 lg:px-8 lg:pt-36">
-          <div data-motion="hero-label"><Pill>{page.eyebrow}</Pill></div>
-          <h1 data-motion="title-lines" className="site-heading mt-7 text-5xl leading-[1.06] text-white md:text-7xl">{page.h1}</h1>
-          <p data-motion="hero-copy" className="mt-6 max-w-3xl text-xl leading-8 text-white/68">{page.intro}</p>
-          <div data-motion="reveal-up" className="mt-12 rounded-md border border-white/10 bg-white/[0.045] p-6 text-white/72 md:p-10">
+          <div><Pill>{page.eyebrow}</Pill></div>
+          <h1 className="site-heading mt-7 text-5xl leading-[1.06] text-white md:text-7xl">{page.h1}</h1>
+          <p className="mt-6 max-w-3xl text-xl leading-8 text-white/68">{page.intro}</p>
+          <div className="mt-12 rounded-md border border-white/10 bg-white/[0.045] p-6 text-white/72 md:p-10">
             <div className="space-y-10">
               {page.sections?.map((section, index) => (
-                <section data-motion={index % 2 === 0 ? "reveal-left" : "reveal-right"} key={section.h2} className="border-b border-white/10 pb-10 last:border-b-0 last:pb-0">
-                  <h2 data-motion="title-lines" className="site-heading text-2xl leading-[1.1] text-white md:text-3xl">{section.h2}</h2>
+                <section key={section.h2} className="border-b border-white/10 pb-10 last:border-b-0 last:pb-0">
+                  <h2 className="site-heading text-2xl leading-[1.1] text-white md:text-3xl">{section.h2}</h2>
                   <div className="mt-5 space-y-4 text-base leading-8">
                     {section.paragraphs?.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
